@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeStyle/FileHeader/FileHeaderText/@EntryValue">/* ---------------------------------------------------------------------------------------&#xD;
+   文件名：$FILENAME$&#xD;
+   文件功能描述：&#xD;
+&#xD;
+   创建标识：$CREATED_YEAR$$CREATED_MONTH$$CREATED_DAY$&#xD;
+   作   者：张传宁  （QQ：905442693  微信：savionzhang）&#xD;
+   作者博客：https://www.cnblogs.com/SavionZhang/&#xD;
+   BIMFace专栏地址：https://www.cnblogs.com/SavionZhang/p/11424431.html&#xD;
+&#xD;
+   修改标识： &#xD;
+   修改描述：&#xD;
+ ------------------------------------------------------------------------------------------*/</s:String></wpf:ResourceDictionary>
