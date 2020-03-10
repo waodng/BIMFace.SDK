@@ -24,10 +24,9 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
+!bin/roslyn
 [Oo]bj/
 [Ll]og/
-
-!bin/roslyn
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
