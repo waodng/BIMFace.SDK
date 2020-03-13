@@ -22,6 +22,7 @@ using BIMFace.SDK.CSharp.Common.Http;
 using BIMFace.SDK.CSharp.Common.Utils;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Response;
+using BIMFace.SDK.CSharp.Exceptions;
 using BIMFace.SDK.CSharp.Http;
 
 namespace BIMFace.SDK.CSharp.API
@@ -83,7 +84,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[普通文件流上时]发生异常！", ex);
+                throw new BIMFaceException("[普通文件流上时]发生异常！", ex);
             }
         }
 
@@ -138,7 +139,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[指定外部文件url方式上传文件]发生异常！", ex);
+                throw new BIMFaceException("[指定外部文件url方式上传文件]发生异常！", ex);
             }
         }
 
@@ -200,7 +201,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取文件直传的policy凭证时]发生异常！", ex);
+                throw new BIMFaceException("[获取文件直传的policy凭证时]发生异常！", ex);
             }
         }
 
@@ -265,7 +266,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[通过文件直传的policy凭证，直接上传文件时]发生异常！", ex);
+                throw new BIMFaceException("[通过文件直传的policy凭证，直接上传文件时]发生异常！", ex);
             }
         }
 
@@ -314,7 +315,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[根据文件ID获取文件详细信息]发生异常！", ex);
+                throw new BIMFaceException("[根据文件ID获取文件详细信息]发生异常！", ex);
             }
         }
 
@@ -392,7 +393,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取文件信息列表]发生异常！", ex);
+                throw new BIMFaceException("[获取文件信息列表]发生异常！", ex);
             }
         }
 
@@ -434,7 +435,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取文件上传状态信息]发生异常！", ex);
+                throw new BIMFaceException("[获取文件上传状态信息]发生异常！", ex);
             }
         }
 
@@ -473,7 +474,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取应用支持的文件类型]发生异常！", ex);
+                throw new BIMFaceException("[获取应用支持的文件类型]发生异常！", ex);
             }
         }
 
@@ -523,7 +524,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取文件下载链接]发生异常！", ex);
+                throw new BIMFaceException("[获取文件下载链接]发生异常！", ex);
             }
         }
 
@@ -569,7 +570,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[根据文件ID删除文件]发生异常！", ex);
+                throw new BIMFaceException("[根据文件ID删除文件]发生异常！", ex);
             }
         }
         #endregion

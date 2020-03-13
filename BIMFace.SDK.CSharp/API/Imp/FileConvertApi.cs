@@ -19,6 +19,7 @@ using BIMFace.SDK.CSharp.Common.Http;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Request;
 using BIMFace.SDK.CSharp.Entity.Response;
+using BIMFace.SDK.CSharp.Exceptions;
 using BIMFace.SDK.CSharp.Http;
 
 namespace BIMFace.SDK.CSharp.API
@@ -383,7 +384,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[发起文件转换]发生异常！", ex);
+                throw new BIMFaceException("[发起文件转换]发生异常！", ex);
             }
         }
 
@@ -425,7 +426,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取转换状态]发生异常！", ex);
+                throw new BIMFaceException("[获取转换状态]发生异常！", ex);
             }
         }
 
@@ -469,7 +470,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[批量获取转换状态详情]发生异常！", ex);
+                throw new BIMFaceException("[批量获取转换状态详情]发生异常！", ex);
             }
         }
 
@@ -522,7 +523,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[查询满足条件的构件ID列表]发生异常！", ex);
+                throw new BIMFaceException("[查询满足条件的构件ID列表]发生异常！", ex);
             }
         }
 
@@ -565,7 +566,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取构件材质列表]发生异常！", ex);
+                throw new BIMFaceException("[获取构件材质列表]发生异常！", ex);
             }
         }
 
@@ -613,7 +614,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取构件属性]发生异常！", ex);
+                throw new BIMFaceException("[获取构件属性]发生异常！", ex);
             }
         }
 
@@ -666,7 +667,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取多个构件的共同属性]发生异常！", ex);
+                throw new BIMFaceException("[获取多个构件的共同属性]发生异常！", ex);
             }
         }
 
@@ -736,7 +737,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[批量获取构件属性]发生异常！", ex);
+                throw new BIMFaceException("[批量获取构件属性]发生异常！", ex);
             }
         }
 
@@ -792,7 +793,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取单模型的楼层信息]发生异常！", ex);
+                throw new BIMFaceException("[获取单模型的楼层信息]发生异常！", ex);
             }
         }
 
@@ -853,7 +854,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取多个模型的楼层信息]发生异常！", ex);
+                throw new BIMFaceException("[获取多个模型的楼层信息]发生异常！", ex);
             }
         }
 
@@ -895,7 +896,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取模型链接信息]发生异常！", ex);
+                throw new BIMFaceException("[获取模型链接信息]发生异常！", ex);
             }
         }
 
@@ -938,7 +939,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取单个房间信息]发生异常！", ex);
+                throw new BIMFaceException("[获取单个房间信息]发生异常！", ex);
             }
         }
 
@@ -981,7 +982,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取楼层对应面积分区列表]发生异常！", ex);
+                throw new BIMFaceException("[获取楼层对应面积分区列表]发生异常！", ex);
             }
         }
 
@@ -1024,7 +1025,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取单个面积分区信息]发生异常！", ex);
+                throw new BIMFaceException("[获取单个面积分区信息]发生异常！", ex);
             }
         }
 
@@ -1088,7 +1089,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取单个模型中构件的默认分类树]发生异常！", ex);
+                throw new BIMFaceException("[获取单个模型中构件的默认分类树]发生异常！", ex);
             }
         }
 
@@ -1150,7 +1151,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取单个模型中构件的自定义分类树]发生异常！", ex);
+                throw new BIMFaceException("[获取单个模型中构件的自定义分类树]发生异常！", ex);
             }
         }
 
@@ -1214,7 +1215,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取构件分类树]发生异常！", ex);
+                throw new BIMFaceException("[获取构件分类树]发生异常！", ex);
             }
         }
 
@@ -1256,7 +1257,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取楼层对应面积分区列表]发生异常！", ex);
+                throw new BIMFaceException("[获取楼层对应面积分区列表]发生异常！", ex);
             }
         }
 
@@ -1304,7 +1305,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取单个模型的图纸列表]发生异常！", ex);
+                throw new BIMFaceException("[获取单个模型的图纸列表]发生异常！", ex);
             }
         }
 

@@ -18,6 +18,7 @@ using BIMFace.SDK.CSharp.Common.Http;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Request;
 using BIMFace.SDK.CSharp.Entity.Response;
+using BIMFace.SDK.CSharp.Exceptions;
 using BIMFace.SDK.CSharp.Http;
 
 namespace BIMFace.SDK.CSharp.API
@@ -84,7 +85,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[发起模型对比]发生异常！", ex);
+                throw new BIMFaceException("[发起模型对比]发生异常！", ex);
             }
         }
 
@@ -126,7 +127,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取模型对比状态]发生异常！", ex);
+                throw new BIMFaceException("[获取模型对比状态]发生异常！", ex);
             }
         }
 
@@ -168,7 +169,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[批量获取模型对比状态]发生异常！", ex);
+                throw new BIMFaceException("[批量获取模型对比状态]发生异常！", ex);
             }
         }
 
@@ -208,7 +209,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[删除模型对比]发生异常！", ex);
+                throw new BIMFaceException("[删除模型对比]发生异常！", ex);
             }
         }
 
@@ -263,7 +264,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取模型构件对比差异]发生异常！", ex);
+                throw new BIMFaceException("[获取模型构件对比差异]发生异常！", ex);
             }
         }
 
@@ -305,7 +306,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取模型构件对比差异]发生异常！", ex);
+                throw new BIMFaceException("[获取模型构件对比差异]发生异常！", ex);
             }
         }
 
@@ -374,7 +375,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[分页获取模型对比结果]发生异常！", ex);
+                throw new BIMFaceException("[分页获取模型对比结果]发生异常！", ex);
             }
         }
 

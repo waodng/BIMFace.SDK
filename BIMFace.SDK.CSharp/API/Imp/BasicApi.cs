@@ -20,6 +20,7 @@ using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Response;
+using BIMFace.SDK.CSharp.Exceptions;
 using BIMFace.SDK.CSharp.Http;
 #endregion
 
@@ -68,7 +69,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取AccessToken]发生异常！", ex);
+                throw new BIMFaceException("[获取AccessToken]发生异常！", ex);
             }
         }
 
@@ -109,7 +110,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取ViewToken] 发生异常！", ex);
+                throw new BIMFaceException("[获取ViewToken] 发生异常！", ex);
             }
         }
 
@@ -181,7 +182,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new Exception("[获取子文件的ViewToken]发生异常！", ex);
+                throw new BIMFaceException("[获取子文件的ViewToken]发生异常！", ex);
             }
         }
 
