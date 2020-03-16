@@ -359,7 +359,7 @@ namespace BIMFace.SDK.CSharp.API
             //PUT https://api.bimface.com/translate
             string url = BIMFaceConstants.API_HOST + "/translate";
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -401,7 +401,7 @@ namespace BIMFace.SDK.CSharp.API
             //GET https://api.bimface.com/translate
             string url = string.Format(BIMFaceConstants.API_HOST + "/translate?fileId={0}", fileId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -443,7 +443,7 @@ namespace BIMFace.SDK.CSharp.API
             // POST https://api.bimface.com/translateDetails
             string url = string.Format(BIMFaceConstants.API_HOST + "/translateDetails");
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             string data = request.SerializeToJson();
@@ -492,7 +492,7 @@ namespace BIMFace.SDK.CSharp.API
             // GET https://api.bimface.com/data/v2/files/{fileId}/elementIds
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elementIds", fileId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             string data = string.Empty;
@@ -541,7 +541,7 @@ namespace BIMFace.SDK.CSharp.API
             // GET https://api.bimface.com/data/v2/files/{fileId}/elements/{elementId}/materials
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elements/{1}/materials", fileId, elementId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -589,7 +589,7 @@ namespace BIMFace.SDK.CSharp.API
                 url = url + "?includeOverrides=" + includeOverrides;
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -642,7 +642,7 @@ namespace BIMFace.SDK.CSharp.API
                 url = url + "&includeOverrides=" + includeOverrides;
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -712,7 +712,7 @@ namespace BIMFace.SDK.CSharp.API
 
             string data = request.SerializeToJson();
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -768,7 +768,7 @@ namespace BIMFace.SDK.CSharp.API
                 url = url + "?includeArea=" + includeArea + "&includeRoom=" + CommonExtension.ToString(includeRoom);
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -829,7 +829,7 @@ namespace BIMFace.SDK.CSharp.API
                 url = url + "?includeArea=" + includeArea + "&includeRoom=" + includeRoom;
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -871,7 +871,7 @@ namespace BIMFace.SDK.CSharp.API
             // GET https://api.bimface.com/data/v2/files/{fileId}/links
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/links", fileId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -914,7 +914,7 @@ namespace BIMFace.SDK.CSharp.API
             // GET https://api.bimface.com/data/v2/files/{fileId}/rooms/{roomId}
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/rooms/{1}", fileId, roomId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -957,7 +957,7 @@ namespace BIMFace.SDK.CSharp.API
             // GET https://api.bimface.com/data/v2/files/{fileId}/areas
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/areas?floorId={1}", fileId, floorId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -1000,7 +1000,7 @@ namespace BIMFace.SDK.CSharp.API
             // GET https://api.bimface.com/data/v2/files/{fileId}/areas/{areaId}
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/areas/{1}", fileId, areaId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -1064,7 +1064,7 @@ namespace BIMFace.SDK.CSharp.API
                 data = request.SerializeToJson();
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -1126,7 +1126,7 @@ namespace BIMFace.SDK.CSharp.API
                 data = request.SerializeToJson();
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -1190,7 +1190,7 @@ namespace BIMFace.SDK.CSharp.API
                 data = request.SerializeToJson();
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -1232,7 +1232,7 @@ namespace BIMFace.SDK.CSharp.API
             // GET https://api.bimface.com/data/v2/files/{fileId}/views
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/views", fileId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -1257,7 +1257,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new BIMFaceException("[获取楼层对应面积分区列表]发生异常！", ex);
+                throw new BIMFaceException("[获取三维视点或二维视图列表]发生异常！", ex);
             }
         }
 
@@ -1280,7 +1280,7 @@ namespace BIMFace.SDK.CSharp.API
                 url = url + "?elementId=" + elementId;
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try

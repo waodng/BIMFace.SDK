@@ -1,5 +1,5 @@
 ﻿// /* ---------------------------------------------------------------------------------------
-//    文件名：SingleModelMultipleElementsPropertiesGetRequest.cs
+//    文件名：ElementPropertyFilterRequest.cs
 //    文件功能描述：
 // 
 //    创建标识：20200308

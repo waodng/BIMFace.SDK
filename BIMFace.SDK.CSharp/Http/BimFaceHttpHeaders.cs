@@ -1,5 +1,5 @@
 ﻿// /* ---------------------------------------------------------------------------------------
-//    文件名：BimFaceHttpHeaders.cs
+//    文件名：BIMFaceHttpHeaders.cs
 //    文件功能描述：
 // 
 //    创建标识：20200308
@@ -20,7 +20,7 @@ namespace BIMFace.SDK.CSharp.Http
     /// <summary>
     ///  调用BimFace相关API时，需要放置在 http header 中的参数集合类
     /// </summary>
-    public class BimFaceHttpHeaders : WebHeaderCollection
+    public class BIMFaceHttpHeaders : WebHeaderCollection
     {
         public const string AUTHORIZATION = "Authorization";
         public const string CACHE_CONTROL = "Cache-Control";

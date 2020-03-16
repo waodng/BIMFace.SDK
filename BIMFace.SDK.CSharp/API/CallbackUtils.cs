@@ -20,7 +20,6 @@ namespace BIMFace.SDK.CSharp.API
     /// </summary>
     public class CallbackUtils
     {
-
         #region Callback 消息签名验证
 
         /// <summary>

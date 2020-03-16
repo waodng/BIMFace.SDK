@@ -59,7 +59,7 @@ namespace BIMFace.SDK.CSharp.API
 
             byte[] fileBytes = fileStream.ToByteArray();
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -114,7 +114,7 @@ namespace BIMFace.SDK.CSharp.API
                 url = url + "&etag=" + etag;
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -176,7 +176,7 @@ namespace BIMFace.SDK.CSharp.API
                 url = url + "&sourceId=" + sourceId;
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -290,7 +290,7 @@ namespace BIMFace.SDK.CSharp.API
             //GET https://file.bimface.com/files/{fileId}
             string url = string.Format(BIMFaceConstants.FILE_HOST + "/files/{0}", fileId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -370,7 +370,7 @@ namespace BIMFace.SDK.CSharp.API
                 url = url + "?suffix=" + suffix;
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -410,7 +410,7 @@ namespace BIMFace.SDK.CSharp.API
             //GET https://file.bimface.com/files/{fileId}/uploadStatus
             string url = string.Format(BIMFaceConstants.FILE_HOST + "/files/{0}/uploadStatus", fileId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -449,7 +449,7 @@ namespace BIMFace.SDK.CSharp.API
 
             //GET https://file.bimface.com/support
             string url = BIMFaceConstants.FILE_HOST + "/support";
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -499,7 +499,7 @@ namespace BIMFace.SDK.CSharp.API
             {
                 url = url + "&name=" + name.UriEscapeDataString();
             }
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -545,7 +545,7 @@ namespace BIMFace.SDK.CSharp.API
             //DELETE https://file.bimface.com/file
             string url = string.Format(BIMFaceConstants.FILE_HOST + "/file?fileId={0}", fileId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try

@@ -60,7 +60,7 @@ namespace BIMFace.SDK.CSharp.API
             string url = BIMFaceConstants.API_HOST + "/v2/compare";
             string data = request.SerializeToJson();
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -102,7 +102,7 @@ namespace BIMFace.SDK.CSharp.API
             //GET https://api.bimface.com/v2/compare
             string url = string.Format(BIMFaceConstants.API_HOST + "/v2/compare?compareId={0}", compareId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -144,7 +144,7 @@ namespace BIMFace.SDK.CSharp.API
             //POST https://api.bimface.com/compares
             string url = BIMFaceConstants.API_HOST + "/compares";
             string data = request.SerializeToJson();
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -184,7 +184,7 @@ namespace BIMFace.SDK.CSharp.API
             //DELETE https://api.bimface.com/v2/compare
             string url = string.Format(BIMFaceConstants.API_HOST + "/v2/compare?compareId={0}", compareId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -239,7 +239,7 @@ namespace BIMFace.SDK.CSharp.API
             url += "&previousFileId=" + previousFileId;
             url += "&previousElementId=" + previousElementId;
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -281,7 +281,7 @@ namespace BIMFace.SDK.CSharp.API
             // GET https://api.bimface.com/data/v2/comparisons/{comparisonId}/tree
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/tree", compareId);
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -350,7 +350,7 @@ namespace BIMFace.SDK.CSharp.API
                 url += "&family=" + family;
             }
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try

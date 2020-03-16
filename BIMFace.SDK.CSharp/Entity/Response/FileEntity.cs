@@ -15,7 +15,7 @@ using System;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity
+namespace BIMFace.SDK.CSharp.Entity.Response
 {
     /// <summary>
     ///  文件信息实体

@@ -1,5 +1,5 @@
 ﻿// /* ---------------------------------------------------------------------------------------
-//    文件名：BimfaceException.cs
+//    文件名：BasicApi.cs
 //    文件功能描述：
 // 
 //    创建标识：20200308
@@ -45,7 +45,7 @@ namespace BIMFace.SDK.CSharp.API
             //POST https://api.bimface.com/oauth2/token
             string url = BIMFaceConstants.API_HOST + "/oauth2/token";
 
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddBasicAuthHeader(appKey, appSecret);
 
             try
@@ -86,7 +86,7 @@ namespace BIMFace.SDK.CSharp.API
 
             //GET https://api.bimface.com/view/token
             string url = string.Format(BIMFaceConstants.API_HOST + "/view/token?{0}={1}", modelType.ToString(), objectId);
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try
@@ -158,7 +158,7 @@ namespace BIMFace.SDK.CSharp.API
         {
             //POST https://api.bimface.com/data/v2/integrations/{integrateId}/files/{fileId}/viewToken
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/integrations/{0}/files/{1}/viewToken", integrateId, fileId); // POST 方式
-            BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
             try

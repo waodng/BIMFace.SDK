@@ -1,5 +1,5 @@
 ﻿// /* ---------------------------------------------------------------------------------------
-//    文件名：AccessTokenResponse.cs
+//    文件名：ModelCompareQueryResponse.cs
 //    文件功能描述：
 // 
 //    创建标识：20200308
@@ -30,11 +30,5 @@ namespace BIMFace.SDK.CSharp.Entity.Response
 
         [JsonProperty("page", NullValueHandling = NullValueHandling.Ignore)]
         public Page2 Page { get; set; }
-    }
-
-    public class Page2 : Page
-    {
-        [JsonProperty("htmlDisplay", NullValueHandling = NullValueHandling.Ignore)]
-        public string HtmlDisplay { get; set; }
     }
 }

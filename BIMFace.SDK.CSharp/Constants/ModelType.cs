@@ -31,6 +31,11 @@ namespace BIMFace.SDK.CSharp.Constants
         /// <summary>
         /// 集成模型ID
         /// </summary>
-        integrateId
+        integrateId,
+
+        /// <summary>
+        /// 分享链接的识别码
+        /// </summary>
+        token
     }
 }
