@@ -16,7 +16,7 @@ namespace BIMFace.SDK.CSharp.Entity.Response
     /// <summary>
     ///  获取多个构件的共同属性返回的结果类
     /// </summary>
-    public class SingleModelMultipleElementsCommonProperties : SingleModelSingleElementProperty
+    public class SingleModelMultipleElementsCommonProperties : GeneralResponse<Property>
     {
 
     }
