@@ -57,7 +57,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列30 服务端API之模型对比1：发起模型对比》https://www.cnblogs.com/SavionZhang/p/12395986.html
 
             //POST https://api.bimface.com/v2/compare
-            string url = BimfaceConstants.API_HOST + "/v2/compare";
+            string url = BIMFaceConstants.API_HOST + "/v2/compare";
             string data = request.SerializeToJson();
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
@@ -100,7 +100,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列31 服务端API之模型对比2：获取模型对比状态》 https://www.cnblogs.com/SavionZhang/p/12395996.html
 
             //GET https://api.bimface.com/v2/compare
-            string url = string.Format(BimfaceConstants.API_HOST + "/v2/compare?compareId={0}", compareId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/v2/compare?compareId={0}", compareId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -142,7 +142,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列32 服务端API之模型对比3：批量获取模型对比状态》 https://www.cnblogs.com/SavionZhang/p/12396001.html
 
             //POST https://api.bimface.com/compares
-            string url = BimfaceConstants.API_HOST + "/compares";
+            string url = BIMFaceConstants.API_HOST + "/compares";
             string data = request.SerializeToJson();
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -182,7 +182,7 @@ namespace BIMFace.SDK.CSharp.API
         public virtual DeleteModelCompareResponse DeleteModelCompare(string accessToken, long compareId)
         {
             //DELETE https://api.bimface.com/v2/compare
-            string url = string.Format(BimfaceConstants.API_HOST + "/v2/compare?compareId={0}", compareId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/v2/compare?compareId={0}", compareId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -233,7 +233,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列34 服务端API之模型对比5：获取模型构件对比差异》 https://www.cnblogs.com/SavionZhang/p/12396011.html
 
             // GET https: //api.bimface.com/data/v2/comparisons/{comparisonId}/elementChange
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/comparisons/{0}/elementChange", compareId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/elementChange", compareId);
             url += "?followingFileId=" + followingFileId;
             url += "&followingElementId=" + followingElementId;
             url += "&previousFileId=" + previousFileId;
@@ -279,7 +279,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列35 服务端API之模型对比6：获取模型构建对比分类树》 https://www.cnblogs.com/SavionZhang/p/12396032.html
 
             // GET https://api.bimface.com/data/v2/comparisons/{comparisonId}/tree
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/comparisons/{0}/tree", compareId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/tree", compareId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -327,7 +327,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列33 服务端API之模型对比4：获取模型对比结果》 https://www.cnblogs.com/SavionZhang/p/12396008.html
 
             // GET https://api.bimface.com/data/v2/comparisons/{comparisonId}/diff
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/comparisons/{0}/diff", compareId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/diff", compareId);
             if (page <= 1)
             {
                 page = 1;

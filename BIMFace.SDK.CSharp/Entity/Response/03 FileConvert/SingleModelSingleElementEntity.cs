@@ -53,10 +53,10 @@ namespace BIMFace.SDK.CSharp.Entity.Response
     public class BoundingBox
     {
         [JsonProperty("max", NullValueHandling = NullValueHandling.Ignore)]
-        public Max Max { get; set; }
+        public Coordinate Max { get; set; }
 
         [JsonProperty("min", NullValueHandling = NullValueHandling.Ignore)]
-        public Min Min { get; set; }
+        public Coordinate Min { get; set; }
 
         /// <summary>返回表示当前对象的字符串。</summary>
         /// <returns>表示当前对象的字符串。</returns>
@@ -66,15 +66,6 @@ namespace BIMFace.SDK.CSharp.Entity.Response
         }
     }
 
-    [Serializable]
-    public class Max : ThreeDimensionalCoordinates
-    {
-    }
-
-    [Serializable]
-    public class Min : ThreeDimensionalCoordinates
-    {
-    }
 
     /// <summary>
     ///  三维坐标系

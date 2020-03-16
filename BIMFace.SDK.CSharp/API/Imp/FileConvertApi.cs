@@ -357,7 +357,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列12 服务端API之文件转换》 https://www.cnblogs.com/SavionZhang/p/11451815.html
 
             //PUT https://api.bimface.com/translate
-            string url = BimfaceConstants.API_HOST + "/translate";
+            string url = BIMFaceConstants.API_HOST + "/translate";
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -399,7 +399,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列13 服务端API之获取转换状态》 https://www.cnblogs.com/SavionZhang/p/11455484.html
 
             //GET https://api.bimface.com/translate
-            string url = string.Format(BimfaceConstants.API_HOST + "/translate?fileId={0}", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/translate?fileId={0}", fileId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -441,7 +441,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列14 服务端API之批量获取转换状态详情》 https://www.cnblogs.com/SavionZhang/p/11455795.html
 
             // POST https://api.bimface.com/translateDetails
-            string url = string.Format(BimfaceConstants.API_HOST + "/translateDetails");
+            string url = string.Format(BIMFaceConstants.API_HOST + "/translateDetails");
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -490,7 +490,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列16 服务端API之获取模型数据1：查询满足条件的构件ID列表》 https://www.cnblogs.com/SavionZhang/p/11457965.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/elementIds
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/elementIds", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elementIds", fileId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -539,7 +539,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列17 服务端API之获取模型数据2：获取构件材质列表》https://www.cnblogs.com/SavionZhang/p/11459867.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/elements/{elementId}/materials
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/elements/{1}/materials", fileId, elementId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elements/{1}/materials", fileId, elementId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -583,7 +583,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列18 服务端API之获取模型数据3：获取构件属性》 https://www.cnblogs.com/SavionZhang/p/11465063.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/elements/{elementId}
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/elements/{1}", fileId, elementId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elements/{1}", fileId, elementId);
             if (includeOverrides != null)
             {
                 url = url + "?includeOverrides=" + includeOverrides;
@@ -636,7 +636,7 @@ namespace BIMFace.SDK.CSharp.API
             }
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/commonElementProperties?elementIds={string}
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/commonElementProperties?elementIds={1}", fileId, elementIds.ToStringWith(","));
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/commonElementProperties?elementIds={1}", fileId, elementIds.ToStringWith(","));
             if (includeOverrides != null)
             {
                 url = url + "&includeOverrides=" + includeOverrides;
@@ -704,7 +704,7 @@ namespace BIMFace.SDK.CSharp.API
             }
 
             // POST https://api.bimface.com/data/v2/files/{fileId}/elements
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/elements", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elements", fileId);
             if (includeOverrides != null)
             {
                 url = url + "?includeOverrides=" + includeOverrides;
@@ -754,7 +754,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列21 服务端API之获取模型数据6：获取单模型的楼层信息》 https://www.cnblogs.com/SavionZhang/p/11490514.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/floors
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/floors", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/floors", fileId);
             if (includeArea != null && includeRoom == null)
             {
                 url = url + "?includeArea=" + includeArea;
@@ -815,7 +815,7 @@ namespace BIMFace.SDK.CSharp.API
             }
 
             // GET https://api.bimface.com/data/v2/files/{fileIds}/fileIdfloorsMappings
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/fileIdfloorsMappings", fileIds.ToStringWith(","));
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/fileIdfloorsMappings", fileIds.ToStringWith(","));
             if (includeArea != null && includeRoom == null)
             {
                 url = url + "?includeArea=" + includeArea;
@@ -869,7 +869,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列23 服务端API之获取模型数据8：获取模型链接信息》 https://www.cnblogs.com/SavionZhang/p/11492515.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/links
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/links", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/links", fileId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -912,7 +912,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列24 服务端API之获取模型数据9：获取单个房间信息》 https://www.cnblogs.com/SavionZhang/p/11492932.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/rooms/{roomId}
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/rooms/{1}", fileId, roomId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/rooms/{1}", fileId, roomId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -955,7 +955,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列25 服务端API之获取模型数据10：获取楼层对应面积分区列表》 https://www.cnblogs.com/SavionZhang/p/11493502.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/areas
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/areas?floorId={1}", fileId, floorId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/areas?floorId={1}", fileId, floorId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -998,7 +998,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列26 服务端API之获取模型数据11：获取单个面积分区信息》https://www.cnblogs.com/SavionZhang/p/11493593.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/areas/{areaId}
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/areas/{1}", fileId, areaId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/areas/{1}", fileId, areaId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -1051,7 +1051,7 @@ namespace BIMFace.SDK.CSharp.API
             */
 
             // POST https://api.bimface.com/data/v2/files/{fileId}/tree
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/tree?treeType=default", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/tree?treeType=default", fileId);
 
             if (!string.IsNullOrWhiteSpace(v))
             {
@@ -1113,7 +1113,7 @@ namespace BIMFace.SDK.CSharp.API
             */
 
             // POST https://api.bimface.com/data/v2/files/{fileId}/tree
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/tree?treeType=customized", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/tree?treeType=customized", fileId);
 
             if (!string.IsNullOrWhiteSpace(v))
             {
@@ -1177,7 +1177,7 @@ namespace BIMFace.SDK.CSharp.API
             string tempTreeType = treeType == TreeType.Default ? "default" : "customized";
 
             // POST https://api.bimface.com/data/v2/files/{fileId}/tree
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/tree?treeType={1}", fileId, tempTreeType);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/tree?treeType={1}", fileId, tempTreeType);
 
             if (!string.IsNullOrWhiteSpace(v))
             {
@@ -1230,7 +1230,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列28 服务端API之获取模型数据13：获取三维视点或二维视图列表》 https://www.cnblogs.com/SavionZhang/p/11493866.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/views
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/views", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/views", fileId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -1274,7 +1274,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列29 服务端API之获取模型数据14：获取图纸列表》 https://www.cnblogs.com/SavionZhang/p/11493875.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/drawingsheets
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/files/{0}/drawingsheets", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/drawingsheets", fileId);
             if (!string.IsNullOrWhiteSpace(elementId))
             {
                 url = url + "?elementId=" + elementId;

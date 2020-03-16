@@ -51,7 +51,7 @@ namespace BIMFace.SDK.CSharp.API
             /* 重要提示：使用普通文件流上传，不支持表单方式; 文件流需要在 request body 中传递 */
 
             //PUT 方式。例如：https://file.bimface.com/upload?name=3F.rvt
-            string url = string.Format(BimfaceConstants.FILE_HOST + "/upload?name={0}", fileName.UrlEncode(Encoding.UTF8));  //文件的全名，使用URL编码（UTF-8），最多256个字符
+            string url = string.Format(BIMFaceConstants.FILE_HOST + "/upload?name={0}", fileName.UrlEncode(Encoding.UTF8));  //文件的全名，使用URL编码（UTF-8），最多256个字符
             if (sourceId.IsNotNullAndWhiteSpace())
             {
                 url = url + "&sourceId=" + sourceId;
@@ -104,7 +104,7 @@ namespace BIMFace.SDK.CSharp.API
             /* 如果需要上传的文件不在本地，且该文件可以通过指定的HTTP URL可以下载，BIMFACE支持直接传一个外部的HTTP文件URL, BIMFACE会去下载该文件，而无须用户先下载，再上传。 */
 
             //PUT 方式。例如：https://file.bimface.com/upload?name=example.rvt&url=http(s)://xxxxxxxxxxx
-            string url = string.Format(BimfaceConstants.FILE_HOST + "/upload?name={0}&url={1}", fileName.UrlEncode(Encoding.UTF8), fileUrl.UriEscapeDataString()); //文件的全名，使用URL编码（UTF-8），最多256个字符
+            string url = string.Format(BIMFaceConstants.FILE_HOST + "/upload?name={0}&url={1}", fileName.UrlEncode(Encoding.UTF8), fileUrl.UriEscapeDataString()); //文件的全名，使用URL编码（UTF-8），最多256个字符
             if (sourceId.IsNotNullAndWhiteSpace())
             {
                 url = url + "&sourceId=" + sourceId;
@@ -170,7 +170,7 @@ namespace BIMFace.SDK.CSharp.API
              */
 
             //GET https://file.bimface.com/upload/policy 。例如：https://file.bimface.com/upload/policy?name=example.rvt
-            string url = string.Format(BimfaceConstants.FILE_HOST + "/upload/policy?name={0}", fileName.UrlEncode(Encoding.UTF8)); //文件的全名，使用URL编码（UTF-8），最多256个字符
+            string url = string.Format(BIMFaceConstants.FILE_HOST + "/upload/policy?name={0}", fileName.UrlEncode(Encoding.UTF8)); //文件的全名，使用URL编码（UTF-8），最多256个字符
             if (sourceId.IsNotNullAndWhiteSpace())
             {
                 url = url + "&sourceId=" + sourceId;
@@ -288,7 +288,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列6 服务端API之获取文件信息》 https://www.cnblogs.com/SavionZhang/p/11433179.html
 
             //GET https://file.bimface.com/files/{fileId}
-            string url = string.Format(BimfaceConstants.FILE_HOST + "/files/{0}", fileId);
+            string url = string.Format(BIMFaceConstants.FILE_HOST + "/files/{0}", fileId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -347,7 +347,7 @@ namespace BIMFace.SDK.CSharp.API
             #endregion
 
             //GET https://file.bimface.com/files
-            string url = BimfaceConstants.FILE_HOST + "/files";
+            string url = BIMFaceConstants.FILE_HOST + "/files";
             url = url + "?rows=" + rows;
             if (!string.IsNullOrWhiteSpace(startTime))
             {
@@ -408,7 +408,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列8 服务端API之获取文件上传状态信息》 https://www.cnblogs.com/SavionZhang/p/11433638.html
 
             //GET https://file.bimface.com/files/{fileId}/uploadStatus
-            string url = string.Format(BimfaceConstants.FILE_HOST + "/files/{0}/uploadStatus", fileId);
+            string url = string.Format(BIMFaceConstants.FILE_HOST + "/files/{0}/uploadStatus", fileId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -448,7 +448,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列9 服务端API之获取应用支持的文件类型》 https://www.cnblogs.com/SavionZhang/p/11433982.html
 
             //GET https://file.bimface.com/support
-            string url = BimfaceConstants.FILE_HOST + "/support";
+            string url = BIMFaceConstants.FILE_HOST + "/support";
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
@@ -494,7 +494,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列10 服务端API之获取文件下载链接》 https://www.cnblogs.com/SavionZhang/p/11434093.html
 
             //GET GET https://file.bimface.com/download/url
-            string url = string.Format(BimfaceConstants.FILE_HOST + "/download/url?fileId={0}", fileId);
+            string url = string.Format(BIMFaceConstants.FILE_HOST + "/download/url?fileId={0}", fileId);
             if (name.IsNotNullAndWhiteSpace())
             {
                 url = url + "&name=" + name.UriEscapeDataString();
@@ -543,7 +543,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列11 服务端API之源文件删除》 https://www.cnblogs.com/SavionZhang/p/11434270.html
 
             //DELETE https://file.bimface.com/file
-            string url = string.Format(BimfaceConstants.FILE_HOST + "/file?fileId={0}", fileId);
+            string url = string.Format(BIMFaceConstants.FILE_HOST + "/file?fileId={0}", fileId);
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);

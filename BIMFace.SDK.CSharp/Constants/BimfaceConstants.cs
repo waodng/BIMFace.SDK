@@ -1,5 +1,5 @@
 ﻿// /* ---------------------------------------------------------------------------------------
-//    文件名：BimfaceConstants.cs
+//    文件名：BIMFaceConstants.cs
 //    文件功能描述：
 // 
 //    创建标识：20200308
@@ -16,7 +16,7 @@ namespace BIMFace.SDK.CSharp.Constants
     /// <summary>
     ///     Bimface常量
     /// </summary>
-    public class BimfaceConstants
+    public class BIMFaceConstants
     {
         /// <summary>
         ///  API服务器地址

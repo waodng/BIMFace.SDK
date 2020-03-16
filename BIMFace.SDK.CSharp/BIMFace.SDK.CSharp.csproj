@@ -54,7 +54,7 @@
     <Compile Include="API\Interface\IFileApi.cs" />
     <Compile Include="API\Interface\IFileConvertApi.cs" />
     <Compile Include="API\Interface\IModelCompareApi.cs" />
-    <Compile Include="Constants\BimfaceConstants.cs" />
+    <Compile Include="Constants\BIMFaceConstants.cs" />
     <Compile Include="Constants\CallbackStatus.cs" />
     <Compile Include="Constants\ModelCompareDiffType.cs" />
     <Compile Include="Constants\ModelType.cs" />

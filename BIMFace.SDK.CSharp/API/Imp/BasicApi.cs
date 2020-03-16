@@ -43,7 +43,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列3 服务端API之获取应用访问凭证AccessToken》 https://www.cnblogs.com/SavionZhang/p/11424481.html
 
             //POST https://api.bimface.com/oauth2/token
-            string url = BimfaceConstants.API_HOST + "/oauth2/token";
+            string url = BIMFaceConstants.API_HOST + "/oauth2/token";
 
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddBasicAuthHeader(appKey, appSecret);
@@ -85,7 +85,7 @@ namespace BIMFace.SDK.CSharp.API
             // 此API详解，参考作者博客：《C#开发BIMFACE系列15 服务端API之获取模型的View token》 https://www.cnblogs.com/SavionZhang/p/11457365.html
 
             //GET https://api.bimface.com/view/token
-            string url = string.Format(BimfaceConstants.API_HOST + "/view/token?{0}={1}", modelType.ToString(), objectId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/view/token?{0}={1}", modelType.ToString(), objectId);
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
@@ -157,7 +157,7 @@ namespace BIMFace.SDK.CSharp.API
         public ViewTokenResponse GetSubFileViewToken(string accessToken, long integrateId, long fileId)
         {
             //POST https://api.bimface.com/data/v2/integrations/{integrateId}/files/{fileId}/viewToken
-            string url = string.Format(BimfaceConstants.API_HOST + "/data/v2/integrations/{0}/files/{1}/viewToken", integrateId, fileId); // POST 方式
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/integrations/{0}/files/{1}/viewToken", integrateId, fileId); // POST 方式
             BimFaceHttpHeaders headers = new BimFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
