@@ -60,6 +60,7 @@
     <Compile Include="Constants\ModelType.cs" />
     <Compile Include="Constants\RoomTolerance.cs" />
     <Compile Include="Constants\TransferStatus.cs" />
+    <Compile Include="Constants\ViewType.cs" />
     <Compile Include="Entity\FileEntity.cs" />
     <Compile Include="Entity\GeneralResponse.cs" />
     <Compile Include="Entity\Page.cs" />
