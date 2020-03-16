@@ -476,7 +476,7 @@ namespace BIMFace.SDK.CSharp.API
 
         #endregion
 
-        #region 获取模型数据
+        #region 
 
         /// <summary>
         ///  查询满足条件的构件ID列表
@@ -487,7 +487,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelElementsSwaggerDisplay GetSingleModelElements(string accessToken, string fileId, FileElementsGetRequest request = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列16 服务端API之获取模型数据1：查询满足条件的构件ID列表》 https://www.cnblogs.com/SavionZhang/p/11457965.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列16 服务端API之1：查询满足条件的构件ID列表》 https://www.cnblogs.com/SavionZhang/p/11457965.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/elementIds
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elementIds", fileId);
@@ -536,7 +536,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelSingleElementMaterials GetSingleModelSingleElementMaterials(string accessToken, long fileId, string elementId)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列17 服务端API之获取模型数据2：获取构件材质列表》https://www.cnblogs.com/SavionZhang/p/11459867.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列17 服务端API之2：获取构件材质列表》https://www.cnblogs.com/SavionZhang/p/11459867.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/elements/{elementId}/materials
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elements/{1}/materials", fileId, elementId);
@@ -580,7 +580,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelSingleElementProperty GetSingleModelSingleElementProperty(string accessToken, long fileId, string elementId, bool? includeOverrides = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列18 服务端API之获取模型数据3：获取构件属性》 https://www.cnblogs.com/SavionZhang/p/11465063.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列18 服务端API之3：获取构件属性》 https://www.cnblogs.com/SavionZhang/p/11465063.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/elements/{elementId}
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elements/{1}", fileId, elementId);
@@ -628,7 +628,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelMultipleElementsCommonProperties GetSingleModelMultipleElementsCommonProperties(string accessToken, long fileId, string[] elementIds, bool? includeOverrides = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列19 服务端API之获取模型数据4：获取多个构件的共同属性》https://www.cnblogs.com/SavionZhang/p/11474013.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列19 服务端API之4：获取多个构件的共同属性》https://www.cnblogs.com/SavionZhang/p/11474013.html
 
             if (elementIds == null && elementIds.Length == 0)
             {
@@ -681,7 +681,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelMultipleElementsCommonProperties GetSingleModelMultipleElementsCommonProperties(string accessToken, long fileId, List<string> elementIds, bool? includeOverrides = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列19 服务端API之获取模型数据4：获取多个构件的共同属性》https://www.cnblogs.com/SavionZhang/p/11474013.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列19 服务端API之4：获取多个构件的共同属性》https://www.cnblogs.com/SavionZhang/p/11474013.html
 
             return GetSingleModelMultipleElementsCommonProperties(accessToken, fileId, elementIds.ToArray(), includeOverrides);
         }
@@ -696,7 +696,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelMultipleElementsProperties GetSingleModelMultipleElementsProperties(string accessToken, long fileId, ElementPropertyFilterRequest request, bool? includeOverrides = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列20 服务端API之获取模型数据5：批量获取构件属性》 https://www.cnblogs.com/SavionZhang/p/11475284.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列20 服务端API之5：批量获取构件属性》 https://www.cnblogs.com/SavionZhang/p/11475284.html
 
             if (request == null)
             {
@@ -751,7 +751,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelFloors GetSingleModelFloors(string accessToken, long fileId, bool? includeArea = null, bool? includeRoom = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列21 服务端API之获取模型数据6：获取单模型的楼层信息》 https://www.cnblogs.com/SavionZhang/p/11490514.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列21 服务端API之6：获取单模型的楼层信息》 https://www.cnblogs.com/SavionZhang/p/11490514.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/floors
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/floors", fileId);
@@ -807,7 +807,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual MultipleModelsFloors GetMultipleModelFloors(string accessToken, string[] fileIds, bool? includeArea = null, bool? includeRoom = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列21 服务端API之获取模型数据7：获取多个模型的楼层信息》 https://www.cnblogs.com/SavionZhang/p/11491569.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列21 服务端API之7：获取多个模型的楼层信息》 https://www.cnblogs.com/SavionZhang/p/11491569.html
 
             if (fileIds != null && (fileIds == null && fileIds.Length == 0))
             {
@@ -866,7 +866,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelLink GetSingleModelLink(string accessToken, long fileId)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列23 服务端API之获取模型数据8：获取模型链接信息》 https://www.cnblogs.com/SavionZhang/p/11492515.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列23 服务端API之8：获取模型链接信息》 https://www.cnblogs.com/SavionZhang/p/11492515.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/links
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/links", fileId);
@@ -909,7 +909,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelSingleRoom GetSingleModelSingleRoom(string accessToken, long fileId, string roomId)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列24 服务端API之获取模型数据9：获取单个房间信息》 https://www.cnblogs.com/SavionZhang/p/11492932.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列24 服务端API之9：获取单个房间信息》 https://www.cnblogs.com/SavionZhang/p/11492932.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/rooms/{roomId}
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/rooms/{1}", fileId, roomId);
@@ -952,7 +952,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelSingleFloorAreas GetSingleModelSingleFloorAreas(string accessToken, long fileId, string floorId)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列25 服务端API之获取模型数据10：获取楼层对应面积分区列表》 https://www.cnblogs.com/SavionZhang/p/11493502.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列25 服务端API之10：获取楼层对应面积分区列表》 https://www.cnblogs.com/SavionZhang/p/11493502.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/areas
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/areas?floorId={1}", fileId, floorId);
@@ -995,7 +995,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelSingleArea GetSingleModelSingleArea(string accessToken, long fileId, string areaId)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列26 服务端API之获取模型数据11：获取单个面积分区信息》https://www.cnblogs.com/SavionZhang/p/11493593.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列26 服务端API之11：获取单个面积分区信息》https://www.cnblogs.com/SavionZhang/p/11493593.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/areas/{areaId}
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/areas/{1}", fileId, areaId);
@@ -1039,7 +1039,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelTree GetSingleModelTreeByDefault(string accessToken, long fileId, string v = "2.0", FileTreeRequestBody request = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列27 服务端API之获取模型数据12：获取构件分类树》 https://www.cnblogs.com/SavionZhang/p/11493844.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列27 服务端API之12：获取构件分类树》 https://www.cnblogs.com/SavionZhang/p/11493844.html
 
             //return GetSingleModelTree(accessToken, fileId, TreeType.Default, v, request);
             /* 单模型构件分类树,
@@ -1227,7 +1227,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelViews GetSingleModelViews(string accessToken, long fileId)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列28 服务端API之获取模型数据13：获取三维视点或二维视图列表》 https://www.cnblogs.com/SavionZhang/p/11493866.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列28 服务端API之13：获取三维视点或二维视图列表》 https://www.cnblogs.com/SavionZhang/p/11493866.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/views
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/views", fileId);
@@ -1271,7 +1271,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual SingleModelDrawingSheets GetSingleModelDrawingSheets(string accessToken, long fileId, string elementId = null)
         {
-            // 此API详解，参考作者博客：《C#开发BIMFACE系列29 服务端API之获取模型数据14：获取图纸列表》 https://www.cnblogs.com/SavionZhang/p/11493875.html
+            // 此API详解，参考作者博客：《C#开发BIMFACE系列29 服务端API之14：获取图纸列表》 https://www.cnblogs.com/SavionZhang/p/11493875.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/drawingsheets
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/drawingsheets", fileId);

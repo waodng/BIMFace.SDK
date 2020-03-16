@@ -217,8 +217,8 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型的单个构件材质列表
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
-        /// <param name="elementId">【必填】代表该单模型的构件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
+        /// <param name="elementId">【必填】构件ID</param>
         /// <returns></returns>
         SingleModelSingleElementMaterials GetSingleModelSingleElementMaterials(string accessToken, long fileId, string elementId);
 
@@ -226,8 +226,8 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型的单个构件属性
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
-        /// <param name="elementId">【必填】代表该单模型的构件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
+        /// <param name="elementId">【必填】构件ID</param>
         /// <param name="includeOverrides">【非必填】是否查询修改的属性</param>
         /// <returns></returns>
         SingleModelSingleElementProperty GetSingleModelSingleElementProperty(string accessToken, long fileId, string elementId, bool? includeOverrides = null);
@@ -237,7 +237,7 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileId">【必填】代表多个模型的文件ID</param>
-        /// <param name="elementIds">【必填】代表该单模型的构件ID列表</param>
+        /// <param name="elementIds">【必填】构件ID列表</param>
         /// <param name="includeOverrides">【非必填】是否查询修改的属性</param>
         /// <returns></returns>
         SingleModelMultipleElementsCommonProperties GetSingleModelMultipleElementsCommonProperties(
@@ -247,8 +247,8 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型的多个构件的共同属性
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
-        /// <param name="elementIds">【必填】代表该单模型的构件ID列表</param>
+        /// <param name="fileId">【必填】文件ID</param>
+        /// <param name="elementIds">【必填】构件ID列表</param>
         /// <param name="includeOverrides">【非必填】是否查询修改的属性</param>
         /// <returns></returns>
         SingleModelMultipleElementsCommonProperties GetSingleModelMultipleElementsCommonProperties(
@@ -258,7 +258,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  批量获取单个模型的多个构件属性
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <param name="request">【必填】请求过滤参数</param>
         /// <param name="includeOverrides">【非必填】是否查询修改的属性</param>
         /// <returns></returns>
@@ -269,7 +269,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型的楼层信息
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <param name="includeArea">【非必填】是否将楼层中的面积分区ID、名称一起返回</param>
         /// <param name="includeRoom">【非必填】是否将楼层中的房间ID、名称一起返回</param>
         /// <returns></returns>
@@ -289,7 +289,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取模型链接信息
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <returns></returns>
         SingleModelLink GetSingleModelLink(string accessToken, long fileId);
 
@@ -297,7 +297,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型中单个房间信息
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <param name="roomId">【必填】房间ID</param>
         /// <returns></returns>
         SingleModelSingleRoom GetSingleModelSingleRoom(string accessToken, long fileId, string roomId);
@@ -306,8 +306,8 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型中单个楼层对应面积分区列表
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
-        /// <param name="floorId">【必填】代表该单模型的楼层ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
+        /// <param name="floorId">【必填】楼层ID</param>
         /// <returns></returns>
         SingleModelSingleFloorAreas GetSingleModelSingleFloorAreas(string accessToken, long fileId, string floorId);
 
@@ -315,7 +315,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型中单个面积分区信息
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <param name="areaId">【必填】面积分区ID</param>
         /// <returns></returns>
         SingleModelSingleArea GetSingleModelSingleArea(string accessToken, long fileId, string areaId);
@@ -324,7 +324,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型中构件的默认分类树
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <param name="v">【非必填】用来区别treeType为default时返回树的格式</param>
         /// <param name="request">【非必填】其他过滤参数类对象</param>
         /// <returns></returns>
@@ -334,7 +334,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取单个模型中构件的自定义分类树
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <param name="v">【非必填】用来区别treeType为default时返回树的格式</param>
         /// <param name="request">【非必填】其他过滤参数类对象</param>
         /// <returns></returns>
@@ -346,7 +346,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  获取三维视点或二维视图列表
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <returns></returns>
         SingleModelViews GetSingleModelViews(string accessToken, long fileId);
 
@@ -355,7 +355,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  如果请求参数elementId为null，返回所有图纸，否则返回包含该构件的所有图纸
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="fileId">【必填】代表该单模型的文件ID</param>
+        /// <param name="fileId">【必填】文件ID</param>
         /// <param name="elementId">【非必填】构件ID</param>
         /// <returns></returns>
         SingleModelDrawingSheets GetSingleModelDrawingSheets(string accessToken, long fileId, string elementId = null);
