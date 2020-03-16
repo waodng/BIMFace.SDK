@@ -102,6 +102,11 @@ namespace BIMFace.SDK.CSharp.Entity.Response
         /// <summary>
         ///  自定义
         /// </summary>
-        Customized
+        Customized,
+
+        /// <summary>
+        /// 楼层（用于模型集成）
+        /// </summary>
+        Floor
     }
 }

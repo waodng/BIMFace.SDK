@@ -1174,7 +1174,7 @@ namespace BIMFace.SDK.CSharp.API
                     customizedNodeKeys: 用来指定筛选树每个维度用id或者是name作为唯一标识, 如"floor":"id"
             */
 
-            string tempTreeType = treeType == TreeType.Default ? "default" : "customized";
+            string tempTreeType = TreeType.Default.ToString().ToLower(); //treeType == TreeType.Default ? "default" : "customized";
 
             // POST https://api.bimface.com/data/v2/files/{fileId}/tree
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/tree?treeType={1}", fileId, tempTreeType);
