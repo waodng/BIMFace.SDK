@@ -92,7 +92,7 @@
     <Compile Include="Entity\Response\03 FileConvert\SingleModelMultipleElementsCommonProperties.cs" />
     <Compile Include="Entity\Response\03 FileConvert\SingleModelMultipleElementsProperties.cs" />
     <Compile Include="Entity\Response\03 FileConvert\SingleModelSingleArea.cs" />
-    <Compile Include="Entity\Response\03 FileConvert\SingleModelSingleElementEntity.cs" />
+    <Compile Include="Entity\Response\03 FileConvert\Property.cs" />
     <Compile Include="Entity\Response\03 FileConvert\SingleModelSingleElementMaterials.cs" />
     <Compile Include="Entity\Response\03 FileConvert\SingleModelSingleElementProperty.cs" />
     <Compile Include="Entity\Response\03 FileConvert\SingleModelSingleFloorAreas.cs" />

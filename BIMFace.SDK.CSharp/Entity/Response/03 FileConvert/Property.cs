@@ -20,7 +20,7 @@ using Newtonsoft.Json;
 namespace BIMFace.SDK.CSharp.Entity.Response
 {
     [Serializable]
-    public class SingleModelSingleElementEntity
+    public class Property
     {
         [JsonProperty("boundingBox", NullValueHandling = NullValueHandling.Ignore)]
         public BoundingBox BoundingBox { get; set; }
@@ -44,7 +44,7 @@ namespace BIMFace.SDK.CSharp.Entity.Response
         /// <returns>表示当前对象的字符串。</returns>
         public override string ToString()
         {
-            return string.Format("SingleModelSingleElementEntity： [boundingBox={0}, elementId={1}, familyGuid={2}, Guid={3}， name={4}, Properties={5}]",
+            return string.Format("Property： [boundingBox={0}, elementId={1}, familyGuid={2}, Guid={3}， name={4}, Properties={5}]",
                                  BoundingBox, ElementId, FamilyGuid, Guid, Name, Properties.ToStringLine());
         }
     }

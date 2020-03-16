@@ -20,7 +20,7 @@ namespace BIMFace.SDK.CSharp.Entity.Response
     /// 批量获取单个模型的多个构件属性返回的结果类
     /// </summary>
     [Serializable]
-    public class SingleModelMultipleElementsProperties : GeneralResponse<List<SingleModelSingleElementEntity>>
+    public class SingleModelMultipleElementsProperties : GeneralResponse<List<Property>>
     {
 
     }

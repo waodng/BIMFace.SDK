@@ -19,7 +19,7 @@ namespace BIMFace.SDK.CSharp.Entity.Response
     /// 获取单个模型的构件的属性返回的结果类
     /// </summary>
     [Serializable]
-    public class SingleModelSingleElementProperty : GeneralResponse<SingleModelSingleElementEntity>
+    public class SingleModelSingleElementProperty : GeneralResponse<Property>
     {
 
     }
