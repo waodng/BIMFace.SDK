@@ -320,9 +320,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="page">页码。默认第1页</param>
         /// <param name="pageSize">每页记录数。默认50</param>
         /// <returns></returns>
-        public virtual ModelCompareDiffResponse GetModelCompareDiff(string accessToken, long compareId,
-                                                                    string elementName = "", string family = "",
-                                                                    int page = 1, int pageSize = 50)
+        public virtual ModelCompareDiffResponse GetModelCompareDiff(string accessToken, long compareId,string elementName = "", string family = "",int page = 1, int pageSize = 50)
         {
             // 此API详解，参考作者博客：《C#开发BIMFACE系列33 服务端API之模型对比4：获取模型对比结果》 https://www.cnblogs.com/SavionZhang/p/12396008.html
 
@@ -393,6 +391,72 @@ namespace BIMFace.SDK.CSharp.API
 
             return GetModelCompareDiff(accessToken, compareId, elementName, family, 1, Int32.MaxValue);
         }
+
+        /// <summary>
+        ///  分页获取二维图纸对比结果
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="compareId">【必填】对比ID</param>
+        /// <param name="page">页码。默认第1页</param>
+        /// <param name="pageSize">每页记录数。默认50</param>
+        /// <returns></returns>
+        public virtual DrawingCompareDiffResponse GetDrawingCompareDiff(string accessToken, long compareId, int page = 1, int pageSize = 50)
+        {
+            // GET https://api.bimface.com/data/v2/comparisons/{comparisonId}/diff
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/drawingdiff", compareId);
+            if (page <= 1)
+            {
+                page = 1;
+            }
+
+            if (page <= 0)
+            {
+                page = 50;
+            }
+
+            url += "?page=" + page;
+            url += "&pageSize=" + pageSize;
+
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
+            headers.AddOAuth2Header(accessToken);
+
+            try
+            {
+                DrawingCompareDiffResponse response;
+
+                HttpManager httpManager = new HttpManager(headers);
+                HttpResult httpResult = httpManager.Get(url);
+                if (httpResult.Status == HttpResult.STATUS_SUCCESS)
+                {
+                    response = httpResult.Text.DeserializeJsonToObject<DrawingCompareDiffResponse>();
+                }
+                else
+                {
+                    response = new DrawingCompareDiffResponse
+                    {
+                        Message = httpResult.RefText
+                    };
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new BIMFaceException("[分页获取图纸对比结果]发生异常！", ex);
+            }
+        }
+
+        /// <summary>
+        /// 获取二维图纸对比的所有结果
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="compareId">【必填】对比ID</param>
+        /// <returns></returns>
+        public DrawingCompareDiffResponse GetDrawingCompareDiffAll(string accessToken, long compareId)
+        {
+            return GetDrawingCompareDiff(accessToken, compareId, 1, Int32.MaxValue);
+        }
+
 
         #endregion
     }
