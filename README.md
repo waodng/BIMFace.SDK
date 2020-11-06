@@ -2,6 +2,9 @@
 
 #### 介绍
 C#封装BIMFace服务端API，包含基础API、文件上传API、文件转换API、模型对比API以及API使用示例。
+【 **BIMFace.SDK.CSharp** 】不是BIMFace官方提供的SDK，而是由广联达开发者网络参与者贡献的。作者也是BIMFace产品的深度用户、BIMFace社区的参与者与贡献者。
+
+【 **BIMFace.SDK.CShar** 】 是基于微软.NET 技术封装的用于 BIMFACE 二次开发的通用类库。其中封装了BIMFace服务端API，包含基础API、文件上传API、文件转换API、模型集成API、模型对比API、模型构建属性重写API、模型信息和构建属性查询API、构建空间关系计算API、转换/集成/对比数据包相关API、离线数据包API、导出数据包相关API、烘焙API、rfa构建数据API、分享链接API、回调API等服务器端接口。
 
 #### 软件架构
 本项目使用 .NET Framework 4.5、VS2019 创建。 如果使用低版本的VS，请自行创建解决方案，然后手动添加 BIMFace.SDK.CSharp、BIMFace.SDK.CSharp.Common、BIMFace.SDK.CSharp.Sample 项目即可。
