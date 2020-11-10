@@ -116,11 +116,11 @@
     <Compile Include="Entity\Response\ModelElementPropertyOverWrite\SingleModelElementPropertyDeleteResponse.cs" />
     <Compile Include="Entity\Response\ModelElementPropertyOverWrite\SingleModelElementPropertyModifyResponse.cs" />
     <Compile Include="Entity\Response\ModelElementSpaceRelationCalculation\QueryFloorRoomsResponse.cs" />
-    <Compile Include="Entity\Response\ModelInfoAndElementPropertyQuery\PropertyValuesResp.cs" />
+    <Compile Include="Entity\Response\ModelInfoAndElementPropertyQuery\PropertyValuesResponse.cs" />
     <Compile Include="Entity\Response\ModelInfoAndElementPropertyQuery\QueryElementIdsResponse.cs" />
     <Compile Include="Entity\Response\ModelInfoAndElementPropertyQuery\QueryPaginationContextIdResponse.cs" />
     <Compile Include="Entity\Response\ModelInfoAndElementPropertyQuery\QueryPropertyValuesResponse.cs" />
-    <Compile Include="Entity\Response\ModelInfoAndElementPropertyQuery\SearchElementIdsResp.cs" />
+    <Compile Include="Entity\Response\ModelInfoAndElementPropertyQuery\SearchElementIdsResponse.cs" />
     <Compile Include="Entity\Response\OfflineDatabag\GetUrlSwaggerDisplay.cs" />
     <Compile Include="Entity\Response\Page.cs" />
     <Compile Include="Entity\Response\Page2.cs" />

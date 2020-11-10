@@ -18,7 +18,7 @@ namespace BIMFace.SDK.CSharp.Entity.Response
     /// <summary>
     ///  查询指定模型构件属性的所有可能值的响应结果类
     /// </summary>
-    public class QueryPropertyValuesResponse : GeneralResponse<List<PropertyValuesResp>>
+    public class QueryPropertyValuesResponse : GeneralResponse<List<PropertyValuesResponse>>
     {
 
     }

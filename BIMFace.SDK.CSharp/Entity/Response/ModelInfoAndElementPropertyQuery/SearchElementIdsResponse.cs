@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 namespace BIMFace.SDK.CSharp.Entity.Response
 {
-    public class SearchElementIdsResp
+    public class SearchElementIdsResponse
     {
         [JsonProperty("elementIds")]
         public object[] ElementIds { get; set; }

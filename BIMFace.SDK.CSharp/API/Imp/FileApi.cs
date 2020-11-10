@@ -84,7 +84,7 @@ namespace BIMFace.SDK.CSharp.API
             }
             catch (Exception ex)
             {
-                throw new BIMFaceException("[普通文件流上时]发生异常！", ex);
+                throw new BIMFaceException("[普通文件流上传文件]发生异常！", ex);
             }
         }
 
@@ -226,6 +226,7 @@ namespace BIMFace.SDK.CSharp.API
                 2、BIMFACE返回上传Policy和签名给开发者应用。
                 3、开发者应用使用在第二个步骤中获取的URL信息，直接上传文件数据到BIMFACE后端的分布式对象存储。
              */
+
             FileUploadResponse response = null;
             try
             {

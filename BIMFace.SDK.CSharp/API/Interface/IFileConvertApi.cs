@@ -204,14 +204,52 @@ namespace BIMFace.SDK.CSharp.API
 
         #region 获取模型数据
 
+        #region 2021110 mark by savion 请调用同名方法
+
+        ///// <summary>
+        /////  查询满足条件的构件ID列表。
+        /////  BIMFACE通过接口查询模型（单模型、集成模型）的构件id列表时，默认最多返回10000条数据。模型构件量比较多的情况下，如果需要全量查询构件id列表，可以通过分页的方式。
+        ///// </summary>
+        ///// <param name="accessToken">【必填】令牌</param>
+        ///// <param name="fileId">【必填】文件ID</param>
+        ///// <param name="request">【非必填】请求参数对象</param>
+        ///// <returns></returns>
+        //SingleModelElementsSwaggerDisplay GetSingleModelElements(string accessToken, string fileId, FileElementsGetRequest request = null);
+
+        #endregion
+
         /// <summary>
-        ///  查询满足条件的构件ID列表
+        ///  查询满足条件的构件ID列表。
+        ///  BIMFACE通过接口查询模型（单模型、集成模型）的构件id列表时，默认最多返回10000条数据。模型构件量比较多的情况下，如果需要全量查询构件id列表，可以通过分页的方式。
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileId">【必填】文件ID</param>
-        /// <param name="request">【非必填】请求参数对象</param>
+        /// <param name="categoryId">【非必填】筛选条件构件类型id</param>
+        /// <param name="family">【非必填】筛选条件族</param>
+        /// <param name="familyType">【非必填】筛选条件族类型</param>
+        /// <param name="floor">【非必填】筛选条件楼层</param>
+        /// <param name="paginationContextId">【非必填】根据paginationContextId返回构件ID列表</param>
+        /// <param name="paginationNo">【非必填】返回结果中paginationNo对应的页码构件ID项。在公有云建议不传，若传的话，必须严格等于调用查询接口的次数</param>
+        /// <param name="paginationSize">【非必填】返回结果按照paginationSize分页。默认1000，取值范围（0，10000]</param>
+        /// <param name="roomId">【非必填】筛选条件房间id</param>
+        /// <param name="roomToleranceXY">【非必填】XY坐标轴方向对构件的筛选容忍度。只能是STRICT, ORDINARY, LENIENT</param>
+        /// <param name="roomToleranceZ">【非必填】Z坐标轴方向对构件的筛选容忍度。只能是STRICT, ORDINARY, LENIENT</param>
+        /// <param name="specialty">【非必填】筛选条件专业</param>
+        /// <param name="systemType">【非必填】筛选条件系统类型</param>
         /// <returns></returns>
-        SingleModelElementsSwaggerDisplay GetSingleModelElements(string accessToken, string fileId,FileElementsGetRequest request = null);
+        SingleModelElementsSwaggerDisplay GetSingleModelElements(string accessToken, string fileId,
+                                                                 string categoryId = null,
+                                                                 string family = null,
+                                                                 string familyType = null,
+                                                                 string floor = null,
+                                                                 string paginationContextId = null,
+                                                                 int? paginationNo = null,
+                                                                 int? paginationSize = null,
+                                                                 string roomId = null,
+                                                                 string roomToleranceXY = null,
+                                                                 string roomToleranceZ = null,
+                                                                 string specialty = null,
+                                                                 string systemType = null);
 
         /// <summary>
         ///  获取单个模型的单个构件材质列表

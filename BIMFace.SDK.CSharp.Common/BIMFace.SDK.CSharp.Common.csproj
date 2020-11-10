@@ -87,6 +87,7 @@
     <Compile Include="Extensions\System.Web\System.Web.HttpUtility\System.String\String.UrlEncode.cs" />
     <Compile Include="Extensions\System.Web\System.Web.HttpUtility\System.String\String.UrlEncodeToBytes.cs" />
     <Compile Include="Extensions\System.Web\System.Web.HttpUtility\System.String\String.UrlPathEncode.cs" />
+    <Compile Include="Http\HttpClientUtils.cs" />
     <Compile Include="Http\HttpContentType.cs" />
     <Compile Include="Http\HttpManager.cs" />
     <Compile Include="Http\HttpMethod.cs" />

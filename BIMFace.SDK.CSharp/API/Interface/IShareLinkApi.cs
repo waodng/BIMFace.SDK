@@ -18,9 +18,7 @@ using BIMFace.SDK.CSharp.Entity.Response;
 namespace BIMFace.SDK.CSharp.API
 {
     /// <summary>
-    /// /// <summary>
     ///  分享链接API接口
-    /// </summary>
     /// </summary>
     public interface IShareLinkApi
     {

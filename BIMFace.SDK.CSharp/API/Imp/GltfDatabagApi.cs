@@ -23,7 +23,7 @@ using BIMFace.SDK.CSharp.Http;
 namespace BIMFace.SDK.CSharp.API
 {
     /// <summary>
-    /// gltf数据包API实现（BIMFACE支持将模型导出成特定的格式，直接用于实时渲染。比如，导出成gltf，用于集成GIS，进行模型信息的展示）
+    /// gltf数据包API接口实现（BIMFACE支持将模型导出成特定的格式，直接用于实时渲染。比如，导出成gltf，用于集成GIS，进行模型信息的展示）类
     /// </summary>
     public class GltfDatabagApi : IGltfDatabagApi
     {

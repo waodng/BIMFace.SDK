@@ -18,7 +18,7 @@ namespace BIMFace.SDK.CSharp.Entity.Response
     /// <summary>
     ///  查询符合条件的构件ID列表的响应结果类
     /// </summary>
-    public class QueryElementIdsResponse : GeneralResponse<List<SearchElementIdsResp>>
+    public class QueryElementIdsResponse : GeneralResponse<List<SearchElementIdsResponse>>
     {
 
     }

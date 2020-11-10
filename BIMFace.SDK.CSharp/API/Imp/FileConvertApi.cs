@@ -476,37 +476,157 @@ namespace BIMFace.SDK.CSharp.API
 
         #endregion
 
-        #region 
+        #region  获取模型数据
+
+        #region 2021110 mark by savion 请调用同名方法
+
+        ///// <summary>
+        /////  查询满足条件的构件ID列表
+        ///// </summary>
+        ///// <param name="accessToken">【必填】令牌</param>
+        ///// <param name="fileId">【必填】文件ID</param>
+        ///// <param name="request">【非必填】请求参数对象</param>
+        ///// <returns></returns>
+        //public virtual SingleModelElementsSwaggerDisplay GetSingleModelElements(string accessToken, string fileId, FileElementsGetRequest request = null)
+        //{
+        //    // 此API详解，参考作者博客：《C#开发BIMFACE系列16 服务端API之1：查询满足条件的构件ID列表》 https://www.cnblogs.com/SavionZhang/p/11457965.html
+
+        //    // GET https://api.bimface.com/data/v2/files/{fileId}/elementIds
+        //    string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elementIds", fileId);
+
+        //    BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
+        //    headers.AddOAuth2Header(accessToken);
+
+        //    string data = string.Empty;
+        //    if (request != null)
+        //    {
+        //        data = request.SerializeToJson();
+        //    }
+
+        //    try
+        //    {
+        //        SingleModelElementsSwaggerDisplay response;
+
+        //        HttpManager httpManager = new HttpManager(headers);
+        //        HttpResult httpResult = httpManager.Get(url, data);
+        //        if (httpResult.Status == HttpResult.STATUS_SUCCESS)
+        //        {
+        //            response = httpResult.Text.DeserializeJsonToObject<SingleModelElementsSwaggerDisplay>();
+        //        }
+        //        else
+        //        {
+        //            response = new SingleModelElementsSwaggerDisplay
+        //            {
+        //                Message = httpResult.RefText
+        //            };
+        //        }
+
+        //        return response;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new BIMFaceException("[查询满足条件的构件ID列表]发生异常！", ex);
+        //    }
+        //}
+
+        #endregion
 
         /// <summary>
-        ///  查询满足条件的构件ID列表
+        ///  查询满足条件的构件ID列表。
+        ///  BIMFACE通过接口查询模型（单模型、集成模型）的构件id列表时，默认最多返回10000条数据。模型构件量比较多的情况下，如果需要全量查询构件id列表，可以通过分页的方式。
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileId">【必填】文件ID</param>
-        /// <param name="request">【非必填】请求参数对象</param>
+        /// <param name="categoryId">【非必填】筛选条件构件类型id</param>
+        /// <param name="family">【非必填】筛选条件族</param>
+        /// <param name="familyType">【非必填】筛选条件族类型</param>
+        /// <param name="floor">【非必填】筛选条件楼层</param>
+        /// <param name="paginationContextId">【非必填】根据paginationContextId返回构件ID列表</param>
+        /// <param name="paginationNo">【非必填】返回结果中paginationNo对应的页码构件ID项。在公有云建议不传，若传的话，必须严格等于调用查询接口的次数</param>
+        /// <param name="paginationSize">【非必填】返回结果按照paginationSize分页。默认1000，取值范围（0，10000]</param>
+        /// <param name="roomId">【非必填】筛选条件房间id</param>
+        /// <param name="roomToleranceXY">【非必填】XY坐标轴方向对构件的筛选容忍度。只能是STRICT, ORDINARY, LENIENT</param>
+        /// <param name="roomToleranceZ">【非必填】Z坐标轴方向对构件的筛选容忍度。只能是STRICT, ORDINARY, LENIENT</param>
+        /// <param name="specialty">【非必填】筛选条件专业</param>
+        /// <param name="systemType">【非必填】筛选条件系统类型</param>
         /// <returns></returns>
-        public virtual SingleModelElementsSwaggerDisplay GetSingleModelElements(string accessToken, string fileId, FileElementsGetRequest request = null)
+        public virtual SingleModelElementsSwaggerDisplay GetSingleModelElements(string accessToken, string fileId,
+                                                                                string categoryId = null,
+                                                                                string family = null,
+                                                                                string familyType = null,
+                                                                                string floor = null,
+                                                                                string paginationContextId = null,
+                                                                                int? paginationNo = null,
+                                                                                int? paginationSize = null,
+                                                                                string roomId = null,
+                                                                                string roomToleranceXY = null,
+                                                                                string roomToleranceZ = null,
+                                                                                string specialty = null,
+                                                                                string systemType = null)
         {
             // 此API详解，参考作者博客：《C#开发BIMFACE系列16 服务端API之1：查询满足条件的构件ID列表》 https://www.cnblogs.com/SavionZhang/p/11457965.html
 
             // GET https://api.bimface.com/data/v2/files/{fileId}/elementIds
-            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elementIds", fileId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/elementIds?cv=1", fileId); // cv=1 是自定义的一个查询参数，目的是增加？,后面的查询参数直接写
+
+            if (categoryId.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&categoryId=" + categoryId;
+            }
+            if (family.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&family=" + family;
+            }
+            if (familyType.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&familyType=" + familyType;
+            }
+            if (floor.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&floor=" + floor;
+            }
+            if (paginationContextId.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&paginationContextId=" + paginationContextId;
+            }
+            if (paginationNo.HasValue)
+            {
+                url = url + "&paginationNo=" + paginationNo;
+            }
+            if (paginationSize.HasValue)
+            {
+                url = url + "&paginationSize=" + paginationSize;
+            }
+            if (roomId.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&roomId=" + roomId;
+            }
+            if (roomToleranceXY.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&roomToleranceXY=" + roomToleranceXY;
+            }
+            if (roomToleranceZ.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&roomToleranceZ=" + roomToleranceZ;
+            }
+            if (specialty.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&specialty=" + specialty;
+            }
+            if (systemType.IsNotNullAndWhiteSpace())
+            {
+                url = url + "&systemType=" + systemType;
+            }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
-
-            string data = string.Empty;
-            if (request != null)
-            {
-                data = request.SerializeToJson();
-            }
 
             try
             {
                 SingleModelElementsSwaggerDisplay response;
 
                 HttpManager httpManager = new HttpManager(headers);
-                HttpResult httpResult = httpManager.Get(url, data);
+                HttpResult httpResult = httpManager.Get(url);
                 if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                 {
                     response = httpResult.Text.DeserializeJsonToObject<SingleModelElementsSwaggerDisplay>();
