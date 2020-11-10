@@ -1,7 +1,9 @@
 # BIMFace.SDK
 
 #### 介绍
-C#封装BIMFace服务端API，包含基础API、文件上传API、文件转换API、模型对比API以及API使用示例。
+【 **BIMFace.SDK.CSharp** 】不是BIMFace官方提供的SDK，而是由广联达开发者网络GDN先锋会员- **南京群耀智远信息科技有限公司 http://www.sparkcn.com** 提供的开源免费SDK。作者也是BIMFace产品的深度用户、BIMFace社区的参与者与贡献者。
+
+【 **BIMFace.SDK.CSharp** 】 是基于微软.NET 技术封装的用于 BIMFACE 二次开发的通用类库。其中封装了BIMFace服务端API，包含基础API、文件上传API、文件转换API、模型集成API、模型对比API、模型构建属性重写API、模型信息和构建属性查询API、构建空间关系计算API、转换/集成/对比数据包相关API、离线数据包API、导出数据包相关API、烘焙API、rfa构建数据API、分享链接API、回调API等服务器端接口。
 
 #### 软件架构
 本项目使用 .NET Framework 4.5、VS2019 创建。 如果使用低版本的VS，请自行创建解决方案，然后手动添加 BIMFace.SDK.CSharp、BIMFace.SDK.CSharp.Common、BIMFace.SDK.CSharp.Sample 项目即可。
@@ -19,19 +21,3 @@ C#封装BIMFace服务端API，包含基础API、文件上传API、文件转换AP
 SDK中的所有API的详细请阅读作者的博客：《C# 开发 BIMFACE 系列》 https://www.cnblogs.com/SavionZhang/p/11424431.html
 
 大家在使用过程中，如遇到任何问题请联系作者，QQ：905442693 微信：savionzhang。
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
