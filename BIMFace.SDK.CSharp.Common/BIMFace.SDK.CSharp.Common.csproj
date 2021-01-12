@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Enums\CaseType.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
+    <Compile Include="Exceptions\Configuration2Exception.cs" />
     <Compile Include="Extensions\Serialization\Object.Serialize.cs" />
     <Compile Include="Extensions\Serialization\String.Deserialize.cs" />
     <Compile Include="Extensions\System.Boolean\Boolean.Extension.cs" />

@@ -4,18 +4,22 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>文件转换API调用示例</title>
 </head>
 <body>
-       <form id="form1" runat="server">
-      
+    <form id="form1" runat="server">
+
         <div style="margin: 10px;">
             <asp:TextBox ID="txtAccessToken" runat="server" Width="311px"></asp:TextBox>
             &nbsp;
             <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" OnClick="btnGetAccessToken_Click" Width="260px" />
         </div>
-        <div style="margin: 10px;">
+        <div>
+             &nbsp;FileID：
+            <asp:TextBox ID="txtFileID" runat="server" Width="311px">1684795532158432</asp:TextBox>
+        </div>
+        <div style="margin: 20px;">
             <asp:Panel ID="Panel1ForDWG" runat="server" BorderStyle="Dotted" GroupingText="DWG文件转换">
                 <asp:Label ID="Label1" runat="server" Text="转换选项："></asp:Label>
                 <asp:CheckBox ID="chkDwgExportDrawing" runat="server" Text="转成矢量图纸" />
@@ -29,7 +33,7 @@
             <asp:Button ID="btnTranslateDwgToPicture" runat="server" Text="将DWG文件转换成图片" OnClick="btnTranslateDwgToPicture_Click" Width="260px" />
             </asp:Panel>
         </div>
-        <div style="margin: 10px;">
+        <div style="margin: 20px;">
             <asp:Panel ID="Panel2ForRvt" runat="server" BorderStyle="Dotted" GroupingText="RVT文件转换">
                 <asp:Label ID="Label2" runat="server" Text="转换选项："></asp:Label>
                 <asp:CheckBox ID="chkRvtTexture" runat="server" Text="转换时添加材质" />
@@ -75,15 +79,13 @@
             </asp:Panel>
         </div>
         <div style="margin: 10px;">
-            FileID：
-            <asp:TextBox ID="txtFileID" runat="server" Width="311px">1684795532158432</asp:TextBox>
             &nbsp;<br />
             <asp:Button ID="btnGetFileTranslateStatus" runat="server" Text="获取转换状态" OnClick="btnGetFileTranslateStatus_Click" Width="260px" />
             &nbsp;<asp:Button ID="btnGetFileTranslateDetails" runat="server" Text="批量获取转换状态详情" OnClick="btnGetFileTranslateDetails_Click" Width="260px" />
             &nbsp;<asp:Button ID="btnGetSingleModelViews" runat="server" OnClick="btnGetSingleModelViews_Click" Text="获取三维视点或二维视图列表" Width="277px" />
             &nbsp;<asp:Button ID="btnGetSingleModelDrawingSheets" runat="server" OnClick="btnGetSingleModelDrawingSheets_Click" Text="获取单个模型的图纸列表" Width="266px" />
         </div>
-        <div style="margin: 10px;">
+        <div style="margin: 20px;">
             <asp:Label ID="Label3" runat="server" Text="结果："></asp:Label>
             <br />
             <asp:TextBox ID="txtResult" runat="server" Height="160px" TextMode="MultiLine" Width="1000px"></asp:TextBox>

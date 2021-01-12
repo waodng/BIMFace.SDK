@@ -42,6 +42,15 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         protected global::System.Web.UI.WebControls.Button btnGetAccessToken;
 
         /// <summary>
+        /// txtFileID 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtFileID;
+
+        /// <summary>
         /// Panel1ForDWG 控件。
         /// </summary>
         /// <remarks>
@@ -319,15 +328,6 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnTranslateOther3DModelToWithMaterialStyle;
-
-        /// <summary>
-        /// txtFileID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFileID;
 
         /// <summary>
         /// btnGetFileTranslateStatus 控件。

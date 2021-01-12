@@ -10,7 +10,6 @@
 //    修改标识： 
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
-
 using System;
 
 using BIMFace.SDK.CSharp.Common.Log;
@@ -39,7 +38,7 @@ namespace BIMFace.SDK.CSharp.Common.Exceptions
         /// <param name="message">描述错误的消息</param>
         /// <param name="innerException">导致当前异常的异常，即内部异常</param>
         /// <param name="log">是否记录日志</param>
-        public BaseException(string message, System.Exception innerException, bool log = true)
+        public BaseException(string message, Exception innerException, bool log = true)
             : base(message, innerException)
         {
             if (log)

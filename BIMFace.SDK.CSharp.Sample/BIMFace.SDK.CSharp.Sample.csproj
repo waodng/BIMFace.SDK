@@ -120,6 +120,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Pages\AjaxCallBIMFACEApi.html" />
     <Content Include="Pages\BIMFaceDemo2.aspx" />
     <Content Include="Pages\BIMFaceDemo3.aspx" />
     <Content Include="Pages\BIMFaceDemo4.aspx" />

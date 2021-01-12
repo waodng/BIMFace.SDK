@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BIMFace.SDK.CSharp.Common.Exceptions;
+using System;
 using System.Configuration;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -17,7 +18,11 @@ namespace BIMFace.SDK.CSharp.Common.Utils
         /// <param name="key">appSetting节点下指定Key</param>
         public static string GetAppSettingValue(string key)
         {
-            return ConfigurationManager.AppSettings[key].Trim();
+            var value = ConfigurationManager.AppSettings[key].Trim();
+            if (string.IsNullOrWhiteSpace(value))
+                throw new Configuration2Exception("配置文件中 " + nameof(key) + " 配置项为空。");
+
+            return value;
         }
 
         /// <summary>

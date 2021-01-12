@@ -11,6 +11,10 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
+using System.Configuration;
+
+using BIMFace.SDK.CSharp.Common.Exceptions;
+
 namespace BIMFace.SDK.CSharp.Constants
 {
     /// <summary>
@@ -21,12 +25,39 @@ namespace BIMFace.SDK.CSharp.Constants
         /// <summary>
         ///  API服务器地址
         /// </summary>
-        public const string API_HOST = "https://api.bimface.com";
+        //public const string API_HOST = "https://api.bimface.com";//20210112 mark by zcn 改为配置方式。主要考虑到私有化部署时，API地址变更的问题。
+
+        public static string API_HOST
+        {
+            get
+            {
+                var apiHost = ConfigurationManager.AppSettings["BIMFACE_API_HOST"].Trim();
+                if (string.IsNullOrWhiteSpace(apiHost))
+                    throw new Configuration2Exception("请在 web.conig 或 app.conifg 中配置 BIMFACE_API_HOST。\r\n" +
+                        "如果采用BIMFACE公有云，请填写 https://file.bimface.com \r\n" +
+                        "如果采用BIMFACE私有化部署，请填写部署时自定义地址。");
+
+                return apiHost;
+            }
+        }
 
         /// <summary>
         ///  文件上传API服务器地址
         /// </summary>
-        public const string FILE_HOST = "https://file.bimface.com";
+        //public const string FILE_HOST = "https://file.bimface.com"; //20210112 mark by zcn 改为配置方式。主要考虑到私有化部署时，文件存储地址变更的问题。
+        public static string FILE_HOST
+        {
+            get
+            {
+                var fileHost = ConfigurationManager.AppSettings["BIMFACE_FILE_HOST"].Trim();
+                if (string.IsNullOrWhiteSpace(fileHost))
+                    throw new Configuration2Exception("请在 web.conig 或 app.conifg 中配置 BIMFACE_FILE_HOST。\r\n" +
+                        "如果采用BIMFACE公有云，请填写 https://file.bimface.com \r\n" +
+                        "如果采用BIMFACE私有化部署，请填写部署时自定义地址。");
+
+                return fileHost;
+            }
+        }
 
         /// <summary>
         ///  BIMFACE 控制台地址

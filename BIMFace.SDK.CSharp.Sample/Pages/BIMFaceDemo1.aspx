@@ -12,7 +12,7 @@
         <div style="margin: 25px;">
             <asp:TextBox ID="txtAccessToken" runat="server" Width="310px"></asp:TextBox>
             &nbsp;
-            <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" OnClick="btnGetAccessToken_Click" Width="160px" />
+            <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" OnClick="btnGetAccessToken_Click" Width="189px" />
         </div>
         <div style="margin: 25px;">
             文件：<asp:TextBox ID="txtFile" runat="server" Width="780px">F:\BIM示例模型文件\Samples\rac_advanced_sample_project.rvt</asp:TextBox>
