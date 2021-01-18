@@ -183,7 +183,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         FileTranslateResponse TranslateOther3DModelToWithMaterialStyle(string accessToken, Other3DModelFileTranslateRequest request);
 
-      
+
         /// <summary>
         ///  获取转换状态(应用发起转换以后，可以通过该接口查询转换状态)
         /// </summary>
@@ -311,7 +311,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="includeArea">【非必填】是否将楼层中的面积分区ID、名称一起返回</param>
         /// <param name="includeRoom">【非必填】是否将楼层中的房间ID、名称一起返回</param>
         /// <returns></returns>
-        SingleModelFloors GetSingleModelFloors(string accessToken, long fileId, bool? includeArea = null,bool? includeRoom = null);
+        SingleModelFloors GetSingleModelFloors(string accessToken, long fileId, bool? includeArea = null, bool? includeRoom = null);
 
         /// <summary>
         ///  获取多个模型的楼层信息
@@ -321,7 +321,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="includeArea">【非必填】是否将楼层中的面积分区ID、名称一起返回</param>
         /// <param name="includeRoom">【非必填】是否将楼层中的房间ID、名称一起返回</param>
         /// <returns></returns>
-        MultipleModelsFloors GetMultipleModelFloors(string accessToken, string[] fileIds, bool? includeArea = null,bool? includeRoom = null);
+        MultipleModelsFloors GetMultipleModelFloors(string accessToken, string[] fileIds, bool? includeArea = null, bool? includeRoom = null);
 
         /// <summary>
         ///  获取模型链接信息
@@ -366,7 +366,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="v">【非必填】用来区别treeType为default时返回树的格式</param>
         /// <param name="request">【非必填】其他过滤参数类对象</param>
         /// <returns></returns>
-        SingleModelTree GetSingleModelTreeByDefault(string accessToken, long fileId, string v = "2.0",FileTreeRequestBody request = null);
+        SingleModelTree GetSingleModelTreeByDefault(string accessToken, long fileId, string v = "2.0", FileTreeRequestBody request = null);
 
         /// <summary>
         ///  获取单个模型中构件的自定义分类树
@@ -376,9 +376,9 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="v">【非必填】用来区别treeType为default时返回树的格式</param>
         /// <param name="request">【非必填】其他过滤参数类对象</param>
         /// <returns></returns>
-        SingleModelTreeByCustomized GetSingleModelTreeByCustomized(string accessToken, long fileId, string v = "2.0",FileTreeRequestBody request = null);
+        SingleModelTreeByCustomized GetSingleModelTreeByCustomized(string accessToken, long fileId, string v = "2.0", FileTreeRequestBody request = null);
 
-        SingleModelTree GetSingleModelTree(string accessToken, long fileId, TreeType treeType = TreeType.Default,string v = "2.0", FileTreeRequestBody request = null);
+        SingleModelTree GetSingleModelTree(string accessToken, long fileId, TreeType treeType = TreeType.Default, string v = "2.0", FileTreeRequestBody request = null);
 
         /// <summary>
         ///  获取三维视点或二维视图列表
@@ -397,6 +397,34 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="elementId">【非必填】构件ID</param>
         /// <returns></returns>
         SingleModelDrawingSheets GetSingleModelDrawingSheets(string accessToken, long fileId, string elementId = null);
+
+        #endregion
+
+        #region 获取图纸信息
+
+        /// <summary>
+        /// 通过图纸文件ID，按图框拆分图纸
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="fileId">【必填】代表该单图纸的文件ID</param>
+        /// <returns></returns>
+        SplitDrawingResponse SplitDrawing(string accessToken, long fileId);
+
+        /// <summary>
+        ///  获取图纸拆分状态
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="fileId">【必填】代表该单图纸的文件ID</param>
+        /// <returns></returns>
+        SplitDrawingResponse GetSplitDrawingStatus(string accessToken, long fileId);
+
+        /// <summary>
+        ///  获取图纸拆分结果
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        SplitDrawingResultResponse GetSplitDrawingResult(string accessToken, long fileId);
 
         #endregion
     }

@@ -324,7 +324,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         // 获取单个模型的图纸列表。果请求参数elementId为null，返回所有图纸，否则返回包含该构件的所有图纸
         protected void btnGetSingleModelDrawingSheets_Click(object sender, EventArgs e)
         {
-            txtResult.Text = "";
+            txtResult.Text = string.Empty;
 
             long fileId = txtFileID.Text.Trim().ToLong();
             FileConvertApi api = new FileConvertApi();

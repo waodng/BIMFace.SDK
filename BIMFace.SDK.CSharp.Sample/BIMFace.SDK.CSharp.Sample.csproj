@@ -122,6 +122,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Pages\AjaxCallBIMFACEApi.html" />
     <Content Include="Pages\APIDemo1.aspx" />
+    <Content Include="Pages\APIDemo20.aspx" />
     <Content Include="Pages\APIDemoList.html" />
     <Content Include="Pages\BIMFaceDemo2.aspx" />
     <Content Include="Pages\BIMFaceDemo3.aspx" />
@@ -174,6 +175,13 @@
     </Compile>
     <Compile Include="Pages\APIDemo1.aspx.designer.cs">
       <DependentUpon>APIDemo1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\APIDemo20.aspx.cs">
+      <DependentUpon>APIDemo20.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\APIDemo20.aspx.designer.cs">
+      <DependentUpon>APIDemo20.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\BIMFaceCallbackHandler.ashx.cs">
       <DependentUpon>BIMFaceCallbackHandler.ashx</DependentUpon>

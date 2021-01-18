@@ -91,6 +91,8 @@
     <Compile Include="Entity\Request\Integrate\IntegrateSource.cs" />
     <Compile Include="Entity\Request\Integrate\IntegrationTreeOptionalRequestBody.cs" />
     <Compile Include="Entity\Request\Integrate\TreeNodeSort.cs" />
+    <Compile Include="Entity\Response\03 FileConvert\SplitDrawingResultResponse.cs" />
+    <Compile Include="Entity\Response\03 FileConvert\SplitDrawingResponse.cs" />
     <Compile Include="Entity\Response\04 ModelCompare\DrawingCompareDiffResponse.cs" />
     <Compile Include="Entity\Response\05 ModelIntegrate\ElementsBoundingBoxesCalcResponse.cs" />
     <Compile Include="Entity\Response\05 ModelIntegrate\FileIntegrateBean.cs" />

@@ -1430,5 +1430,129 @@ namespace BIMFace.SDK.CSharp.API
         }
 
         #endregion
+
+        #region 获取图纸数据
+
+        /// <summary>
+        /// 通过图纸文件ID，按图框拆分图纸
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="fileId">【必填】代表该单图纸的文件ID</param>
+        /// <returns></returns>
+        public SplitDrawingResponse SplitDrawing(string accessToken, long fileId)
+        {
+            // PUT https://api.bimface.com/files/{fileId}/split
+            string url = string.Format(BIMFaceConstants.API_HOST + "/files/{0}/split", fileId);
+
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
+            headers.AddOAuth2Header(accessToken);
+
+            try
+            {
+                SplitDrawingResponse response;
+
+                HttpManager httpManager = new HttpManager(headers);
+                HttpResult httpResult = httpManager.Put(url);
+                if (httpResult.Status == HttpResult.STATUS_SUCCESS)
+                {
+                    response = httpResult.Text.DeserializeJsonToObject<SplitDrawingResponse>();
+                }
+                else
+                {
+                    response = new SplitDrawingResponse
+                    {
+                        Message = httpResult.RefText
+                    };
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new BIMFaceException("[通过图纸文件ID，按图框拆分图纸]发生异常！", ex);
+            }
+        }
+
+        /// <summary>
+        ///  获取图纸拆分状态
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="fileId">【必填】代表该单图纸的文件ID</param>
+        /// <returns></returns>
+        public SplitDrawingResponse GetSplitDrawingStatus(string accessToken, long fileId)
+        {
+            // GET https://api.bimface.com/files/{fileId}/split
+            string url = string.Format(BIMFaceConstants.API_HOST + "/files/{0}/split", fileId);
+
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
+            headers.AddOAuth2Header(accessToken);
+
+            try
+            {
+                SplitDrawingResponse response;
+
+                HttpManager httpManager = new HttpManager(headers);
+                HttpResult httpResult = httpManager.Get(url);
+                if (httpResult.Status == HttpResult.STATUS_SUCCESS)
+                {
+                    response = httpResult.Text.DeserializeJsonToObject<SplitDrawingResponse>();
+                }
+                else
+                {
+                    response = new SplitDrawingResponse
+                    {
+                        Message = httpResult.RefText
+                    };
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new BIMFaceException("[获取图纸拆分状态]发生异常！", ex);
+            }
+        }
+
+        /// <summary>
+        /// 获取图纸拆分结果
+        /// </summary>
+        /// <param name="accessToken"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public SplitDrawingResultResponse GetSplitDrawingResult(string accessToken, long fileId)
+        {
+            // GET https://api.bimface.com/data/v2/files/{fileId}/frames
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/files/{0}/frames", fileId);
+
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
+            headers.AddOAuth2Header(accessToken);
+
+            try
+            {
+                SplitDrawingResultResponse response;
+
+                HttpManager httpManager = new HttpManager(headers);
+                HttpResult httpResult = httpManager.Get(url);
+                if (httpResult.Status == HttpResult.STATUS_SUCCESS)
+                {
+                    response = httpResult.Text.DeserializeJsonToObject<SplitDrawingResultResponse>();
+                }
+                else
+                {
+                    response = new SplitDrawingResultResponse
+                    {
+                        Message = httpResult.RefText
+                    };
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new BIMFaceException("[获取图纸拆分结果]发生异常！", ex);
+            }
+        }
+
+        #endregion
     }
 }

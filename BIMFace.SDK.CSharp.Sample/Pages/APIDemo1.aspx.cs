@@ -56,7 +56,6 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
 
                 MemoryCacheUtils.SetItem(cacheKey, response, response.Data.ExpireTime.ToDateTime());//该方式不保险
                 //MemoryCacheUtils.SetItem(cacheKey, response, response.Data.ExpireTime.ToDateTime().AddMinutes(-1));//保险安全的缓存方式
-                //具体参考微信公众平台关于AccessToken的缓存使用说明：https://developers.weixin.qq.com/doc/offiaccount/Basic_Information/Get_access_token.html
             }
 
             txtAccessToken.Text = response.Data.Token;
