@@ -97,11 +97,11 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="compareId">【必填】对比ID</param>
         /// <param name="elementName">构件名称</param>
         /// <param name="family">族名称</param>
-        /// <param name="page">页码。默认第1页</param>
-        /// <param name="pageSize">每页记录数。默认50</param>
+        /// <param name="page">页码（提示：私有云部署不支持分页查询）</param>
+        /// <param name="pageSize">每页记录数（提示：私有云部署不支持分页查询）</param>
         /// <returns></returns>
         ModelCompareDiffResponse GetModelCompareDiff(string accessToken, long compareId, string elementName = "",
-                                                     string family = "", int page = 1, int pageSize = 50);
+                                                     string family = "", int? page = null, int? pageSize = null);
 
         /// <summary>
         /// 获取模型对比的所有结果
@@ -118,10 +118,10 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="compareId">【必填】对比ID</param>
-        /// <param name="page">页码。默认第1页</param>
-        /// <param name="pageSize">每页记录数。默认50</param>
+        /// <param name="page">页码（提示：私有云部署不支持分页查询）</param>
+        /// <param name="pageSize">每页记录数（提示：私有云部署不支持分页查询）</param>
         /// <returns></returns>
-        DrawingCompareDiffResponse GetDrawingCompareDiff(string accessToken, long compareId, int page = 1, int pageSize = 50);
+        DrawingCompareDiffResponse GetDrawingCompareDiff(string accessToken, long compareId, int? page = null, int? pageSize = null);
 
         /// <summary>
         /// 获取二维图纸对比的所有结果

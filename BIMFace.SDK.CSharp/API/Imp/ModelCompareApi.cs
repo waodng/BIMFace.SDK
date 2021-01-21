@@ -317,26 +317,32 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="compareId">【必填】对比ID</param>
         /// <param name="elementName">构件名称</param>
         /// <param name="family">族名称</param>
-        /// <param name="page">页码。默认第1页</param>
-        /// <param name="pageSize">每页记录数。默认50</param>
+        /// <param name="page">页码（提示：私有云部署不支持分页查询）</param>
+        /// <param name="pageSize">每页记录数（提示：私有云部署不支持分页查询）</param>
         /// <returns></returns>
-        public virtual ModelCompareDiffResponse GetModelCompareDiff(string accessToken, long compareId,string elementName = "", string family = "",int page = 1, int pageSize = 50)
+        public virtual ModelCompareDiffResponse GetModelCompareDiff(string accessToken, long compareId, string elementName = "", string family = "", int? page = null, int? pageSize = null)
         {
             // 此API详解，参考作者博客：《C#开发BIMFACE系列33 服务端API之模型对比4：获取模型对比结果》 https://www.cnblogs.com/SavionZhang/p/12396008.html
 
             // GET https://api.bimface.com/data/v2/comparisons/{comparisonId}/diff
-            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/diff", compareId);
-            if (page <= 1)
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/diff?v=1", compareId);
+            if (page.HasValue)
             {
-                page = 1;
+                if (page.Value <= 1)
+                {
+                    page = 1;
+                }
             }
 
-            if (page <= 0)
+            if (pageSize.HasValue)
             {
-                page = 50;
+                if (pageSize.Value <= 0)
+                {
+                    pageSize = 50;
+                }
             }
 
-            url += "?page=" + page;
+            url += "&page=" + page;
             url += "&pageSize=" + pageSize;
 
             if (elementName.IsNotNullAndWhiteSpace())
@@ -389,7 +395,7 @@ namespace BIMFace.SDK.CSharp.API
         {
             // 此API详解，参考作者博客：《C#开发BIMFACE系列33 服务端API之模型对比4：获取模型对比结果》 https://www.cnblogs.com/SavionZhang/p/12396008.html
 
-            return GetModelCompareDiff(accessToken, compareId, elementName, family, 1, Int32.MaxValue);
+            return GetModelCompareDiff(accessToken, compareId, elementName);
         }
 
         /// <summary>
@@ -397,24 +403,24 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="compareId">【必填】对比ID</param>
-        /// <param name="page">页码。默认第1页</param>
-        /// <param name="pageSize">每页记录数。默认50</param>
+        /// <param name="page">页码（提示：私有云部署不支持分页查询）</param>
+        /// <param name="pageSize">每页记录数（提示：私有云部署不支持分页查询）</param>
         /// <returns></returns>
-        public virtual DrawingCompareDiffResponse GetDrawingCompareDiff(string accessToken, long compareId, int page = 1, int pageSize = 50)
+        public virtual DrawingCompareDiffResponse GetDrawingCompareDiff(string accessToken, long compareId, int? page = null, int? pageSize = null)
         {
             // GET https://api.bimface.com/data/v2/comparisons/{comparisonId}/diff
-            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/drawingdiff", compareId);
-            if (page <= 1)
+            string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/comparisons/{0}/drawingdiff?v=1", compareId);
+            if (page.HasValue == false || page <= 1)
             {
                 page = 1;
             }
 
-            if (page <= 0)
+            if (pageSize.HasValue == false || pageSize <= 0)
             {
-                page = 50;
+                pageSize = 50;
             }
 
-            url += "?page=" + page;
+            url += "&page=" + page;
             url += "&pageSize=" + pageSize;
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -454,7 +460,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public DrawingCompareDiffResponse GetDrawingCompareDiffAll(string accessToken, long compareId)
         {
-            return GetDrawingCompareDiff(accessToken, compareId, 1, Int32.MaxValue);
+            return GetDrawingCompareDiff(accessToken, compareId);
         }
 
 
