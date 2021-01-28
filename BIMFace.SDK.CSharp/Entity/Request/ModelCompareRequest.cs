@@ -26,7 +26,7 @@ namespace BIMFace.SDK.CSharp.Entity.Request
     public class CompareRequest
     {
         /// <summary>
-        /// 
+        ///  使用变更后文件ID、变更前文件ID、自定义对比的名称来初始化该类的一个实例
         /// </summary>
         /// <param name="followingId">变更后文件ID，如果为删除文件，则为null</param>
         /// <param name="previousId">变更前文件ID，如果为新增文件，则为null</param>
@@ -43,7 +43,11 @@ namespace BIMFace.SDK.CSharp.Entity.Request
             PreviousId = previousId;
             if (name.IsNullOrWhiteSpace())
             {
-                Name = DateTime.Now.ToString("yyyyMMddHHmmss") + "对比：" + followingId.ToString2() + "-" + previousId.ToString2();
+                Name = DateTime.Now.ToString("yyyyMMddHHmmss-") + "对比：" + followingId.ToString2() + "-" + previousId.ToString2();
+            }
+            else
+            {
+                Name = name;
             }
         }
 
