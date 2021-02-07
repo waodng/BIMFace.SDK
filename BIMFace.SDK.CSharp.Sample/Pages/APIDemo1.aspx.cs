@@ -35,6 +35,13 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             }
         }
 
+        private AccessTokenResponse GetAccessToken()
+        {
+            IBasicApi api = new BasicApi();
+            AccessTokenResponse response = api.GetAccessToken(_appKey, _appSecret);
+            return response;
+        }
+
         // 缓存方式获取 AccessToken
         protected void btnGetAccessTokenFormCache_Click(object sender, EventArgs e)
         {
@@ -54,20 +61,12 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
                 //没有缓存
                 response = GetAccessToken(); //直接调用接口获取AccessToken值
 
-                MemoryCacheUtils.SetItem(cacheKey, response, response.Data.ExpireTime.ToDateTime());//该方式不保险
-                //MemoryCacheUtils.SetItem(cacheKey, response, response.Data.ExpireTime.ToDateTime().AddMinutes(-1));//保险安全的缓存方式
+                //MemoryCacheUtils.SetItem(cacheKey, response, response.Data.ExpireTime.ToDateTime());//该方式不保险
+                MemoryCacheUtils.SetItem(cacheKey, response, response.Data.ExpireTime.ToDateTime().AddSeconds(-5));//保险安全的缓存方式
             }
 
             txtAccessToken.Text = response.Data.Token;
             txtResult.Text = response.SerializeToJson(true);
-        }
-
-
-        private AccessTokenResponse GetAccessToken()
-        {
-            IBasicApi api = new BasicApi();
-            AccessTokenResponse response = api.GetAccessToken(_appKey, _appSecret);
-            return response;
-        }
+        } 
     }
 }

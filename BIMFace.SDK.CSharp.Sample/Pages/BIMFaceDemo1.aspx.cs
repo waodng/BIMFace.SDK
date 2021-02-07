@@ -70,7 +70,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             txtFileId.Text = fileUploadResponse.Data.FileId.ToString();
         }
 
-        // 文件直传（有限推荐使用该方式）
+        // 文件直传（优先推荐使用该方式）
         protected void btnUpload2_Click(object sender, EventArgs e)
         {
             txtResult.Text = string.Empty;
