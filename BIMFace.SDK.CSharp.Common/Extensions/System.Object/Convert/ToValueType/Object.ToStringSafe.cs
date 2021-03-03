@@ -14,7 +14,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的字符串</returns>
         public static string ToString2(this object @this)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return string.Empty;
             }
@@ -31,7 +31,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的字符串</returns>
         public static string ToString2(this object @this,string defaultValue)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return defaultValue;
             }
@@ -48,7 +48,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的字符串</returns>
         public static string ToString2(this object @this,Func<string> defaultValueFactory)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return defaultValueFactory();
             }

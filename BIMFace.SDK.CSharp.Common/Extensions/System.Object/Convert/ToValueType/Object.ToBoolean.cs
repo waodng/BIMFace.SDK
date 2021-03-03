@@ -16,7 +16,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false</returns>
         public static bool ToBoolean(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return false;
             }
@@ -71,7 +71,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false</returns>
         public static bool ToBoolean(this object @this, bool defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return false;
             }
@@ -96,7 +96,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false</returns>
         public static bool ToBoolean(this object @this, Func<bool> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return false;
             }
@@ -124,7 +124,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false 或 null</returns>
         public static bool? ToBooleanNullable(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -149,7 +149,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false 或 null</returns>
         public static bool? ToBooleanNullable(this object @this, bool? defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -174,7 +174,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false 或 null</returns>
         public static bool? ToBooleanNullable(this object @this, Func<bool?> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }

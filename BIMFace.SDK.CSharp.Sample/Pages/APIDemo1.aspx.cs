@@ -18,7 +18,10 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
 
+            }
         }
 
         // 获取 AccessToken

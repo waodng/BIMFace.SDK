@@ -15,7 +15,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的双精度浮点数，如果 value 为 null，则为 0（零）</returns>
         public static double ToDouble(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -40,7 +40,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的双精度浮点数，如果 value 为 null，则为 0（零）</returns>
         public static double ToDouble(this object @this, double defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -65,7 +65,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的双精度浮点数，如果 value 为 null，则为 0（零）</returns>
         public static double ToDouble(this object @this, Func<double> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -93,7 +93,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的双精度浮点数 或 null</returns>
         public static double? ToDoubleNullable(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -118,7 +118,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的双精度浮点数 或 null</returns>
         public static double? ToDoubleNullable(this object @this, double? defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -143,7 +143,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的双精度浮点数 或 null</returns>
         public static double? ToDoubleNullable(this object @this, Func<double?> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }

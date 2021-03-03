@@ -10,11 +10,13 @@
 <body>
     <form id="form1" runat="server">
         <div style="margin: 20px;">
-            <asp:TextBox ID="txtAccessToken" runat="server" Width="400px"></asp:TextBox>
-            &nbsp;
+            AccessToken：
+            <asp:TextBox ID="txtAccessToken" runat="server" Width="500px" ReadOnly="True"></asp:TextBox>
+        </div>
+        <div style="margin: 20px;padding-left:118px;">
             <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" Width="190px" OnClick="btnGetAccessToken_Click" />
-        &nbsp;&nbsp;
-            <asp:Button ID="btnGetAccessTokenFormCache" runat="server" Text="缓存方式获取 AccessToken" Width="300px" OnClick="btnGetAccessTokenFormCache_Click"/>
+            &nbsp;&nbsp;
+            <asp:Button ID="btnGetAccessTokenFormCache" runat="server" Text="缓存方式获取 AccessToken" Width="295px" OnClick="btnGetAccessTokenFormCache_Click" />
         </div>
         <div style="margin: 20px;">
             <asp:Label ID="Label2" runat="server" Text="结果："></asp:Label>

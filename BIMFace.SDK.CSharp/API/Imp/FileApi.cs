@@ -238,7 +238,7 @@ namespace BIMFace.SDK.CSharp.API
                 {
                     string url = policyResponse.Data.Host;
 
-                    /* Dictionary 字典中 key 是关键字，不能添加进去。所以添加了响应的后缀 _BIMFACE_，解析时再去除后缀 */
+                    /* C# 语言 Dictionary 字典中 key 是关键字，不能添加进去。所以同意添加了响应的后缀 _BIMFACE_，解析时再去除后缀 */
                     NameValueCollection kVDatas = new NameValueCollection();
                     kVDatas.Add("name" + StringUtils.Symbol.KEY_SUFFIX, fileName);
                     kVDatas.Add("key" + StringUtils.Symbol.KEY_SUFFIX, policyResponse.Data.ObjectKey);

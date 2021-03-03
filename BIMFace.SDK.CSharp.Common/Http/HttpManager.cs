@@ -1000,6 +1000,24 @@ namespace BIMFace.SDK.CSharp.Common.Http
             return httpResult;
         }
 
+        /// <summary>
+        /// HTTP请求(包含多分部数据,multipart/form-data)。
+        /// 将多个文件以及多个参数以多分部数据表单方式上传到指定url的服务器
+        /// </summary>
+        /// <param name="url">请求目标URL</param>
+        /// <param name="fileFullNames">待上传的文件列表(包含全路径的完全限定名)。如果某个文件不存在，则忽略不上传</param>
+        /// <param name="kVDatas">请求时表单键值对数据。</param>
+        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="timeOut">获取或设置 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 和
+        ///                       <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的超时值（以毫秒为单位）。
+        ///                       -1 表示永不超时
+        /// </param>
+        /// <returns></returns>
+        public HttpResult UploadFormByMultipart(string url, List<string> fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        {
+            return UploadFormByMultipart(url, fileFullNames.ToArray(), kVDatas, method, timeOut);
+        }
+
         #endregion
 
         #region 其他HTTP辅助方法

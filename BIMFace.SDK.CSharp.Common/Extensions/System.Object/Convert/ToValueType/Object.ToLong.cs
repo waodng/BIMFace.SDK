@@ -15,7 +15,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位有符号整数</returns>
         public static long ToLong(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -40,7 +40,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位有符号整数</returns>
         public static long ToLong(this object @this, long defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -66,7 +66,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位有符号整数</returns>
         public static long ToLong(this object @this, Func<long> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -94,7 +94,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位有符号整数</returns>
         public static long? ToLongNullable(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -119,7 +119,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位有符号整数</returns>
         public static long? ToLongNullable(this object @this, long defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -145,7 +145,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位有符号整数</returns>
         public static long? ToLongNullable(this object @this, Func<long> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -173,7 +173,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位无符号整数</returns>
         public static ulong ToULong(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -198,7 +198,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位无符号整数</returns>
         public static ulong ToULong(this object @this, ulong defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -224,7 +224,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位无符号整数</returns>
         public static ulong ToULong(this object @this, Func<ulong> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return 0;
             }
@@ -251,7 +251,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位无符号整数</returns>
         public static ulong? ToULongNullable(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -276,7 +276,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位无符号整数</returns>
         public static ulong? ToULongNullable(this object @this, ulong defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -302,7 +302,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>一个等于 value 的 64位无符号整数</returns>
         public static ulong? ToULongNullable(this object @this, Func<ulong> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }

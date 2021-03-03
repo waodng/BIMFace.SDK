@@ -15,7 +15,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false</returns>
         public static char ToChar(this object @this)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return default(char);
             }
@@ -40,7 +40,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false</returns>
         public static char ToChar(this object @this,char defaultValue)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return defaultValue;
             }
@@ -65,7 +65,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false</returns>
         public static char ToChar(this object @this,Func<char> defaultValueFactory)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return defaultValueFactory();
             }
@@ -93,7 +93,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false 或null</returns>
         public static char? ToCharNullable(this object @this)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -118,7 +118,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false 或null</returns>
         public static char? ToCharNullable(this object @this,char? defaultValue)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -143,7 +143,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>true 或 false 或null</returns>
         public static char? ToCharNullable(this object @this,Func<char?> defaultValueFactory)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return null;
             }

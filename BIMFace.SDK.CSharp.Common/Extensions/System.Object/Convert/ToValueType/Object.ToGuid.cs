@@ -15,7 +15,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的全局唯一标识符</returns>
         public static Guid ToGuid(this object @this)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return Guid.Empty;
             }
@@ -40,7 +40,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的全局唯一标识符</returns>
         public static Guid ToGuid(this object @this,Guid defaultValue)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return Guid.Empty;
             }
@@ -65,7 +65,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的全局唯一标识符</returns>
         public static Guid ToGuid(this object @this,Func<Guid> defaultValueFactory)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return Guid.Empty;
             }
@@ -93,7 +93,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的全局唯一标识符 或 null</returns>
         public static Guid? ToGuidNullable(this object @this)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -118,7 +118,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的全局唯一标识符 或 null</returns>
         public static Guid? ToGuidNullable(this object @this,Guid? defaultValue)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -143,7 +143,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>与 value 等效的全局唯一标识符 或 null</returns>
         public static Guid? ToGuidNullable(this object @this,Func<Guid?> defaultValueFactory)
         {
-            if(@this.DbNullOrNull())
+            if(@this.IsDbNullOrNull())
             {
                 return null;
             }

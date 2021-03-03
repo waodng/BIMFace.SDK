@@ -59,7 +59,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// </summary>
         /// <param name="this">扩展对象</param>
         /// <returns></returns>
-        public static bool NullOrDbNull(this object @this)
+        public static bool IsNullOrDbNull(this object @this)
         {
             if (@this == null || Convert.IsDBNull(@this))
             {
@@ -75,7 +75,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// </summary>
         /// <param name="this">扩展对象</param>
         /// <returns></returns>
-        public static bool DbNullOrNull(this object @this)
+        public static bool IsDbNullOrNull(this object @this)
         {
             if (Convert.IsDBNull(@this) || @this == null)
             {

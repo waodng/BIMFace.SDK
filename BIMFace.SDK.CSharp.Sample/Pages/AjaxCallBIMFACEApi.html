@@ -7,11 +7,12 @@
 </head>
 <body>
     <div style="margin:20px;">
+        AccessToken： <input id="txtToken" type="text" style="width:300px;" readonly="readonly" />
+    </div>
+    <div style="margin:20px; padding-left:118px;">
         <input id="btnCallApi" type="button" value="Ajax 调用 BIMFACE 服务端 API（获取Token）" onclick="test();" />
     </div>
-    <div style="margin:20px;">
-        Token： <input id="txtToken" type="text"  style="width:300px;"/>
-    </div>
+
     <script type="text/javascript">
         function test() {
             $("#txtToken").val("");
@@ -27,7 +28,7 @@
                     $("#txtToken").val(result.data.token);
                 },
                 error: function (msg) {
-                    alert('请求发生异常。' + JSON.stringify(msg)) ;
+                    alert('请求发生异常。' + JSON.stringify(msg));
                 }
             })
         }

@@ -15,7 +15,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的日期时间</returns>
         public static DateTime ToDateTime(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return GetDefaultDatetime();
             }
@@ -40,7 +40,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的日期时间</returns>
         public static DateTime ToDateTime(this object @this, DateTime defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return GetDefaultDatetime();
             }
@@ -65,7 +65,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的日期时间</returns>
         public static DateTime ToDateTime(this object @this, Func<DateTime> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return GetDefaultDatetime();
             }
@@ -93,7 +93,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的日期时间 或 null</returns>
         public static DateTime? ToDateTimeNullable(this object @this)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -118,7 +118,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的日期时间 或 null</returns>
         public static DateTime? ToDateTimeNullable(this object @this, DateTime? defaultValue)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
@@ -143,7 +143,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns>等效的日期时间 或 null</returns>
         public static DateTime? ToDateTimeNullable(this object @this, Func<DateTime?> defaultValueFactory)
         {
-            if (@this.DbNullOrNull())
+            if (@this.IsDbNullOrNull())
             {
                 return null;
             }
