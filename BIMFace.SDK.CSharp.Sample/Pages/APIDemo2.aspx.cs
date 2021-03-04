@@ -53,8 +53,8 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         // 指定外部文件url方式上传
         protected void btnUploadFileByUrl_Click(object sender, EventArgs e)
         {
-            string fileName = "01_BIMFACE示例文件-Revit模型2.rvt";
-            string fileUrl = "http://www.spark-ifuture.com/rvt/01_BIMFACE示例文件-Revit模型2.rvt";
+            string fileName = "test.rvt";
+            string fileUrl = "xxxx/test.rvt";// 请替换成自己真实业务场景中的图纸所在的url地址
 
             IFileApi api = new FileApi();
             FileUploadResponse fileUploadResponse = api.UploadFileByUrl(txtAccessToken.Text, fileName, fileUrl);
