@@ -124,6 +124,7 @@
     <Content Include="Pages\APIDemo1.aspx" />
     <Content Include="Pages\APIDemo2.aspx" />
     <Content Include="Pages\APIDemo20.aspx" />
+    <Content Include="Pages\APIDemo3.aspx" />
     <Content Include="Pages\APIDemoList.html" />
     <Content Include="Pages\BIMFaceDemo2.aspx" />
     <Content Include="Pages\BIMFaceDemo3.aspx" />
@@ -191,6 +192,13 @@
     </Compile>
     <Compile Include="Pages\APIDemo20.aspx.designer.cs">
       <DependentUpon>APIDemo20.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\APIDemo3.aspx.cs">
+      <DependentUpon>APIDemo3.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\APIDemo3.aspx.designer.cs">
+      <DependentUpon>APIDemo3.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\BIMFaceCallbackHandler.ashx.cs">
       <DependentUpon>BIMFaceCallbackHandler.ashx</DependentUpon>
