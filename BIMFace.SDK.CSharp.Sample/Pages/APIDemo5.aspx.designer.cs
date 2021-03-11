@@ -11,7 +11,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
 {
 
 
-    public partial class APIDemo20
+    public partial class APIDemo5
     {
 
         /// <summary>

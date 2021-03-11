@@ -10,7 +10,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
     /// <summary>
     /// CAD图纸拆分示例类
     /// </summary>
-    public partial class APIDemo20 : System.Web.UI.Page
+    public partial class APIDemo5 : System.Web.UI.Page
     {
         readonly string _appKey = ConfigUtility.GetAppSettingValue("BIMFACE_AppKey");
         readonly string _appSecret = ConfigUtility.GetAppSettingValue("BIMFACE_AppSecret");

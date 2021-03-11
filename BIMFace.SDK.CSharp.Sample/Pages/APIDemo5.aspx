@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="APIDemo20.aspx.cs" Inherits="BIMFace.SDK.CSharp.Sample.Pages.APIDemo20" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="APIDemo5.aspx.cs" Inherits="BIMFace.SDK.CSharp.Sample.Pages.APIDemo5" %>
 
 <!DOCTYPE html>
 
