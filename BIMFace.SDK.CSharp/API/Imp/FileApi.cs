@@ -148,7 +148,8 @@ namespace BIMFace.SDK.CSharp.API
         #region 文件直传
 
         /// <summary>
-        ///  获取文件直传的policy凭证
+        ///  获取文件直传的policy凭证。
+        /// 【特别提醒：BIMFACE公有云支持文件直传。私有化部署时使用的对象存储是 MinIO，不支持 Policy 上传。使用普通文件流上传 或者 指定外部文件URL方式上传。】
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileName">【必填】文件的全名</param>
@@ -207,6 +208,7 @@ namespace BIMFace.SDK.CSharp.API
 
         /// <summary>
         ///  通过文件直传的policy凭证，直接上传文件【推荐使用该方式】
+        /// 【特别提醒：BIMFACE公有云支持文件直传。私有化部署时使用的对象存储是 MinIO，不支持 Policy 上传。使用普通文件流上传 或者 指定外部文件URL方式上传。】
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileFullName">【必填】待上传的文件(包含全路径的完全限定名)</param>

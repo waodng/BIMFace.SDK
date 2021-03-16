@@ -48,6 +48,8 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             string filePath = FileUpload1.PostedFile.FileName; //必须在IE兼容模式下才能获取到文件的绝对路径
             
             IFileApi api = new FileApi();
+
+            filePath = "D:/Work/江北新区/审图系统/Src2/SGTSC.WebService/UploadFile/00003920/BIMFACE示例文件-Revit模型20210315161743105.rvt";
             FileUploadResponse fileUploadResponse = api.UploadFileByPolicy(txtAccessToken.Text, filePath);
             txtResult.Text = fileUploadResponse.SerializeToJson(true);
         }
