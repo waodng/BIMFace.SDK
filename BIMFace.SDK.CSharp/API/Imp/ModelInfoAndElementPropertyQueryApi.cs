@@ -89,8 +89,8 @@ namespace BIMFace.SDK.CSharp.API
             //GET https://api.bimface.com/data/v2/query/propertyValues
 
             string url = BIMFaceConstants.API_HOST + "/data/v2/query/elementIds?includeOverrid=" + includeOverrid;
-            url += "?properties=" + properties.ToStringWith(",");
-            url += "&properties=" + properties.ToStringWith(",");
+            url += "properties=" + properties.ToStringWith(",");
+            url += "&targetIds=" + targetIds.ToStringWith(",");
             url += "&targetType=" + targetType;
             url += "&includeOverrid=" + includeOverrid;
 
