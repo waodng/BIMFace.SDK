@@ -34,7 +34,7 @@ namespace BIMFace.SDK.CSharp.Constants
                 var apiHost = ConfigurationManager.AppSettings["BIMFACE_API_HOST"].Trim();
                 if (string.IsNullOrWhiteSpace(apiHost))
                     throw new Configuration2Exception("请在 web.conig 或 app.conifg 中配置 BIMFACE_API_HOST。\r\n" +
-                        "如果采用BIMFACE公有云，请填写 https://file.bimface.com \r\n" +
+                        "如果采用BIMFACE公有云，请填写 https://api.bimface.com \r\n" +
                         "如果采用BIMFACE私有化部署，请填写部署时自定义地址。");
 
                 return apiHost;

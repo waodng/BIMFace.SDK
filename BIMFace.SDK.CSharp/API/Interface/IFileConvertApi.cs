@@ -403,12 +403,14 @@ namespace BIMFace.SDK.CSharp.API
         #region 获取图纸信息
 
         /// <summary>
-        /// 通过图纸文件ID，按图框拆分图纸
+        /// 通过图纸文件ID，按图框拆分图纸。
+        /// （提示：图纸拆分必须在【图纸转换】接口完成且转换状态为 success 之后才能发起，拆分是在转换成功的基础之上进行的）
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileId">【必填】代表该单图纸的文件ID</param>
+        /// <param name="callbak">【选填】回调url。图纸拆分是一个耗时的操作，并不能立刻完成。可以通过回调地址通知拆分结果</param>
         /// <returns></returns>
-        SplitDrawingResponse SplitDrawing(string accessToken, long fileId);
+        SplitDrawingResponse SplitDrawing(string accessToken, long fileId, string callbak = "");
 
         /// <summary>
         ///  获取图纸拆分状态

@@ -12,6 +12,7 @@
 //  ------------------------------------------------------------------------------------------*/
 
 using System;
+using System.Text;
 using System.Collections.Generic;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
@@ -1434,16 +1435,21 @@ namespace BIMFace.SDK.CSharp.API
         #region 获取图纸数据
 
         /// <summary>
-        /// 通过图纸文件ID，按图框拆分图纸
+        /// 通过图纸文件ID，按图框拆分图纸。
+        /// （提示：图纸拆分必须在【图纸转换】接口完成且转换状态为 success 之后才能发起，拆分是在转换成功的基础之上进行的）
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileId">【必填】代表该单图纸的文件ID</param>
+        /// <param name="callbak">【选填】回调url。图纸拆分是一个耗时的操作，并不能立刻完成。可以通过回调地址通知拆分结果</param>
         /// <returns></returns>
-        public SplitDrawingResponse SplitDrawing(string accessToken, long fileId)
+        public SplitDrawingResponse SplitDrawing(string accessToken, long fileId, string callbak = "")
         {
             // PUT https://api.bimface.com/files/{fileId}/split
             string url = string.Format(BIMFaceConstants.API_HOST + "/files/{0}/split", fileId);
-
+            if (callbak.IsNotNullAndWhiteSpace())
+            {
+                url += "?callback=" + callbak.UriEscapeDataString();
+            }
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
