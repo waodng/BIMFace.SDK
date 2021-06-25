@@ -1,5 +1,11 @@
 # BIMFACE.SDK
 
+## 特别声明
+
+HandyControl 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组织。<br/>
+
+![dotnetchina](https://images.gitee.com/uploads/images/2021/0324/120117_2da9922c_416720.png "132645_21007ea0_974299.png")
+
 #### 介绍
 【 **BIMFACE.SDK.CSharp** 】不是[BIMFACE]( https://bimface.com)官方提供的SDK，而是由广联达开发者网络GDN先锋会员- **南京群耀智远信息科技有限公司 http://www.sparkcn.com** 提供的开源免费SDK。作者也是BIMFACE产品的深度用户、BIMFACE社区的参与者与贡献者。
 
@@ -64,10 +70,3 @@
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115720_85ecf0bc_1273526.jpeg "23.jpg")
 
 大家在使用过程中，如遇到任何问题请联系作者，QQ：905442693 微信：savionzhang。
-
-
-## 特别声明
-
-HandyControl 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组织。<br/>
-
-![dotnetchina](https://images.gitee.com/uploads/images/2021/0324/120117_2da9922c_416720.png "132645_21007ea0_974299.png")
