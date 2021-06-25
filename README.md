@@ -3,7 +3,7 @@
 #### 介绍
 【 **BIMFACE.SDK.CSharp** 】不是[BIMFACE]( https://bimface.com)官方提供的SDK，而是由广联达开发者网络GDN先锋会员- **南京群耀智远信息科技有限公司 http://www.sparkcn.com** 提供的开源免费SDK。作者也是BIMFACE产品的深度用户、BIMFACE社区的参与者与贡献者。
 
-![](C:\Users\Savion\Desktop\24.jpg)
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115613_095f6cd4_1273526.jpeg "24.jpg")
 
 #### 功能简介
 
@@ -28,7 +28,7 @@
 #### 软件架构
 本项目使用 .NET Framework 4.5、VS2019 创建。 如果使用低版本的VS，请自行创建解决方案，然后手动添加 BIMFace.SDK.CSharp、BIMFace.SDK.CSharp.Common、BIMFace.SDK.CSharp.Sample 项目即可。
 
-![](C:\Users\Savion\Desktop\12.jpg)
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115627_4e792544_1273526.jpeg "1.jpg")
 
 #### 使用说明
 
@@ -45,7 +45,7 @@
 
 4、BIMFace.SDK.CSharp.Sample 为示例项目，使用前需要在web.config中配置 BIMFACE 的BIMFACE_AppKey、BIMFACE_AppSecret、BIMFACE_Callback。
 
-![](C:\Users\Savion\Desktop\13.jpg)
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115647_f1a87fcd_1273526.jpeg "13.jpg")
 
 #### 使用教程
 
@@ -53,14 +53,13 @@
 
   《C#二次开发BIMFACE系列》https://www.cnblogs.com/SavionZhang/p/11424431.html
 
-  ![](C:\Users\Savion\Desktop\BIMFACE图片\BIMFace 使用教程1.png)
-
-  ![BIMFace 使用教程2](C:\Users\Savion\Desktop\BIMFACE图片\BIMFace 使用教程2.png)
+ ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115700_33fdbaa6_1273526.png "BIMFace 使用教程1.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115707_aa7fbe37_1273526.png "BIMFace 使用教程2.png")
 
 - 视频教程
 
 《C#二次开发BIMFACE视频系列》https://space.bilibili.com/495216530/video
 
-![](C:\Users\Savion\Desktop\23.jpg)
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115720_85ecf0bc_1273526.jpeg "23.jpg")
 
 大家在使用过程中，如遇到任何问题请联系作者，QQ：905442693 微信：savionzhang。
