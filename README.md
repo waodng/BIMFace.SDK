@@ -37,6 +37,7 @@
 2、重新生成解决方案。 
 
 3、项目结构说明 
+
 （1）BIMFace.SDK.CSharp 为 SDK，里面包含了基础API、文件上传API、文件转换API、模型对比API等。 
 
 （2）BIMFace.SDK.CSharp.Common 为项目公用类库。 
