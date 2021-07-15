@@ -115,7 +115,9 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
 
             long compareId = txtCompareID.Text.ToLong();
             IModelCompareApi api = new ModelCompareApi();
-            ModelCompareDiffResponse response = api.GetModelCompareDiffAll(txtAccessToken.Text, compareId);
+           // ModelCompareDiffResponse response = api.GetModelCompareDiffAll(txtAccessToken.Text, compareId);
+
+            DrawingCompareDiffResponse response = api.GetDrawingCompareDiffAll(txtAccessToken.Text, compareId);
 
             txtResult.Text = response.SerializeToJson(true);
         }
