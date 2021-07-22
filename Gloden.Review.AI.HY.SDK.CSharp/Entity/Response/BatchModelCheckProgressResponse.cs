@@ -19,10 +19,19 @@ using Newtonsoft.Json;
 namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
 {
     /// <summary>
-    ///  获取模型检查进度数据返回的结果类
+    ///  获取单一批次模型检查进度数据返回的结果类
     /// </summary>
     [Serializable]
-    public class ModelCheckProgressResponse : GeneralResponse<List<ModelCheckProgressResponseModel>>
+    public class SingleBatchModelCheckProgressResponse : GeneralResponse<ModelCheckProgressResponseModel>
+    {
+
+    }
+
+    /// <summary>
+    ///  获取多批次模型检查进度数据返回的结果类
+    /// </summary>
+    [Serializable]
+    public class BatchModelCheckProgressResponse : GeneralResponse<List<ModelCheckProgressResponseModel>>
     {
 
     }
@@ -33,7 +42,7 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
         /// <summary>
         ///  批次Id
         /// </summary>
-        [JsonProperty("review_id")]
+        [JsonProperty("reviewId")]
         public string ReviewId { get; set; }
 
         /// <summary>
@@ -45,55 +54,55 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
         /// <summary>
         ///  审查开始时间
         /// </summary>
-        [JsonProperty("review_start")]
+        [JsonProperty("reviewStart")]
         public DateTime ReviewStart { get; set; }
 
         /// <summary>
         ///  审查结束时间
         /// </summary>
-        [JsonProperty("review_end")]
+        [JsonProperty("reviewEnd")]
         public DateTime ReviewEnd { get; set; }
 
         /// <summary>
         ///  队列Id
         /// </summary>
-        [JsonProperty("mc_queues_id")]
+        [JsonProperty("mcQueuesId")]
         public string McQueuesId { get; set; }
 
         /// <summary>
         ///  问题数量
         /// </summary>
-        [JsonProperty("mc_question_count")]
+        [JsonProperty("mcQuestionCount")]
         public int McQuestionCount { get; set; }
 
         /// <summary>
         ///  正确检查点 数量
         /// </summary>
-        [JsonProperty("mc_right_checkpoint")]
+        [JsonProperty("mcRightCheckpoint")]
         public int McRightCheckpoint { get; set; }
 
         /// <summary>
         /// 问题检查点 数量
         /// </summary>
-        [JsonProperty("mc_question_checkpoint")]
+        [JsonProperty("mcQuestionCheckpoint")]
         public int McQuestionCheckpoint { get; set; }
 
         /// <summary>
         ///  异常检查点 数量
         /// </summary>
-        [JsonProperty("mc_error_checkpoint")]
+        [JsonProperty("mcErrorCheckpoint")]
         public int McErrorCheckpoint { get; set; }
 
         /// <summary>
         ///  检查状态。 队列中0、正在检查1、检查完成2、检查异常3
         /// </summary>
-        [JsonProperty("check_status")]
+        [JsonProperty("checkStatus")]
         public int CheckStatus { get; set; }
 
         /// <summary>
         ///  检查状态的描述
         /// </summary>
-        [JsonProperty("check_status_msg")]
+        [JsonProperty("checkStatusMsg")]
         public string CheckStatusMsg { get; set; }
 
         /// <summary>

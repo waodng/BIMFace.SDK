@@ -25,7 +25,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  转换/集成/对比数据包相关API实现类（当模型转换/集成/对比成功执行后，都会在服务器端生成一个对应的数据包，这个数据包里包含了转换的部分结果，特别是显示数据。不同的转换类型（如rvt文件转换）会产生不同的结果文件）
     /// </summary>
-    public class DatabagApi : IDatabagApi
+    public partial class DatabagApi : IDatabagApi
     {
         /// <summary>
         ///  当模型转换成功执行后，获取数据包大小

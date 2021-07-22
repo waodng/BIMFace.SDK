@@ -18,7 +18,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// 模型构件属性重写API接口
     /// </summary>
-    public interface IModelElementPropertyOverWriteApi
+    public partial interface IModelElementPropertyOverWriteApi
     {
         /// <summary>
         ///  修改单模型指定构件的属性（支持修改（包含添加和更新）构件基本属性组以外的属性）

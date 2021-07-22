@@ -18,7 +18,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// gltf数据包API接口（BIMFACE支持将模型导出成特定的格式，直接用于实时渲染。比如，导出成gltf，用于集成GIS，进行模型信息的展示）
     /// </summary>
-    public interface IGltfDatabagApi
+    public partial interface IGltfDatabagApi
     {
         /// <summary>
         ///  根据文件ID创建gltf数据包

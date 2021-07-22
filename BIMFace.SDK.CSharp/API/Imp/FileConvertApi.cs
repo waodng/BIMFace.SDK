@@ -28,7 +28,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  文件转换接口实现类
     /// </summary>
-    public class FileConvertApi : IFileConvertApi
+    public partial class FileConvertApi : IFileConvertApi
     {
         #region 发起源文件/模型转换
 

@@ -23,10 +23,17 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
     public interface IAbutmentApi
     {
         /// <summary>
-        ///  获取模型检查进度数据
+        ///  获取一个批次中所有模型检查进度数据
         /// </summary>
         /// <param name="token">【必填】登录认证后获取到的authorization值</param>
         /// <param name="ids">【必填】第三方平台批次Id（理解为一个项目ID）</param>
-        ModelCheckProgressResponse GetModelCheckProgress(string token, List<string> ids);
+        SingleBatchModelCheckProgressResponse GetModelCheckProgress(string token, string id);
+
+        /// <summary>
+        ///  获取多批次模型检查进度数据
+        /// </summary>
+        /// <param name="token">【必填】登录认证后获取到的authorization值</param>
+        /// <param name="ids">【必填】第三方平台批次Id（理解为一个项目ID）</param>
+        BatchModelCheckProgressResponse GetModelCheckProgress(string token, List<string> ids);
     }
 }

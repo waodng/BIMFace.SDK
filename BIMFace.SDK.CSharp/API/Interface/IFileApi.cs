@@ -20,7 +20,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// 文件操作接口
     /// </summary>
-    public interface IFileApi
+    public partial interface IFileApi
     {
         #region 源文件相关
 

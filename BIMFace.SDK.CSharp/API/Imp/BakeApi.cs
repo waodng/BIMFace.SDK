@@ -26,7 +26,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// 烘焙API实现类（BIMFACE支持在模型完成转换后，再对其进行烘焙，以获得更具真实感的光影效果）
     /// </summary>
-    public class BakeApi : IBakeApi
+    public partial class BakeApi : IBakeApi
     {
         /// <summary>
         ///  创建文件bake烘焙数据包

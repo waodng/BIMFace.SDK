@@ -25,7 +25,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  模型构件属性重写API实现类（模型转换/集成成功之后，用户可能会根据自己的业务需要，将构件的属性进行重写，包括修改属性（添加或者更新属性）和删除属性，BIMFACE提供了以下四个接口支持这种能力（注意：只支持重写基本属性组以外的属性））
     /// </summary>
-    public class ModelElementPropertyOverWriteApi : IModelElementPropertyOverWriteApi
+    public partial class ModelElementPropertyOverWriteApi : IModelElementPropertyOverWriteApi
     {
         /// <summary>
         ///  修改单模型指定构件的属性（支持修改（包含添加和更新）构件基本属性组以外的属性）

@@ -25,7 +25,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  构件空间关系计算API实现类
     /// </summary>
-    public class ModelElementSpaceRelationCalculationApi : IModelElementSpaceRelationCalculationApi
+    public partial class ModelElementSpaceRelationCalculationApi : IModelElementSpaceRelationCalculationApi
     {
         /* 在进行BIM应用的时候，经常需要计算某个房间与构件之间的空间关系，比如某个房间内包含的构件，或者某个构件属于哪个房间。而这些信息，在原始的模型文件里是不存在。
          * 幸运的是，BIMFACE利用强大的云计算能力，提供了实时计算空间关系的API, 助力BIM深度应用。

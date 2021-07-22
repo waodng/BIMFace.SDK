@@ -19,7 +19,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  模型对比接口
     /// </summary>
-    public interface IModelCompareApi
+    public partial interface IModelCompareApi
     {
         #region 模型对比相关
 

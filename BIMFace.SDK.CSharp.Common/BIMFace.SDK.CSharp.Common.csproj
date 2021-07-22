@@ -93,6 +93,7 @@
     <Compile Include="Http\HttpClientUtils.cs" />
     <Compile Include="Http\HttpContentType.cs" />
     <Compile Include="Http\HttpManager.cs" />
+    <Compile Include="Http\HttpManager_Async.cs" />
     <Compile Include="Http\HttpMethod.cs" />
     <Compile Include="Http\HttpResult.cs" />
     <Compile Include="Http\HttpStatusCode2.cs" />

@@ -26,7 +26,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// 离线数据包相关API实现类
     /// </summary>
-    public class OfflineDatabagApi : IOfflineDatabagApi
+    public partial class OfflineDatabagApi : IOfflineDatabagApi
     {
         /* 官网API地址：https://static.bimface.com/restful-apidoc/dist/offlineDatabag.html#_createtranslateofflinedatabagusingput
          * 

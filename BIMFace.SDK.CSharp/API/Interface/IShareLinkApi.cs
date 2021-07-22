@@ -20,7 +20,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  分享链接API接口
     /// </summary>
-    public interface IShareLinkApi
+    public partial interface IShareLinkApi
     {
         /// <summary>
         ///  文件发起转换以后，可以根据fileId生成该文件的分享链接

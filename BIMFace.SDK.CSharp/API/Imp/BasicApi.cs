@@ -11,7 +11,6 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-#region using
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -22,7 +21,6 @@ using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Response;
 using BIMFace.SDK.CSharp.Exceptions;
 using BIMFace.SDK.CSharp.Http;
-#endregion
 
 namespace BIMFace.SDK.CSharp.API
 {
@@ -30,7 +28,7 @@ namespace BIMFace.SDK.CSharp.API
     ///  BIMFace 基础操作 API 实现类。用于和BIMFace服务器通讯。
     ///  官网地址：http://static.bimface.com/developer/doc/apidoc/index.html
     /// </summary>
-    public class BasicApi : IBasicApi
+    public partial class BasicApi : IBasicApi
     {
         /// <summary>
         ///  获取访问服务端其他API的令牌

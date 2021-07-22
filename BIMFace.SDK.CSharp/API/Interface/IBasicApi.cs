@@ -22,7 +22,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  BIMFace 基础操作 API 接口
     /// </summary>
-    public interface IBasicApi
+    public partial interface IBasicApi
     {
         /// <summary>
         ///  获取访问服务端其他API的令牌

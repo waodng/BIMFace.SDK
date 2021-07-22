@@ -25,7 +25,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// gltf数据包API接口实现（BIMFACE支持将模型导出成特定的格式，直接用于实时渲染。比如，导出成gltf，用于集成GIS，进行模型信息的展示）类
     /// </summary>
-    public class GltfDatabagApi : IGltfDatabagApi
+    public partial class GltfDatabagApi : IGltfDatabagApi
     {
         /* 官方API地址：https://static.bimface.com/restful-apidoc/dist/exportDatabag.html#_exporttranslategltfdatabagusingput
          * 文件转换成功后，即可创建gltf数据包。 BIMFACE支持在创建Gltf数据包完成以后，通过Callback机制通知调用方(请参考这里)；另外，调用方也可以通过接口查询Gltf数据包状态。 

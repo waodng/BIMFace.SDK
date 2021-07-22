@@ -19,7 +19,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  烘焙API接口
     /// </summary>
-    public interface IBakeApi
+    public partial interface IBakeApi
     {
         /// <summary>
         ///  创建文件bake烘焙数据包

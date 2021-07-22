@@ -22,7 +22,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// 模型集成API接口
     /// </summary>
-    public interface IModelIntegrateApi
+    public partial interface IModelIntegrateApi
     {
         #region 模型集成发起相关
 

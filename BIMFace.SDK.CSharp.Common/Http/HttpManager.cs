@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Web;
 
@@ -27,7 +28,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
     /// <summary>
     ///  基于 HttpWebRequest 与 HttpWebResponse 类封装的 HTTP 请求与响应辅助类（上传或下载普通文本、数据流、文件等）
     /// </summary>
-    public sealed class HttpManager
+    public partial class HttpManager
     {
         #region 字段属性
 
@@ -117,7 +118,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
 
         #endregion
 
-        #region 方法
+        #region 同步方法
 
         #region Request
 

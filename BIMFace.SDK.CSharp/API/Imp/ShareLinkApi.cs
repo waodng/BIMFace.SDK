@@ -26,7 +26,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  分享链接API实现
     /// </summary>
-    public class ShareLinkApi : IShareLinkApi
+    public partial class ShareLinkApi : IShareLinkApi
     {
         /// <summary>
         ///  文件发起转换以后，可以根据fileId生成该文件的分享链接

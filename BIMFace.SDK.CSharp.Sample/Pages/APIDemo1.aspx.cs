@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 using BIMFace.SDK.CSharp.API;
 using BIMFace.SDK.CSharp.Common.Cache;
@@ -20,7 +21,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         {
             if (!IsPostBack)
             {
-
+               
             }
         }
 
@@ -30,7 +31,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             txtAccessToken.Text = string.Empty;
             txtResult.Text = string.Empty;
 
-            AccessTokenResponse response = GetAccessToken();
+            AccessTokenResponse response = GetAccessTokenAsync().Result; //GetAccessToken();
             if (response != null)
             {
                 txtAccessToken.Text = response.Data.Token;
@@ -42,6 +43,13 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         {
             IBasicApi api = new BasicApi();
             AccessTokenResponse response = api.GetAccessToken(_appKey, _appSecret);
+            return response;
+        }
+
+        private async Task<AccessTokenResponse> GetAccessTokenAsync()
+        {
+            IBasicApi api = new BasicApi();
+            AccessTokenResponse response = await api.GetAccessTokenAsync(_appKey, _appSecret);
             return response;
         }
 
@@ -70,6 +78,6 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
 
             txtAccessToken.Text = response.Data.Token;
             txtResult.Text = response.SerializeToJson(true);
-        } 
+        }
     }
 }

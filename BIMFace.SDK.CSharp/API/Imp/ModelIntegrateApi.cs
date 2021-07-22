@@ -27,7 +27,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// 模型集成API实现类
     /// </summary>
-    public class ModelIntegrateApi : IModelIntegrateApi
+    public partial class ModelIntegrateApi : IModelIntegrateApi
     {
         #region 模型集成介绍
         /*官方地址：https://static.bimface.com/restful-apidoc/dist/modelIntegration.html#%E6%A8%A1%E5%9E%8B%E9%9B%86%E6%88%90%E5%8F%91%E8%B5%B7%E7%9B%B8%E5%85%B3

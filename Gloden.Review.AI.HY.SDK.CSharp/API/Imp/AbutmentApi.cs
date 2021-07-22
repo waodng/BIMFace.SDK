@@ -29,13 +29,38 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
     public class AbutmentApi : IAbutmentApi
     {
         /// <summary>
-        ///  获取模型检查进度数据
+        ///  批量获取模型检查进度数据
         /// </summary>
         /// <param name="token">【必填】登录认证后获取到的authorization值</param>
         /// <param name="ids">【必填】第三方平台批次Id（理解为一个项目ID）</param>
-        public ModelCheckProgressResponse GetModelCheckProgress(string token, List<string> ids)
+        public SingleBatchModelCheckProgressResponse GetModelCheckProgress(string token, string id)
         {
-            //Get
+            List<string> ids = new List<string>();
+            ids.Add(id);
+
+            var batchResponse = GetModelCheckProgress(token, ids);
+
+            var signalBatchResponse = new SingleBatchModelCheckProgressResponse();
+            signalBatchResponse.Code = batchResponse.Code;
+            signalBatchResponse.Message = batchResponse.Message;
+            signalBatchResponse.Success = batchResponse.Success;
+            if (batchResponse.Data != null && batchResponse.Data.Count > 0)
+            {
+                signalBatchResponse.Data = batchResponse.Data[0];
+            }
+
+            return signalBatchResponse;
+        }
+
+
+        /// <summary>
+        ///  皮卡获取模型检查进度数据
+        /// </summary>
+        /// <param name="token">【必填】登录认证后获取到的authorization值</param>
+        /// <param name="ids">【必填】第三方平台批次Id（理解为一个项目ID）</param>
+        public BatchModelCheckProgressResponse GetModelCheckProgress(string token, List<string> ids)
+        {
+            //Post
             string url = APiConstants.API_HOST + "/api/abutment/callBackByIds";
 
             ReviewAIHttpHeaders headers = new ReviewAIHttpHeaders();
@@ -43,16 +68,16 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
 
             try
             {
-                ModelCheckProgressResponse response;
+                BatchModelCheckProgressResponse response;
                 HttpManager httpManager = new HttpManager(headers);
-                HttpResult httpResult = httpManager.Post(url,ids.SerializeToJson());
+                HttpResult httpResult = httpManager.Post(url, ids.SerializeToJson());
                 if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                 {
-                    response = httpResult.Text.DeserializeJsonToObject<ModelCheckProgressResponse>();
+                    response = httpResult.Text.DeserializeJsonToObject<BatchModelCheckProgressResponse>();
                 }
                 else
                 {
-                    response = new ModelCheckProgressResponse
+                    response = new BatchModelCheckProgressResponse
                     {
                         Message = httpResult.RefText
                     };

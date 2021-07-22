@@ -18,7 +18,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  转换/集成/对比数据包相关API接口
     /// </summary>
-    public interface IDatabagApi
+    public partial interface IDatabagApi
     {
         /// <summary>
         ///  当模型转换成功执行后，获取数据包大小

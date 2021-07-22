@@ -57,7 +57,7 @@
     <Compile Include="Entity\GeneralResponse.cs" />
     <Compile Include="Entity\Request\ReviewModelRequest.cs" />
     <Compile Include="Entity\Response\LoginResponse.cs" />
-    <Compile Include="Entity\Response\ModelCheckProgressResponse.cs" />
+    <Compile Include="Entity\Response\BatchModelCheckProgressResponse.cs" />
     <Compile Include="Entity\Response\ReviewModelResponse.cs" />
     <Compile Include="Exceptions\ReviewAIException.cs" />
     <Compile Include="Http\ReviewAIHttpHeaders.cs" />

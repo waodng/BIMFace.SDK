@@ -19,7 +19,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     /// 离线数据包相关API接口
     /// </summary>
-    public interface IOfflineDatabagApi
+    public partial interface IOfflineDatabagApi
     {
         /// <summary>
         ///  根据文件ID创建离线数据包

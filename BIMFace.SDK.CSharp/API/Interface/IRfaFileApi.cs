@@ -18,7 +18,7 @@ namespace BIMFace.SDK.CSharp.API
     /// <summary>
     ///  rfa构件数据API接口
     /// </summary>
-    public interface IRfaFileApi
+    public partial interface IRfaFileApi
     {
         /// <summary>
         ///  获取rfa文件族类型属性key列表

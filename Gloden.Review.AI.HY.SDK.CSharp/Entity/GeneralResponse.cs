@@ -45,7 +45,7 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
         ///  如果 Code 为 success 则 Message 为空。
         ///  如果 Code 为 xxxx.failed 则 Message 为具体的失败信息。
         /// </summary>
-        [JsonProperty("msg")]
+        [JsonProperty("message")]
         public virtual string Message { get; set; }
 
         /// <summary>

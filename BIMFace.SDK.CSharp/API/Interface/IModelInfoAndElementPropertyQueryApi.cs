@@ -17,7 +17,7 @@ namespace BIMFace.SDK.CSharp.API
 {  /// <summary>
     ///  模型信息和构件属性查询API接口
     /// </summary>
-    public interface IModelInfoAndElementPropertyQueryApi
+    public partial interface IModelInfoAndElementPropertyQueryApi
     {
         /// <summary>
         ///  查询符合条件的构件ID列表。

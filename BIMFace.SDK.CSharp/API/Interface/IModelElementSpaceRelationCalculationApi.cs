@@ -18,7 +18,7 @@ namespace BIMFace.SDK.CSharp.API
 {   /// <summary>
     ///  构件空间关系计算API接口
     /// </summary>
-    public interface IModelElementSpaceRelationCalculationApi
+    public partial interface IModelElementSpaceRelationCalculationApi
     {
         /// <summary>
         /// 获取楼层对应房间列表。

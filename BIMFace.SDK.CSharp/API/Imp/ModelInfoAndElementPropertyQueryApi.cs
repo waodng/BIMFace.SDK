@@ -29,7 +29,7 @@ namespace BIMFace.SDK.CSharp.API
     ///   这是BIMFACE基于云计算的独特优势。
     ///   为满足灵活的，可扩展的查询需求，BIMFACE参考Elastic Search，定义了一套通用的查询领域语言）
     /// </summary>
-    public class ModelInfoAndElementPropertyQueryApi : IModelInfoAndElementPropertyQueryApi
+    public partial class ModelInfoAndElementPropertyQueryApi : IModelInfoAndElementPropertyQueryApi
     {
         /// <summary>
         ///  查询符合条件的构件ID列表。
