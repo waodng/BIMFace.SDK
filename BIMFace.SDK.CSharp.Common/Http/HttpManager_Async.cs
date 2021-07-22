@@ -44,7 +44,67 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns></returns>
         private async Task<HttpResult> RequestStringAsync(string url, string data, string method, string contentType)
         {
-            return await RequestStringAsync(url, data, method, contentType);
+            HttpResult httpResult = new HttpResult();
+            HttpWebRequest httpWebRequest = null;
+
+            try
+            {
+                httpWebRequest = WebRequest.Create(url) as HttpWebRequest;
+                httpWebRequest.Method = method;
+                httpWebRequest.Headers = HeaderCollection;
+                httpWebRequest.CookieContainer = CookieContainer;
+                if (!string.IsNullOrWhiteSpace(contentType))
+                {
+                    httpWebRequest.ContentType = contentType;// 此属性的值存储在WebHeaderCollection中。如果设置了WebHeaderCollection，则属性值将丢失。所以放置在Headers 属性之后设置
+                }
+                httpWebRequest.UserAgent = _userAgent;
+                httpWebRequest.AllowAutoRedirect = _allowAutoRedirect;
+                httpWebRequest.ServicePoint.Expect100Continue = false;
+
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    /*  在 http1.1 以上中，如果使用 post，并且 body 中非空时，必须要有 content-length 的标头。
+                     *  并且，如果字符中存在汉字，那么在 utf-8 编码模式下，其长度应该采用编码后的字符长度，也就是 byte 数组的长度，而不是原始字符串的长度。
+                     */
+
+                    byte[] dataBytes = EncodingType.GetBytes(data);
+                    httpWebRequest.ContentLength = dataBytes.Length; /* body 中非空时，必须设置 content-length 的标头*/
+                    httpWebRequest.AllowWriteStreamBuffering = true;
+
+                    using (Stream requestStream = httpWebRequest.GetRequestStream())
+                    {
+                        /*  在 http1.1 以上中，如果使用 post，并且 body 中非空时，必须要有 content-length 的标头。
+                         *  并且，如果字符中存在汉字，那么在 utf-8 编码模式下，其长度应该采用编码后的字符长度，也就是 byte 数组的长度，而不是原始字符串的长度。
+                         */
+                        requestStream.Write(dataBytes, 0, dataBytes.Length);     // 将请求参数写入请求流中 
+                        requestStream.Flush();
+                    }
+                }
+
+                HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+                if (httpWebResponse != null)
+                {
+                    GetResponse(ref httpResult, httpWebResponse);
+                    httpWebResponse.Close();
+                }
+            }
+            catch (WebException webException)
+            {
+                GetWebExceptionResponse(ref httpResult, webException);
+            }
+            catch (Exception ex)
+            {
+                GetExceptionResponse(ref httpResult, ex, method, contentType);
+            }
+            finally
+            {
+                if (httpWebRequest != null)
+                {
+                    httpWebRequest.Abort();
+                }
+            }
+
+            return await Task.FromResult(httpResult);
         }
 
         /// <summary>
@@ -57,7 +117,62 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         private async Task<HttpResult> RequestDataAsync(string url, byte[] data, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
-            return await RequestDataAsync(url, data, method, contentType);
+            HttpResult httpResult = new HttpResult();
+            HttpWebRequest httpWebRequest = null;
+
+            try
+            {
+                httpWebRequest = WebRequest.Create(url) as HttpWebRequest;
+                httpWebRequest.Method = method;
+                httpWebRequest.Headers = HeaderCollection;
+                httpWebRequest.CookieContainer = CookieContainer;
+                httpWebRequest.ContentType = contentType;
+                httpWebRequest.UserAgent = _userAgent;
+                httpWebRequest.AllowAutoRedirect = _allowAutoRedirect;
+                httpWebRequest.ServicePoint.Expect100Continue = false;
+
+                if (data != null)
+                {
+                    /*  在 http1.1 以上中，如果使用 post，并且 body 中非空时，必须要有 content-length 的标头。
+                     *  并且，如果字符中存在汉字，那么在 utf-8 编码模式下，其长度应该采用编码后的字符长度，也就是 byte 数组的长度，而不是原始字符串的长度。
+                     */
+                    httpWebRequest.ContentLength = data.Length;
+                    httpWebRequest.AllowWriteStreamBuffering = true;
+
+                    using (Stream requestStream = httpWebRequest.GetRequestStream())
+                    {
+                        /*  在 http1.1 以上中，如果使用 post，并且 body 中非空时，必须要有 content-length 的标头。
+                         *  并且，如果字符中存在汉字，那么在 utf-8 编码模式下，其长度应该采用编码后的字符长度，也就是 byte 数组的长度，而不是原始字符串的长度。
+                         */
+                        requestStream.Write(data, 0, data.Length);
+                        requestStream.Flush();
+                    }
+                }
+
+                HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+                if (httpWebResponse != null)
+                {
+                    GetResponse(ref httpResult, httpWebResponse);
+                    httpWebResponse.Close();
+                }
+            }
+            catch (WebException webException)
+            {
+                GetWebExceptionResponse(ref httpResult, webException);
+            }
+            catch (Exception ex)
+            {
+                GetExceptionResponse(ref httpResult, ex, method, contentType);
+            }
+            finally
+            {
+                if (httpWebRequest != null)
+                {
+                    httpWebRequest.Abort();
+                }
+            }
+
+            return await Task.FromResult(httpResult);
         }
 
         #endregion
