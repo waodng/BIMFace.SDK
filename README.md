@@ -33,7 +33,7 @@ BIMFace.SDK.CSharp 项目已加入 [dotNET China](https://gitee.com/dotnetchina)
 #### 软件架构
 本项目使用 .NET Framework 4.5、VS2019 创建。 如果使用低版本的VS，请自行创建解决方案，然后手动添加 BIMFace.SDK.CSharp、BIMFace.SDK.CSharp.Common、BIMFace.SDK.CSharp.Sample 项目即可。
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115627_4e792544_1273526.jpeg "1.jpg")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0722/105216_c142ea10_1273526.jpeg "22.jpg")
 
 #### 使用说明
 
