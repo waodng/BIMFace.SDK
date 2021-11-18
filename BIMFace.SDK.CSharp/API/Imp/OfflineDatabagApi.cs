@@ -96,7 +96,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual DatabagDerivativeCreateResponse CreateDatabagByCompareId(string accessToken, long compareId, string callback = null, DatabagDerivativeRequest request = null)
         {
-            return CreateDatabag(accessToken, compareId, ModelType.compareId, callback, request);
+            return CreateDatabag(accessToken, compareId, ModelType.compareId, null, request);
         }
 
         private DatabagDerivativeCreateResponse CreateDatabag(string accessToken, long objectId, ModelType modelType, string callback = null, DatabagDerivativeRequest request = null)
@@ -127,11 +127,13 @@ namespace BIMFace.SDK.CSharp.API
                 url += "?callback=" + callback;
             }
 
-            string data = string.Empty;
-            if (request != null)
+            if (request == null)
             {
-                data = request.SerializeToJson();
+                request = new DatabagDerivativeRequest();
+                request.Config = new Config();
             }
+
+            string data = request.SerializeToJson();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -254,7 +256,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        public virtual GetUrlSwaggerDisplay GetDatabagDownloadUrlByFileId(string accessToken, long fileId, string databagVersion, string type)
+        public virtual GetUrlSwaggerDisplay GetDatabagDownloadUrlByFileId(string accessToken, long fileId, string databagVersion="", string type= "offline")
         {
             return GetDatabagDownloadUrl(accessToken, fileId, ModelType.fileId, databagVersion, type);
         }
@@ -267,7 +269,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        public virtual GetUrlSwaggerDisplay GetDatabagDownloadUrlByIntegrateId(string accessToken, long integrateId, string databagVersion, string type)
+        public virtual GetUrlSwaggerDisplay GetDatabagDownloadUrlByIntegrateId(string accessToken, long integrateId, string databagVersion = "", string type = "offline")
         {
             return GetDatabagDownloadUrl(accessToken, integrateId, ModelType.integrateId, databagVersion, type);
         }
@@ -280,7 +282,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        public virtual GetUrlSwaggerDisplay GetDatabagDownloadUrlByCompareId(string accessToken, long compareId, string databagVersion, string type)
+        public virtual GetUrlSwaggerDisplay GetDatabagDownloadUrlByCompareId(string accessToken, long compareId, string databagVersion = "", string type = "offline")
         {
             return GetDatabagDownloadUrl(accessToken, compareId, ModelType.compareId, databagVersion, type);
         }
@@ -294,7 +296,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        private GetUrlSwaggerDisplay GetDatabagDownloadUrl(string accessToken, long objectId, ModelType modelType, string databagVersion, string type)
+        private GetUrlSwaggerDisplay GetDatabagDownloadUrl(string accessToken, long objectId, ModelType modelType, string databagVersion = "", string type = "offline")
         {
             //GET https://api.bimface.com/data/databag/downloadUrl
             string url = BIMFaceConstants.API_HOST + "/data/databag/downloadUrl?" + modelType.ToString() + "=" + objectId;

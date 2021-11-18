@@ -17,6 +17,12 @@ namespace BIMFace.SDK.CSharp.Entity.Request
 {
     public class IntegrateSource
     {
+        public IntegrateSource(long fileId, string fileName = "")
+        {
+            FileId = fileId;
+            FileName = fileName;
+        }
+
         [JsonProperty("building", NullValueHandling = NullValueHandling.Ignore)]
         public string Building { get; set; }
 

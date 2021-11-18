@@ -23,10 +23,8 @@ namespace BIMFace.SDK.CSharp.Constants
     public class BIMFaceConstants
     {
         /// <summary>
-        ///  API服务器地址
+        ///  API服务器地址。公有云返回 https://api.bimface.com 。私有云返回自定义配置地址
         /// </summary>
-        //public const string API_HOST = "https://api.bimface.com";//20210112 mark by zcn 改为配置方式。主要考虑到私有化部署时，API地址变更的问题。
-
         public static string API_HOST
         {
             get

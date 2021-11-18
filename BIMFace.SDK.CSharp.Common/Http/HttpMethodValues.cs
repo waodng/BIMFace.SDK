@@ -14,9 +14,9 @@
 namespace BIMFace.SDK.CSharp.Common.Http
 {
     /// <summary>
-    ///  Http请求的方法
+    ///  Http 请求的方法名称值集合
     /// </summary>
-    public class HttpMethod
+    public class HttpMethodValues
     {
         /// <summary>
         ///  返回服务器支持的 HTTP 请求方法。

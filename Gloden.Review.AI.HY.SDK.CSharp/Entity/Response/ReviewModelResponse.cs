@@ -30,16 +30,22 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
         [JsonProperty("batchGuid")]
         public string batchGuid { get; set; }
 
-        [JsonProperty("currentBatchGuidNumber")]
-        public int currentBatchGuidNumber { get; set; }
+        [JsonProperty("checkSatusCount")]
+        public int CheckSatusCount { get; set; }
 
-        [JsonProperty("operateMsg")]
-        public string OperateMsg { get; set; }
+        [JsonProperty("checkStatusMsg")]
+        public string CheckStatusMsg { get; set; }
 
-        [JsonProperty("operateState")]
-        public int OperateState { get; set; }
+        [JsonProperty("checkStatus")]
+        public int CheckStatus { get; set; }
 
-        [JsonProperty("queuesTotal")]
-        public int QueuesTotal { get; set; }
+        [JsonProperty("checkStatusTag")]
+        public string CheckStatusTag { get; set; }
+
+        [JsonProperty("isCheckRetry")]
+        public bool IsCheckRetry { get; set; }
+
+        [JsonProperty("checkStatusTotal")]
+        public int CheckStatusTotal { get; set; }
     }
 }

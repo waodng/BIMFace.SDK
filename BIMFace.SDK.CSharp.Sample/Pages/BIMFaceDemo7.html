@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>网页中使用jQuery加载模型/图纸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .viewer-wrap {
+            width: 100%;
+            height: 100%;
+            background: rgb(50, 50, 55) none repeat scroll 0% 0%;
+        }
+    </style>
+</head>
+<body>
+    <div id="bimContainer" class="viewer-wrap">
+
+    </div>
+
+    <script src="../Content/js/jquery-3.6.0.min.js"></script>
+    <!--[if IE 8]>
+        /* 如果不需要兼容IE8或者使用IE兼容性视图，则可以删除此代码段 */
+        <script src="../Content/js/jquery-1.8.3.js"></script>
+    <![endif]-->
+
+    <!--<script src="../Content/js/BimfaceSDKLoader@latest-release-3.6.159.js.js"></script>--> <!--方式1：引用本地文件-->
+    <script src="https://static.bimface.com/api/BimfaceSDKLoader/BimfaceSDKLoader@latest-release.js"></script><!--方式2：引用官网在线文件-->
+
+
+    <script type="text/javascript">
+
+        /* bimFaceFileId 调用上传接口把文件发送到BIMFACE服务器后返回fileID，开发者记录下来。
+         * fileId:10000709359577 模型
+         * fileId:10000709090473 图纸
+         * */
+        var fileId = 10000709359577;
+        var app;
+        var viewer2D;
+        var viewer3D;
+        var modelViewer = {
+            toolbar: undefined,  // 工具条
+            annotationmanager: undefined,  // annotation的绘制管理器
+            annotationToolbar: undefined,
+            annotationControl: undefined   // 重写annotation的保存、取消
+        };
+
+        $(document).ready(function () {
+            loadBIMFile(fileId);
+        });
+
+        // 加载模型或图纸
+        function loadBIMFile(bimFaceFileId) {
+            $("#bimContainer").empty();//清空容器内容。解决切换不同图纸时会保留上一次图纸内容的问题。
+
+            $.ajax({
+                url: "../Handlers/GetViewTokenHandler.ashx",
+                data: { fileId: bimFaceFileId },
+                dataType: "json",
+                type: "GET",
+                async: false, //同步（此处设置为同步或者异步都可以）
+                success: function (data) {
+                    if (data.code == true) {
+                        showBIMModel(data.viewToken);// 加载BIMFACE模型
+                    } else {
+                        alert("【警告】\r\n" + data.message);
+                    }
+                },
+                error: function (e) {
+                    console.log('GetViewTokenHandler.ashx请求发生异常：' + e);
+                    alert("【异常】\r\n" + '获取ViewToken发生异常');
+                },
+                complete: function (XMLHttpRequest, status) {
+
+                }
+            });
+        }
+
+        // 显示BIMFACE模型
+        function showBIMModel(viewToken) {
+            var loaderConfig = new BimfaceSDKLoaderConfig(); // 设置BIMFACE JSSDK加载器的配置信息
+            loaderConfig.viewToken = viewToken;
+            BimfaceSDKLoader.load(loaderConfig, successCallback, failureCallback);  // 加载BIMFACE JSSDK加载器
+        }
+
+        // 加载成功回调函数
+        function successCallback(viewMetaData) {
+            /* modelViewer 是全局对象，它与具体的图纸或者模型一一对应。如果切换了图纸/模型，则需要将其重置，然后在后续操作中再创建。*/
+            modelViewer = {
+                toolbar: undefined,  // 工具条
+                annotationmanager: undefined,  // annotation的绘制管理器
+                annotationToolbar: undefined,
+                annotationControl: undefined   // 重写annotation的保存、取消
+            };
+
+            var dom4Show = document.getElementById('bimContainer'); // 获取DOM元素
+
+            if (viewMetaData.viewType == "3DView") {
+                var webAppConfig = new Glodon.Bimface.Application.WebApplication3DConfig();
+                webAppConfig.domElement = dom4Show;
+
+                app = new Glodon.Bimface.Application.WebApplication3D(webAppConfig); // 创建WebApplication
+                app.addView(viewMetaData.viewToken);//temp_ViewToken   // 添加待显示的模型
+
+                viewer3D = app.getViewer();  // 从WebApplication获取viewer3D对象
+
+                // 监听添加view完成的事件
+                viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ViewAdded, function () {
+                    // 调用viewer3D对象的Method，可以继续扩展功能
+                    modelViewer.toolbar = $(dom4Show).find('.bf-toolbar-bottom');
+
+                    //自适应屏幕大小
+                    window.onresize = function () {
+                        viewer3D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40);
+                    }
+                });
+
+
+            }
+            else if (viewMetaData.viewType == "drawingView") {
+
+                var webAppConfig = new Glodon.Bimface.Application.WebApplicationDrawingConfig();
+                webAppConfig.domElement = dom4Show;
+                webAppConfig.viewToken = viewMetaData.viewToken;
+
+                app = new Glodon.Bimface.Application.WebApplicationDrawing(webAppConfig); // 创建WebApplication
+                app.load(viewMetaData.viewToken);//viewToken  // 添加待显示的模型
+
+                viewer2D = app.getViewer();// 从WebApplication获取viewerDrawing对象
+
+                drawingViewExtend(viewer2D);    // 监听添加view完成的事件
+            }
+        }
+
+        // 加载失败回调函数
+        function failureCallback(error) {
+            console.log(error);
+        }
+
+        // 矢量dwg扩展功能
+        function drawingViewExtend(viewer2D) {
+            var viewerEvents = Glodon.Bimface.Viewer.ViewerDrawingEvent;
+
+            // 注册 ComponentsSelectionChanged ViewerDrawing图元点击选中事件
+            viewer2D.addEventListener(viewerEvents.ComponentsSelectionChanged, function () {
+                //ToTo 通过图元ID找到图框ID
+            });
+
+            // 注册 Loaded ViewerDrawing加载完毕事件
+            viewer2D.addEventListener(viewerEvents.Loaded, function () {
+                var dom4Show = document.getElementById('bimContainer'); // 获取DOM元素
+                modelViewer.toolbar = $(dom4Show).find('.bf-toolbar-bottom');
+
+                //自适应屏幕大小
+                window.onresize = function () {
+                    viewer2D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40);
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>

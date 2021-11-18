@@ -1,4 +1,17 @@
-﻿using System;
+﻿// /* ---------------------------------------------------------------------------------------
+//    文件名：BIMFaceDemo2.cs
+//    文件功能描述：
+// 
+//    创建标识：20200308
+//    作   者：张传宁  （QQ：905442693  微信：savionzhang）
+//    作者博客：https://www.cnblogs.com/SavionZhang/
+//    BIMFace专栏地址：https://www.cnblogs.com/SavionZhang/p/11424431.html
+// 
+//    修改标识： 
+//    修改描述：
+//  ------------------------------------------------------------------------------------------*/
+
+using System;
 
 using BIMFace.SDK.CSharp.API;
 using BIMFace.SDK.CSharp.Common.Extensions;
@@ -39,12 +52,12 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         {
             TranslateSource source = new TranslateSource
             {
-                FileId = txtFileID.Text.Trim().ToLong()
+                FileId = txtFileID.Text.Trim().ToLong(),
+                RootName = "A0-1.dwg"
             };
 
             DwgModelConfig config = new DwgModelConfig
             {
-
                 ExportDrawing = chkDwgExportDrawing.Checked,
                 ExportPdf = chkDwgExportPdf.Checked,
                 ExportThumb = chkDwgExportThumb.Checked

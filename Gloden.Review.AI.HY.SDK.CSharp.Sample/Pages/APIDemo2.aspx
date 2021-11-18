@@ -13,9 +13,11 @@
         </div>
          <div style="margin: 10px;">
              <asp:Label ID="Label2" runat="server" Text="审查ID："></asp:Label> 
-             <asp:TextBox ID="txtSCID" runat="server" Width="410px"></asp:TextBox>&nbsp; 
+             <asp:TextBox ID="txtSCID" runat="server" Width="410px" Text="T-20210727-30"></asp:TextBox>&nbsp; 
 
-            <asp:Button ID="btnQuerySCProgress" runat="server" Text="查询审查进度" Width="150px" OnClick="btnQuerySCProgress_Click" />
+            <asp:Button ID="btnQuerySCProgress" runat="server" Text="查询审查进度" Width="150px" OnClick="btnQuerySCProgress_Click" />&nbsp; 
+            <asp:Button ID="btnQuerySCResult" runat="server" Text="查询审查结果" Width="150px" OnClick="btnQuerySCResult_Click" />&nbsp; 
+ 
         </div>
         <div style="margin: 10px;">
             <asp:Label ID="Label1" runat="server" Text="请求结果："></asp:Label>

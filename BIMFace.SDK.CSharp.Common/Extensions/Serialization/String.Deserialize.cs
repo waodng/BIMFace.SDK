@@ -1,6 +1,5 @@
 ﻿#region using
 
-using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -8,6 +7,8 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+
+using Newtonsoft.Json;
 
 #endregion
 
@@ -34,8 +35,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <param name="deserializeRootElementName">反序列化时要附加的根元素的名称</param>
         /// <param name="writeArrayAttribute">指示是否写入json.net数组属性的标志。此属性有助于在将写入的XML转换回json时保留数组。</param>
         /// <returns></returns>
-        public static XmlNode DeserializeJsonToXmlNode(this string @this, string deserializeRootElementName = null,
-                                                   bool writeArrayAttribute = false)
+        public static XmlNode DeserializeJsonToXmlNode(this string @this, string deserializeRootElementName = null, bool writeArrayAttribute = false)
         {
             return JsonConvert.DeserializeXmlNode(@this, deserializeRootElementName, writeArrayAttribute);
         }
@@ -47,8 +47,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <param name="deserializeRootElementName">反序列化时要附加的根元素的名称</param>
         /// <param name="writeArrayAttribute">指示是否写入json.net数组属性的标志。此属性有助于在将写入的XML转换回json时保留数组。</param>
         /// <returns></returns>
-        public static XDocument DeserializeJsonToXNode(this string @this, string deserializeRootElementName = null,
-                                                   bool writeArrayAttribute = false)
+        public static XDocument DeserializeJsonToXNode(this string @this, string deserializeRootElementName = null, bool writeArrayAttribute = false)
         {
             return JsonConvert.DeserializeXNode(@this, deserializeRootElementName, writeArrayAttribute);
         }
@@ -72,7 +71,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
             }
             catch (InvalidOperationException ie)
             {
-                throw new InvalidOperationException("Can not convert xml to object", ie);
+                throw new InvalidOperationException("无法将 xml 支持转换为对象。", ie);
             }
             finally
             {

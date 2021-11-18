@@ -15,6 +15,7 @@ using System;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
+using BIMFace.SDK.CSharp.Common.Utils;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Request;
 using BIMFace.SDK.CSharp.Entity.Response;
@@ -24,7 +25,7 @@ using BIMFace.SDK.CSharp.Http;
 namespace BIMFace.SDK.CSharp.API
 {
     /// <summary>
-    ///  模型对比接口
+    ///  图纸/模型对比接口
     /// </summary>
     public partial class ModelCompareApi : IModelCompareApi
     {
@@ -215,7 +216,7 @@ namespace BIMFace.SDK.CSharp.API
 
         #endregion
 
-        #region 模型对比数据
+        #region 图纸/模型对比数据
 
         /// <summary>
         /// 获取模型构件对比差异
@@ -396,11 +397,11 @@ namespace BIMFace.SDK.CSharp.API
         {
             // 此API详解，参考作者博客：《C#开发BIMFACE系列33 服务端API之模型对比4：获取模型对比结果》 https://www.cnblogs.com/SavionZhang/p/12396008.html
 
-            return GetModelCompareDiff(accessToken, compareId, elementName,family, 1, Int32.MaxValue);
+            return GetModelCompareDiff(accessToken, compareId, elementName, family, 1, Int32.MaxValue);
         }
 
         /// <summary>
-        ///  分页获取二维图纸对比结果
+        ///  分页获取二维图纸对比结果。结果中包含 Type 为 Model 与 Layer 的两种结果对比，所以可能有重复的构建ID，需要手动过滤。
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="compareId">【必填】对比ID</param>
@@ -461,16 +462,98 @@ namespace BIMFace.SDK.CSharp.API
         }
 
         /// <summary>
-        /// 获取二维图纸对比的所有结果
+        /// 获取二维图纸对比的所有结果。结果中包含 Type 为 Model 与 Layer 的两种结果对比，所以可能有重复的构建ID，需要手动过滤。
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="compareId">【必填】对比ID</param>
         /// <returns></returns>
         public DrawingCompareDiffResponse GetDrawingCompareDiffAll(string accessToken, long compareId)
         {
-            return GetDrawingCompareDiff(accessToken, compareId,1,Int32.MaxValue);
+            return GetDrawingCompareDiff(accessToken, compareId, 1, Int32.MaxValue);
         }
 
+        /// <summary>
+        /// 【官方非正式接口】根据 CompareId 获取图纸对比的数据包信息
+        /// </summary>
+        /// <param name="compareId">对比记录的ID</param>
+        /// <returns></returns>
+        public DrawingCompareDatabagResponse GetDrawingCompareDatabag(string accessToken, long compareId)
+        {
+            IBasicApi api = new BasicApi();
+
+            ViewTokenResponse viewTokenResponse = api.GetViewTokenByCompareId(accessToken, compareId);
+            if (viewTokenResponse != null && viewTokenResponse.Code == "success" && viewTokenResponse.Data != null)
+            {
+                return GetDrawingCompareDatabagByCompareViewToken(viewTokenResponse.Data);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 【官方非正式接口】根据对比记录的 ViewToken 获取图纸对比的数据包信息
+        /// </summary>
+        /// <param name="compareViewToken">对比记录的ViewToken</param>
+        /// <returns></returns>
+        public DrawingCompareDatabagResponse GetDrawingCompareDatabagByCompareViewToken(string compareViewToken)
+        {
+            //GET https://api.bimface.com/inside/databag?viewToken=b80412dcba2a47b0860eeff8f2c578a9
+
+            string url = string.Format(BIMFaceConstants.API_HOST + "/inside/databag?viewToken={0}", compareViewToken);
+            try
+            {
+                DrawingCompareDatabagResponse response;
+
+                HttpManager httpManager = new HttpManager();
+                HttpResult httpResult = httpManager.Get(url);
+                if (httpResult.Status == HttpResult.STATUS_SUCCESS)
+                {
+                    response = httpResult.Text.DeserializeJsonToObject<DrawingCompareDatabagResponse>();
+                }
+                else
+                {
+                    response = new DrawingCompareDatabagResponse
+                    {
+                        Message = httpResult.RefText
+                    };
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new BIMFaceException("[获取图纸对比的数据包信息]发生异常！", ex);
+            }
+        }
+
+        /// <summary>
+        ///  【官方非正式接口】根据图纸对比的数据包Id，获取图纸对比差异数据包结果
+        /// </summary>
+        /// <param name="databagId">图纸对比的数据包Id，</param>
+        /// <returns></returns>
+        public DrawingCompareDatabagDiffResult GetDrawingCompareDatabagDiffResult(string databagId)
+        {
+            //GET  https://m.bimface.com/{databagId}/result.json
+
+            string url = string.Format("https://m.bimface.com/{0}/result.json", databagId);
+            try
+            {
+                DrawingCompareDatabagDiffResult response = null;
+
+                HttpManager httpManager = new HttpManager();
+                HttpResult httpResult = httpManager.Get(url);
+                if (httpResult.Status == HttpResult.STATUS_SUCCESS)
+                {
+                    response = httpResult.Text.DeserializeJsonToObject<DrawingCompareDatabagDiffResult>();
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new BIMFaceException("[获取图纸对比的数据包信息]发生异常！", ex);
+            }
+        }
 
         #endregion
     }

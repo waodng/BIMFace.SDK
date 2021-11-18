@@ -18,7 +18,6 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Utils;
@@ -44,7 +43,69 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns></returns>
         private async Task<HttpResult> RequestStringAsync(string url, string data, string method, string contentType)
         {
-            var httpResult = RequestString(url,data,method,contentType);
+            HttpResult httpResult = new HttpResult();
+            HttpWebRequest httpWebRequest = null;
+
+            try
+            {
+                httpWebRequest = WebRequest.Create(url) as HttpWebRequest;
+                httpWebRequest.Method = method;
+                httpWebRequest.Headers = HeaderCollection;
+                httpWebRequest.CookieContainer = CookieContainer;
+                if (!string.IsNullOrWhiteSpace(contentType))
+                {
+                    httpWebRequest.ContentType = contentType;// 此属性的值存储在WebHeaderCollection中。如果设置了WebHeaderCollection，则属性值将丢失。所以放置在Headers 属性之后设置
+                }
+                httpWebRequest.UserAgent = _userAgent;
+                httpWebRequest.AllowAutoRedirect = _allowAutoRedirect;
+                httpWebRequest.ServicePoint.Expect100Continue = false;
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
+
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    /*  在 http1.1 以上中，如果使用 post，并且 body 中非空时，必须要有 content-length 的标头。
+                     *  并且，如果字符中存在汉字，那么在 utf-8 编码模式下，其长度应该采用编码后的字符长度，也就是 byte 数组的长度，而不是原始字符串的长度。
+                     */
+
+                    byte[] dataBytes = EncodingType.GetBytes(data);
+                    httpWebRequest.ContentLength = dataBytes.Length; /* body 中非空时，必须设置 content-length 的标头*/
+                    httpWebRequest.AllowWriteStreamBuffering = true;
+
+                    using (Stream requestStream = httpWebRequest.GetRequestStream())
+                    {
+                        /*  在 http1.1 以上中，如果使用 post，并且 body 中非空时，必须要有 content-length 的标头。
+                         *  并且，如果字符中存在汉字，那么在 utf-8 编码模式下，其长度应该采用编码后的字符长度，也就是 byte 数组的长度，而不是原始字符串的长度。
+                         */
+                        await requestStream.WriteAsync(dataBytes, 0, dataBytes.Length);     // 将请求参数写入请求流中 
+                        await requestStream.FlushAsync();
+                    }
+                }
+
+                HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+                if (httpWebResponse != null)
+                {
+                    await GetResponseAsync(httpResult, httpWebResponse);
+                    httpWebResponse.Close();
+                }
+            }
+            catch (WebException webException)
+            {
+                await GetWebExceptionResponseAsync(httpResult, webException);
+            }
+            catch (Exception ex)
+            {
+                GetExceptionResponse(httpResult, ex, method, contentType);
+            }
+            finally
+            {
+                if (httpWebRequest != null)
+                {
+                    httpWebRequest.Abort();
+                }
+            }
+
             return await Task.FromResult(httpResult);
         }
 
@@ -56,9 +117,66 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 ContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        private async Task<HttpResult> RequestDataAsync(string url, byte[] data, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
+        private async Task<HttpResult> RequestDataAsync(string url, byte[] data, string method = HttpMethodValues.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
-            var httpResult = RequestData(url, data, method, contentType);
+            HttpResult httpResult = new HttpResult();
+            HttpWebRequest httpWebRequest = null;
+
+            try
+            {
+                httpWebRequest = WebRequest.Create(url) as HttpWebRequest;
+                httpWebRequest.Method = method;
+                httpWebRequest.Headers = HeaderCollection;
+                httpWebRequest.CookieContainer = CookieContainer;
+                httpWebRequest.ContentType = contentType;
+                httpWebRequest.UserAgent = _userAgent;
+                httpWebRequest.AllowAutoRedirect = _allowAutoRedirect;
+                httpWebRequest.ServicePoint.Expect100Continue = false;
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
+
+                if (data != null)
+                {
+                    /*  在 http1.1 以上中，如果使用 post，并且 body 中非空时，必须要有 content-length 的标头。
+                     *  并且，如果字符中存在汉字，那么在 utf-8 编码模式下，其长度应该采用编码后的字符长度，也就是 byte 数组的长度，而不是原始字符串的长度。
+                     */
+                    httpWebRequest.ContentLength = data.Length;
+                    httpWebRequest.AllowWriteStreamBuffering = true;
+
+                    using (Stream requestStream = httpWebRequest.GetRequestStream())
+                    {
+                        /*  在 http1.1 以上中，如果使用 post，并且 body 中非空时，必须要有 content-length 的标头。
+                         *  并且，如果字符中存在汉字，那么在 utf-8 编码模式下，其长度应该采用编码后的字符长度，也就是 byte 数组的长度，而不是原始字符串的长度。
+                         */
+                        requestStream.Write(data, 0, data.Length);
+                        requestStream.Flush();
+                    }
+                }
+
+                HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
+                if (httpWebResponse != null)
+                {
+                    await GetResponseAsync(httpResult, httpWebResponse);
+                    httpWebResponse.Close();
+                }
+            }
+            catch (WebException webException)
+            {
+                await GetWebExceptionResponseAsync(httpResult, webException);
+            }
+            catch (Exception ex)
+            {
+                GetExceptionResponse(httpResult, ex, method, contentType);
+            }
+            finally
+            {
+                if (httpWebRequest != null)
+                {
+                    httpWebRequest.Abort();
+                }
+            }
+
             return await Task.FromResult(httpResult);
         }
 
@@ -74,7 +192,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-GET的响应结果</returns>
         public async Task<HttpResult> GetAsync(string url)
         {
-            return await RequestStringAsync(url, null, HttpMethod.GET, null);
+            return await RequestStringAsync(url, null, HttpMethodValues.GET, null);
         }
 
         /// <summary>
@@ -85,7 +203,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public async Task<HttpResult> PostAsync(string url)
         {
-            return await RequestStringAsync(url, null, HttpMethod.POST, null);
+            return await RequestStringAsync(url, null, HttpMethodValues.POST, null);
         }
 
         /// <summary>
@@ -96,7 +214,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public async Task<HttpResult> PutAsync(string url)
         {
-            return await RequestStringAsync(url, null, HttpMethod.PUT, null);
+            return await RequestStringAsync(url, null, HttpMethodValues.PUT, null);
         }
 
         /// <summary>
@@ -107,7 +225,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public async Task<HttpResult> DeleteAsync(string url)
         {
-            return await RequestStringAsync(url, null, HttpMethod.DELETE, null);
+            return await RequestStringAsync(url, null, HttpMethodValues.DELETE, null);
         }
 
         #endregion
@@ -124,7 +242,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-GET的响应结果</returns>
         public async Task<HttpResult> GetAsync(string url, string data, string contentType = HttpContentType.APPLICATION_JSON)
         {
-            return await RequestStringAsync(url, data, HttpMethod.GET, contentType);
+            return await RequestStringAsync(url, data, HttpMethodValues.GET, contentType);
         }
 
         /// <summary>
@@ -137,7 +255,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public async Task<HttpResult> PostAsync(string url, string data, string contentType = HttpContentType.APPLICATION_JSON)
         {
-            return await RequestStringAsync(url, data, HttpMethod.POST, contentType);
+            return await RequestStringAsync(url, data, HttpMethodValues.POST, contentType);
         }
 
         /// <summary>
@@ -150,7 +268,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public async Task<HttpResult> PutAsync(string url, string data, string contentType = HttpContentType.APPLICATION_JSON)
         {
-            return await RequestStringAsync(url, data, HttpMethod.PUT, contentType);
+            return await RequestStringAsync(url, data, HttpMethodValues.PUT, contentType);
         }
 
         /// <summary>
@@ -163,7 +281,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public async Task<HttpResult> DeleteAsync(string url, string data, string contentType = HttpContentType.APPLICATION_JSON)
         {
-            return await RequestStringAsync(url, data, HttpMethod.DELETE, contentType);
+            return await RequestStringAsync(url, data, HttpMethodValues.DELETE, contentType);
         }
 
         #endregion
@@ -178,7 +296,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public async Task<HttpResult> UploadStringAsync(string url, string data, string method = HttpMethod.POST, string contentType = null)
+        public async Task<HttpResult> UploadStringAsync(string url, string data, string method = HttpMethodValues.POST, string contentType = null)
         {
             return await RequestStringAsync(url, data, method, contentType);
         }
@@ -191,7 +309,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public async Task<HttpResult> UploadFileAsync(string url, string fileFullName, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
+        public async Task<HttpResult> UploadFileAsync(string url, string fileFullName, string method = HttpMethodValues.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
             HttpResult httpResult = new HttpResult();
             if (!File.Exists(fileFullName))
@@ -219,7 +337,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public async Task<HttpResult> UploadStreamAsync(string url, Stream stream, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
+        public async Task<HttpResult> UploadStreamAsync(string url, Stream stream, string method = HttpMethodValues.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
             HttpResult httpResult = new HttpResult();
             if (stream == null)
@@ -246,7 +364,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public async Task<HttpResult> UploadDataAsync(string url, byte[] data, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
+        public async Task<HttpResult> UploadDataAsync(string url, byte[] data, string method = HttpMethodValues.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
             return await RequestDataAsync(url, data, method, contentType);
         }
@@ -262,7 +380,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="data">主体数据(普通文本)</param>
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormAsync(string url, string data, string method = HttpMethod.POST)
+        public async Task<HttpResult> UploadFormAsync(string url, string data, string method = HttpMethodValues.POST)
         {
             return await RequestStringAsync(url, data, method, HttpContentType.WWW_FORM_URLENCODED);
         }
@@ -274,7 +392,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="kvDatas">请求时表单键值对数据</param>
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormAsync(string url, Dictionary<string, string> kvDatas, string method = HttpMethod.POST)
+        public async Task<HttpResult> UploadFormAsync(string url, Dictionary<string, string> kvDatas, string method = HttpMethodValues.POST)
         {
             var nvc = kvDatas.ToNameValueCollection();
 
@@ -288,7 +406,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="kvDatas">请求时表单键值对数据</param>
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormAsync(string url, NameValueCollection kvDatas, string method = HttpMethod.POST)
+        public async Task<HttpResult> UploadFormAsync(string url, NameValueCollection kvDatas, string method = HttpMethodValues.POST)
         {
             HttpResult httpResult = new HttpResult();
             HttpWebRequest httpWebRequest = null;
@@ -303,6 +421,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 httpWebRequest.UserAgent = _userAgent;
                 httpWebRequest.AllowAutoRedirect = _allowAutoRedirect;
                 httpWebRequest.ServicePoint.Expect100Continue = false;
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
 
                 if (kvDatas != null)
                 {
@@ -329,17 +450,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
                 if (httpWebResponse != null)
                 {
-                    GetResponse(ref httpResult, httpWebResponse);
+                    GetResponse(httpResult, httpWebResponse);
                     httpWebResponse.Close();
                 }
             }
             catch (WebException webException)
             {
-                GetWebExceptionResponse(ref httpResult, webException);
+                GetWebExceptionResponse(httpResult, webException);
             }
             catch (Exception ex)
             {
-                GetExceptionResponse(ref httpResult, ex, method, HttpContentType.WWW_FORM_URLENCODED);
+                GetExceptionResponse(httpResult, ex, method, HttpContentType.WWW_FORM_URLENCODED);
             }
             finally
             {
@@ -359,7 +480,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="data">主体数据(字节数据)</param>
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public async Task<HttpResult> UploadFormAsync(string url, byte[] data, string method = HttpMethod.POST)
+        public async Task<HttpResult> UploadFormAsync(string url, byte[] data, string method = HttpMethodValues.POST)
         {
             return await UploadDataAsync(url, data, method, HttpContentType.WWW_FORM_URLENCODED);
         }
@@ -372,7 +493,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="data">主体数据</param>
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormByMultipartAsync(string url, byte[] data, string method = HttpMethod.POST)
+        public async Task<HttpResult> UploadFormByMultipartAsync(string url, byte[] data, string method = HttpMethodValues.POST)
         {
             string boundary = CreateFormDataBoundary();
             string contentType = string.Format(HttpContentType.MULTIPART_FORM_DATA + "; boundary={0}", boundary);
@@ -392,7 +513,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormByMultipartAsync(string url, Dictionary<string, string> kVDatas, string method = HttpMethod.POST, int timeOut = -1)
+        public async Task<HttpResult> UploadFormByMultipartAsync(string url, Dictionary<string, string> kVDatas, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             NameValueCollection nvc = kVDatas.ToNameValueCollection();
 
@@ -411,7 +532,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormByMultipartAsync(string url, NameValueCollection kVDatas, string method = HttpMethod.POST, int timeOut = -1)
+        public async Task<HttpResult> UploadFormByMultipartAsync(string url, NameValueCollection kVDatas, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             #region 说明
             /* 阿里云文档：https://www.alibabacloud.com/help/zh/doc-detail/42976.htm
@@ -470,6 +591,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 httpWebRequest.KeepAlive = true;
                 httpWebRequest.Timeout = timeOut;
                 httpWebRequest.UserAgent = GetUserAgent();
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
 
                 #region 步骤1：写入键值对
 
@@ -511,17 +635,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 if (httpWebResponse != null)
                 {
                     //GetHeaders(ref httpResult, httpWebResponse);
-                    GetResponse(ref httpResult, httpWebResponse);
+                    GetResponse(httpResult, httpWebResponse);
                     httpWebResponse.Close();
                 }
             }
             catch (WebException webException)
             {
-                GetWebExceptionResponse(ref httpResult, webException);
+                GetWebExceptionResponse(httpResult, webException);
             }
             catch (Exception ex)
             {
-                GetExceptionResponse(ref httpResult, ex, method, HttpContentType.MULTIPART_FORM_DATA);
+                GetExceptionResponse(httpResult, ex, method, HttpContentType.MULTIPART_FORM_DATA);
             }
             finally
             {
@@ -547,7 +671,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormByMultipartAsync(string url, string fileFullName, Dictionary<string, string> kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        public async Task<HttpResult> UploadFormByMultipartAsync(string url, string fileFullName, Dictionary<string, string> kVDatas = null, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             var nvc = kVDatas.ToNameValueCollection();
             return await UploadFormByMultipartAsync(url, fileFullName, nvc, method, timeOut);
@@ -566,7 +690,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormByMultipartAsync(string url, string fileFullName, NameValueCollection kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        public async Task<HttpResult> UploadFormByMultipartAsync(string url, string fileFullName, NameValueCollection kVDatas = null, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             string[] fileFullNames = { fileFullName };
 
@@ -586,7 +710,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormByMultipartAsync(string url, string[] fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        public async Task<HttpResult> UploadFormByMultipartAsync(string url, string[] fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             #region 说明
             /* 阿里云文档：https://www.alibabacloud.com/help/zh/doc-detail/42976.htm
@@ -674,6 +798,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 httpWebRequest.KeepAlive = true;
                 httpWebRequest.Timeout = timeOut;
                 httpWebRequest.UserAgent = GetUserAgent();
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
 
                 #region 步骤1：写入键值对
                 if (kVDatas != null)
@@ -752,17 +879,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 if (httpWebResponse != null)
                 {
                     //GetHeaders(ref httpResult, httpWebResponse);
-                    GetResponse(ref httpResult, httpWebResponse);
+                    GetResponse(httpResult, httpWebResponse);
                     httpWebResponse.Close();
                 }
             }
             catch (WebException webException)
             {
-                GetWebExceptionResponse(ref httpResult, webException);
+                GetWebExceptionResponse(httpResult, webException);
             }
             catch (Exception ex)
             {
-                GetExceptionResponse(ref httpResult, ex, method, HttpContentType.MULTIPART_FORM_DATA);
+                GetExceptionResponse(httpResult, ex, method, HttpContentType.MULTIPART_FORM_DATA);
             }
             finally
             {
@@ -788,9 +915,76 @@ namespace BIMFace.SDK.CSharp.Common.Http
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public async Task<HttpResult> UploadFormByMultipartAsync(string url, List<string> fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        public async Task<HttpResult> UploadFormByMultipartAsync(string url, List<string> fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             return await UploadFormByMultipartAsync(url, fileFullNames.ToArray(), kVDatas, method, timeOut);
+        }
+
+        #endregion
+
+        #region 其他HTTP辅助方法
+
+        /// <summary>
+        /// 获取HTTP的响应信息
+        /// </summary>
+        /// <param name="httpResult">即将被HTTP请求封装函数返回的HttpResult变量</param>
+        /// <param name="httpWebResponse">正在被读取的HTTP响应</param>
+        private async Task GetResponseAsync(HttpResult httpResult, HttpWebResponse httpWebResponse)
+        {
+            //httpResult.HttpWebResponse = httpWebResponse;
+            httpResult.Status = HttpResult.STATUS_SUCCESS;
+            httpResult.StatusDescription = httpWebResponse.StatusDescription;
+            httpResult.StatusCode = (int)httpWebResponse.StatusCode;
+
+            if (ReadMode == ResponseReadMode.Binary)
+            {
+                int len = (int)httpWebResponse.ContentLength;
+                httpResult.Data = new byte[len];
+                int bytesLeft = len;
+                int bytesRead = 0;
+
+                using (BinaryReader br = new BinaryReader(httpWebResponse.GetResponseStream()))
+                {
+                    while (bytesLeft > 0)
+                    {
+                        bytesRead = br.Read(httpResult.Data, len - bytesLeft, bytesLeft);
+                        bytesLeft -= bytesRead;
+                    }
+                }
+            }
+            else
+            {
+                using (StreamReader sr = new StreamReader(httpWebResponse.GetResponseStream()))
+                {
+                    httpResult.Text = await sr.ReadToEndAsync();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取HTTP访问网络期间发生错误时引发的异常响应信息
+        /// </summary>
+        /// <param name="httpResult">即将被HTTP请求封装函数返回的HttpResult变量</param>
+        /// <param name="webException">访问网络期间发生错误时引发的异常对象</param>
+        private async Task GetWebExceptionResponseAsync(HttpResult httpResult, WebException webException)
+        {
+            HttpWebResponse exResponse = webException.Response as HttpWebResponse;
+            if (exResponse != null)
+            {
+                //httpResult.HttpWebResponse = exResponse;
+                httpResult.Status = HttpResult.STATUS_FAIL;
+                httpResult.StatusDescription = exResponse.StatusDescription;
+                httpResult.StatusCode = (int)exResponse.StatusCode;
+
+                httpResult.RefCode = httpResult.StatusCode;
+                using (StreamReader sr = new StreamReader(exResponse.GetResponseStream(), EncodingType))
+                {
+                    httpResult.Text = await sr.ReadToEndAsync();
+                    httpResult.RefText = httpResult.Text;
+                }
+
+                exResponse.Close();
+            }
         }
 
         #endregion

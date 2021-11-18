@@ -28,6 +28,29 @@ namespace BIMFace.SDK.CSharp.Entity.Request
         /// 设置参数，请参考官方具体API需要配置的相关参数
         /// </summary>
         [JsonProperty("config", NullValueHandling = NullValueHandling.Ignore)]
-        public Dictionary<string, string> Config { get; set; }
+        public Config Config { get; set; }
     }
+
+    [Serializable]
+    public class Config
+    {
+        public Config()
+        {
+            KeepModel = true;
+            KeepDB = true;
+        }
+
+        /// <summary>
+        /// 默认值为 true
+        /// </summary>
+        [JsonProperty("keepModel", NullValueHandling = NullValueHandling.Ignore)]
+        public bool KeepModel { get; set; }
+
+        /// <summary>
+        /// 默认值为 true
+        /// </summary>
+        [JsonProperty("keepDB", NullValueHandling = NullValueHandling.Ignore)]
+        public bool KeepDB { get; set; }
+    }
+
 }

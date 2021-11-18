@@ -49,7 +49,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             
             IFileApi api = new FileApi();
 
-            filePath = "D:/Work/江北新区/审图系统/Src2/SGTSC.WebService/UploadFile/00003920/BIMFACE示例文件-Revit模型20210315161743105.rvt";
+            filePath = @"D:\Work\江北新区\审图系统\Src2\SGTSC.WebService\UploadFile\00003931\翡翠湖别院_G8#_建筑_2019_10_17-三维视图 - {三维}-001.dwg";
             FileUploadResponse fileUploadResponse = api.UploadFileByPolicy(txtAccessToken.Text, filePath);
             txtResult.Text = fileUploadResponse.SerializeToJson(true);
         }

@@ -57,5 +57,29 @@ namespace BIMFace.SDK.CSharp.Entity.Response
         /// </summary>
         [JsonProperty("id", NullValueHandling = NullValueHandling.Ignore)]
         public string Id { get; set; }
+
+        /// <summary>
+        ///  图层名称
+        /// </summary>
+        [JsonProperty("layer", NullValueHandling = NullValueHandling.Ignore)]
+        public string Layer { get; set; }
+
+        /// <summary>
+        ///  图元ID
+        /// </summary>
+        [JsonProperty("sheetId", NullValueHandling = NullValueHandling.Ignore)]
+        public string SheetId { get; set; }
+
+        /// <summary>
+        ///  图元名称
+        /// </summary>
+        [JsonProperty("sheetName", NullValueHandling = NullValueHandling.Ignore)]
+        public string SheetName { get; set; }
+
+        /// <summary>
+        ///  模型或者布局
+        /// </summary>
+        [JsonProperty("type", NullValueHandling = NullValueHandling.Ignore)]
+        public string Type { get; set; }
     }
 }

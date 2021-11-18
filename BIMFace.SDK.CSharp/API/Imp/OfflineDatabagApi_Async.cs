@@ -53,9 +53,51 @@ namespace BIMFace.SDK.CSharp.API
         ///     }
         /// </param>
         /// <returns></returns>
+        public virtual async Task<DatabagDerivativeCreateResponse> CreateDatabagByFileIdAsync(string accessToken, long fileId, DatabagDerivativeRequest request = null)
+        {
+            return await CreateDatabagAsync(accessToken, fileId, ModelType.fileId, null, request);
+        }
+
+        /// <summary>
+        ///  根据文件ID创建离线数据包
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="fileId">【必填】文件id</param>
+        /// <param name="callback">回调地址</param>
+        /// <param name="request">请求参数类。
+        ///     若需要离线数据包保留db文件，请求体中参数设置为
+        ///     {
+        ///        "config": {
+        ///             "keepModel": true,
+        ///             "keepDB": true
+        ///        }
+        ///     }
+        /// </param>
+        /// <returns></returns>
         public virtual async Task<DatabagDerivativeCreateResponse> CreateDatabagByFileIdAsync(string accessToken, long fileId, string callback = null, DatabagDerivativeRequest request = null)
         {
             return await CreateDatabagAsync(accessToken, fileId, ModelType.fileId, callback, request);
+        }
+
+        /// <summary>
+        ///  根据模型集成ID创建离线数据包
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="integrateId">【必填】模型集成id</param>
+        /// <param name="callback">回调地址</param>
+        /// <param name="request">请求参数类。
+        ///     若需要离线数据包保留db文件，请求体中参数设置为
+        ///     {
+        ///        "config": {
+        ///             "keepModel": true,
+        ///             "keepDB": true
+        ///        }
+        ///     }
+        /// </param>
+        /// <returns></returns>
+        public virtual async Task<DatabagDerivativeCreateResponse> CreateDatabagByIntegrateIdAsync(string accessToken, long integrateId, DatabagDerivativeRequest request = null)
+        {
+            return await CreateDatabagAsync(accessToken, integrateId, ModelType.integrateId, null, request);
         }
 
         /// <summary>
@@ -100,6 +142,27 @@ namespace BIMFace.SDK.CSharp.API
             return await CreateDatabagAsync(accessToken, compareId, ModelType.compareId, callback, request);
         }
 
+        /// <summary>
+        ///  根据模型对比ID创建离线数据包
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="compareId">【必填】模型对比id</param>
+        /// <param name="callback">回调地址</param>
+        /// <param name="request">请求参数类。
+        ///     若需要离线数据包保留db文件，请求体中参数设置为
+        ///     {
+        ///        "config": {
+        ///             "keepModel": true,
+        ///             "keepDB": true
+        ///        }
+        ///     }
+        /// </param>
+        /// <returns></returns>
+        public virtual async Task<DatabagDerivativeCreateResponse> CreateDatabagByCompareIdAsync(string accessToken, long compareId, DatabagDerivativeRequest request = null)
+        {
+            return await CreateDatabagAsync(accessToken, compareId, ModelType.compareId, null, request);
+        }
+
         private async Task<DatabagDerivativeCreateResponse> CreateDatabagAsync(string accessToken, long objectId, ModelType modelType, string callback = null, DatabagDerivativeRequest request = null)
         {
             /* 通过传入相应的ID创建对应离线数据包:
@@ -128,11 +191,13 @@ namespace BIMFace.SDK.CSharp.API
                 url += "?callback=" + callback;
             }
 
-            string data = string.Empty;
-            if (request != null)
+            if (request == null)
             {
-                data = request.SerializeToJson();
+                request = new DatabagDerivativeRequest();
+                request.Config = new Config();
             }
+
+            string data = request.SerializeToJson();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -255,7 +320,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        public virtual async Task<GetUrlSwaggerDisplay> GetDatabagDownloadUrlByFileIdAsync(string accessToken, long fileId, string databagVersion, string type)
+        public virtual async Task<GetUrlSwaggerDisplay> GetDatabagDownloadUrlByFileIdAsync(string accessToken, long fileId, string databagVersion = "", string type = "offline")
         {
             return await GetDatabagDownloadUrlAsync(accessToken, fileId, ModelType.fileId, databagVersion, type);
         }
@@ -268,7 +333,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        public virtual async Task<GetUrlSwaggerDisplay> GetDatabagDownloadUrlByIntegrateIdAsync(string accessToken, long integrateId, string databagVersion, string type)
+        public virtual async Task<GetUrlSwaggerDisplay> GetDatabagDownloadUrlByIntegrateIdAsync(string accessToken, long integrateId, string databagVersion = "", string type = "offline")
         {
             return await GetDatabagDownloadUrlAsync(accessToken, integrateId, ModelType.integrateId, databagVersion, type);
         }
@@ -281,7 +346,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        public virtual async Task<GetUrlSwaggerDisplay> GetDatabagDownloadUrlByCompareIdAsync(string accessToken, long compareId, string databagVersion, string type)
+        public virtual async Task<GetUrlSwaggerDisplay> GetDatabagDownloadUrlByCompareIdAsync(string accessToken, long compareId, string databagVersion = "", string type = "offline")
         {
             return await GetDatabagDownloadUrlAsync(accessToken, compareId, ModelType.compareId, databagVersion, type);
         }
@@ -295,7 +360,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        private async Task<GetUrlSwaggerDisplay> GetDatabagDownloadUrlAsync(string accessToken, long objectId, ModelType modelType, string databagVersion, string type)
+        private async Task<GetUrlSwaggerDisplay> GetDatabagDownloadUrlAsync(string accessToken, long objectId, ModelType modelType, string databagVersion = "", string type = "offline")
         {
             //GET https://api.bimface.com/data/databag/downloadUrl
             string url = BIMFaceConstants.API_HOST + "/data/databag/downloadUrl?" + modelType.ToString() + "=" + objectId;

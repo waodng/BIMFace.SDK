@@ -107,7 +107,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        GetUrlSwaggerDisplay GetDatabagDownloadUrlByFileId(string accessToken, long fileId, string databagVersion, string type);
+        GetUrlSwaggerDisplay GetDatabagDownloadUrlByFileId(string accessToken, long fileId, string databagVersion = "", string type = "offline");
 
         /// <summary>
         ///  根据模型集成ID获取数据包下载地址
@@ -117,7 +117,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        GetUrlSwaggerDisplay GetDatabagDownloadUrlByIntegrateId(string accessToken, long integrateId, string databagVersion, string type);
+        GetUrlSwaggerDisplay GetDatabagDownloadUrlByIntegrateId(string accessToken, long integrateId, string databagVersion = "", string type = "offline");
 
         /// <summary>
         ///  根据模型对比ID获取数据包下载地址
@@ -127,6 +127,6 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="databagVersion">数据包版本；对于offline、vr数据包，如果只有一个，则下载唯一的数据包，如果多个，则必须指定数据包版本</param>
         /// <param name="type">数据包类型，如offline、vr、igms</param>
         /// <returns></returns>
-        GetUrlSwaggerDisplay GetDatabagDownloadUrlByCompareId(string accessToken, long compareId, string databagVersion, string type);
+        GetUrlSwaggerDisplay GetDatabagDownloadUrlByCompareId(string accessToken, long compareId, string databagVersion = "", string type = "offline");
     }
 }

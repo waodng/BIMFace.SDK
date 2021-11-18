@@ -26,7 +26,12 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <summary>
         /// 资源类型：JSON字符串
         /// </summary>
-        public const string APPLICATION_JSON = "application/json; charset=UTF-8";
+        public const string APPLICATION_JSON = "application/json";
+
+        /// <summary>
+        /// 资源类型：JSON字符串
+        /// </summary>
+        public const string APPLICATION_JSON_UTF8 = "application/json; charset=UTF-8";
 
         /// <summary>
         /// 资源类型：未知类型(数据流)

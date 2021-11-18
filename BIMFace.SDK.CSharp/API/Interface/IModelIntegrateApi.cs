@@ -27,6 +27,27 @@ namespace BIMFace.SDK.CSharp.API
         #region 模型集成发起相关
 
         /// <summary>
+        /// 发起2个模型集成。
+        /// 由于集成不能立即完成，BIMFACE支持在模型集成完成以后，通过Callback机制通知调用方；另外，调用方也可以通过接口查询集成状态。
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="fileId1">集成时的请求参数</param>
+        /// <param name="fileId2">集成时的请求参数</param>
+        /// <param name="callBack">集成时的请求参数</param>
+        /// <returns></returns>
+        ModelIntegrateResponse Integrate(string accessToken, long fileId1, long fileId2, string callBack = "");
+
+        /// <summary>
+        /// 发起多个模型集成。
+        /// 由于集成不能立即完成，BIMFACE支持在模型集成完成以后，通过Callback机制通知调用方；另外，调用方也可以通过接口查询集成状态。
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="fileIdAndNames">模型Id与模型名称集合(至少2个及以上的不同模型文件)</param>
+        /// <param name="callBack">集成时的请求参数</param>
+        /// <returns></returns>
+        ModelIntegrateResponse Integrate(string accessToken, Dictionary<long, string> fileIdAndNames, string callBack = "");
+
+        /// <summary>
         /// 发起模型集成。
         /// 对于参与集成的文件来说，当单个文件转换成功以后，可以将多个文件集成，生成一个全专业/楼层模型。
         /// 由于集成不能立即完成，BIMFACE支持在模型集成完成以后，通过Callback机制通知调用方；另外，调用方也可以通过接口查询集成状态。

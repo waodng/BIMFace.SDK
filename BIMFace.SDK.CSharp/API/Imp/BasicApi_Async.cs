@@ -15,10 +15,13 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
+using BIMFace.SDK.CSharp.Common.Http2;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Response;
 using BIMFace.SDK.CSharp.Exceptions;
@@ -52,7 +55,10 @@ namespace BIMFace.SDK.CSharp.API
             try
             {
                 AccessTokenResponse response;
-                HttpManager httpManager = new HttpManager(headers);
+                // HttpManager httpManager = new HttpManager(headers);
+
+                HttpClientManager httpManager = new HttpClientManager(headers);
+
                 HttpResult httpResult = await httpManager.PostAsync(url);
                 if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                 {

@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Text;
 using System.Web;
 
@@ -118,7 +117,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
 
         #endregion
 
-        #region 同步方法
+        #region 同步方法（上传）
 
         #region Request
 
@@ -127,7 +126,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="data">主体数据(普通文本或者JSON文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取</param>
         /// <returns></returns>
         private HttpResult RequestString(string url, string data, string method, string contentType)
@@ -138,7 +137,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
             try
             {
                 httpWebRequest = WebRequest.Create(url) as HttpWebRequest;
-                httpWebRequest.Method = method;
+                httpWebRequest.Method = method ?? HttpMethodValues.POST;
                 httpWebRequest.Headers = HeaderCollection;
                 httpWebRequest.CookieContainer = CookieContainer;
                 if (!string.IsNullOrWhiteSpace(contentType))
@@ -148,6 +147,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 httpWebRequest.UserAgent = _userAgent;
                 httpWebRequest.AllowAutoRedirect = _allowAutoRedirect;
                 httpWebRequest.ServicePoint.Expect100Continue = false;
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
 
                 if (!string.IsNullOrWhiteSpace(data))
                 {
@@ -172,17 +174,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
                 if (httpWebResponse != null)
                 {
-                    GetResponse(ref httpResult, httpWebResponse);
+                    GetResponse(httpResult, httpWebResponse);
                     httpWebResponse.Close();
                 }
             }
             catch (WebException webException)
             {
-                GetWebExceptionResponse(ref httpResult, webException);
+                GetWebExceptionResponse(httpResult, webException);
             }
             catch (Exception ex)
             {
-                GetExceptionResponse(ref httpResult, ex, method, contentType);
+                GetExceptionResponse(httpResult, ex, method, contentType);
             }
             finally
             {
@@ -200,10 +202,10 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="data">主体数据(字节数据)。如果没有请传递null</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 ContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        private HttpResult RequestData(string url, byte[] data, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
+        private HttpResult RequestData(string url, byte[] data, string method = HttpMethodValues.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
             HttpResult httpResult = new HttpResult();
             HttpWebRequest httpWebRequest = null;
@@ -211,13 +213,16 @@ namespace BIMFace.SDK.CSharp.Common.Http
             try
             {
                 httpWebRequest = WebRequest.Create(url) as HttpWebRequest;
-                httpWebRequest.Method = method;
+                httpWebRequest.Method = method ?? HttpMethodValues.POST;
                 httpWebRequest.Headers = HeaderCollection;
                 httpWebRequest.CookieContainer = CookieContainer;
                 httpWebRequest.ContentType = contentType;
                 httpWebRequest.UserAgent = _userAgent;
                 httpWebRequest.AllowAutoRedirect = _allowAutoRedirect;
                 httpWebRequest.ServicePoint.Expect100Continue = false;
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
 
                 if (data != null)
                 {
@@ -240,17 +245,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
                 if (httpWebResponse != null)
                 {
-                    GetResponse(ref httpResult, httpWebResponse);
+                    GetResponse(httpResult, httpWebResponse);
                     httpWebResponse.Close();
                 }
             }
             catch (WebException webException)
             {
-                GetWebExceptionResponse(ref httpResult, webException);
+                GetWebExceptionResponse(httpResult, webException);
             }
             catch (Exception ex)
             {
-                GetExceptionResponse(ref httpResult, ex, method, contentType);
+                GetExceptionResponse(httpResult, ex, method, contentType);
             }
             finally
             {
@@ -265,7 +270,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
 
         #endregion 
 
-        #region (不包含body数据)POST、GET请求
+        #region (不包含body数据) GET、POST、Put、Delete 请求
 
         /// <summary>
         /// HTTP-GET方法，(不包含body数据)。
@@ -275,7 +280,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-GET的响应结果</returns>
         public HttpResult Get(string url)
         {
-            return RequestString(url, null, HttpMethod.GET, null);
+            return RequestString(url, null, HttpMethodValues.GET, null);
         }
 
         /// <summary>
@@ -286,7 +291,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public HttpResult Post(string url)
         {
-            return RequestString(url, null, HttpMethod.POST, null);
+            return RequestString(url, null, HttpMethodValues.POST, null);
         }
 
         /// <summary>
@@ -297,7 +302,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public HttpResult Put(string url)
         {
-            return RequestString(url, null, HttpMethod.PUT, null);
+            return RequestString(url, null, HttpMethodValues.PUT, null);
         }
 
         /// <summary>
@@ -308,12 +313,12 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <returns>HTTP-POST的响应结果</returns>
         public HttpResult Delete(string url)
         {
-            return RequestString(url, null, HttpMethod.DELETE, null);
+            return RequestString(url, null, HttpMethodValues.DELETE, null);
         }
 
         #endregion
 
-        #region (包含文本的body数据)请求
+        #region (包含文本的body数据) GET、POST、Put、Delete 请求
 
         /// <summary>
         /// HTTP-GET方法，(包含body数据)。
@@ -323,9 +328,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="data">主体数据(普通文本或者JSON文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取</param>
         /// <returns>HTTP-GET的响应结果</returns>
-        public HttpResult Get(string url, string data, string contentType = HttpContentType.APPLICATION_JSON)
+        public HttpResult Get(string url, string data, string contentType = HttpContentType.APPLICATION_JSON_UTF8)
         {
-            return RequestString(url, data, HttpMethod.GET, contentType);
+            return RequestString(url, data, HttpMethodValues.GET, contentType);
         }
 
         /// <summary>
@@ -336,9 +341,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="data">主体数据(普通文本或者JSON文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public HttpResult Post(string url, string data, string contentType = HttpContentType.APPLICATION_JSON)
+        public HttpResult Post(string url, string data, string contentType = HttpContentType.APPLICATION_JSON_UTF8)
         {
-            return RequestString(url, data, HttpMethod.POST, contentType);
+            return RequestString(url, data, HttpMethodValues.POST, contentType);
         }
 
         /// <summary>
@@ -349,9 +354,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="data">主体数据(普通文本或者JSON文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public HttpResult Put(string url, string data, string contentType = HttpContentType.APPLICATION_JSON)
+        public HttpResult Put(string url, string data, string contentType = HttpContentType.APPLICATION_JSON_UTF8)
         {
-            return RequestString(url, data, HttpMethod.PUT, contentType);
+            return RequestString(url, data, HttpMethodValues.PUT, contentType);
         }
 
         /// <summary>
@@ -362,34 +367,10 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="data">主体数据(普通文本或者JSON文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public HttpResult Delete(string url, string data, string contentType = HttpContentType.APPLICATION_JSON)
+        public HttpResult Delete(string url, string data, string contentType = HttpContentType.APPLICATION_JSON_UTF8)
         {
-            return RequestString(url, data, HttpMethod.DELETE, contentType);
+            return RequestString(url, data, HttpMethodValues.DELETE, contentType);
         }
-
-        ///// <summary>
-        /////   HTTP请求(包含JSON文本的body数据)
-        ///// </summary>
-        ///// <param name="url">请求目标URL</param>
-        ///// <param name="data">主体数据(JSON文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
-        ///// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
-        ///// <returns></returns>
-        //public HttpResult UploadJson(string url, string data, string method = HttpMethod.POST)
-        //{
-        //    return RequestString(url, data, method, HttpContentType.APPLICATION_JSON);
-        //}
-
-        ///// <summary>
-        /////  HTTP请求(包含普通文本的body数据)
-        ///// </summary>
-        ///// <param name="url">请求目标URL</param>
-        ///// <param name="data">主体数据(普通文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
-        ///// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
-        ///// <returns></returns>
-        //public HttpResult UploadText(string url, string data, string method = HttpMethod.POST)
-        //{
-        //    return RequestString(url, data, method, HttpContentType.TEXT_PLAIN);
-        //}
 
         #endregion
 
@@ -401,10 +382,10 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="data">主体数据(普通文本或者JSON文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public HttpResult UploadString(string url, string data, string method = HttpMethod.POST, string contentType = null)
+        public HttpResult UploadString(string url, string data, string method = HttpMethodValues.POST, string contentType = null)
         {
             return RequestString(url, data, method, contentType);
         }
@@ -414,10 +395,10 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="fileFullName">待上传的文件(包含全路径的完全限定名)</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public HttpResult UploadFile(string url, string fileFullName, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
+        public HttpResult UploadFile(string url, string fileFullName, string method = HttpMethodValues.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
             HttpResult httpResult = new HttpResult();
             if (!File.Exists(fileFullName))
@@ -442,10 +423,10 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="stream">一般指文件流或内存流</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public HttpResult UploadStream(string url, Stream stream, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
+        public HttpResult UploadStream(string url, Stream stream, string method = HttpMethodValues.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
             HttpResult httpResult = new HttpResult();
             if (stream == null)
@@ -469,10 +450,10 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="data">主体数据(字节数据)。如果没有请传递null</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取。默认为 application/octet-stream</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public HttpResult UploadData(string url, byte[] data, string method = HttpMethod.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
+        public HttpResult UploadData(string url, byte[] data, string method = HttpMethodValues.POST, string contentType = HttpContentType.APPLICATION_OCTET_STREAM)
         {
             return RequestData(url, data, method, contentType);
         }
@@ -486,9 +467,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="data">主体数据(普通文本)</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <returns></returns>
-        public HttpResult UploadForm(string url, string data, string method = HttpMethod.POST)
+        public HttpResult UploadForm(string url, string data, string method = HttpMethodValues.POST)
         {
             return RequestString(url, data, method, HttpContentType.WWW_FORM_URLENCODED);
         }
@@ -500,7 +481,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="kvDatas">请求时表单键值对数据</param>
         /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
         /// <returns></returns>
-        public HttpResult UploadForm(string url, Dictionary<string, string> kvDatas, string method = HttpMethod.POST)
+        public HttpResult UploadForm(string url, Dictionary<string, string> kvDatas, string method = HttpMethodValues.POST)
         {
             var nvc = kvDatas.ToNameValueCollection();
 
@@ -512,9 +493,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="kvDatas">请求时表单键值对数据</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <returns></returns>
-        public HttpResult UploadForm(string url, NameValueCollection kvDatas, string method = HttpMethod.POST)
+        public HttpResult UploadForm(string url, NameValueCollection kvDatas, string method = HttpMethodValues.POST)
         {
             HttpResult httpResult = new HttpResult();
             HttpWebRequest httpWebRequest = null;
@@ -529,6 +510,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 httpWebRequest.UserAgent = _userAgent;
                 httpWebRequest.AllowAutoRedirect = _allowAutoRedirect;
                 httpWebRequest.ServicePoint.Expect100Continue = false;
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
 
                 if (kvDatas != null)
                 {
@@ -555,17 +539,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 HttpWebResponse httpWebResponse = httpWebRequest.GetResponse() as HttpWebResponse;
                 if (httpWebResponse != null)
                 {
-                    GetResponse(ref httpResult, httpWebResponse);
+                    GetResponse(httpResult, httpWebResponse);
                     httpWebResponse.Close();
                 }
             }
             catch (WebException webException)
             {
-                GetWebExceptionResponse(ref httpResult, webException);
+                GetWebExceptionResponse(httpResult, webException);
             }
             catch (Exception ex)
             {
-                GetExceptionResponse(ref httpResult, ex, method, HttpContentType.WWW_FORM_URLENCODED);
+                GetExceptionResponse(httpResult, ex, method, HttpContentType.WWW_FORM_URLENCODED);
             }
             finally
             {
@@ -583,9 +567,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="data">主体数据(字节数据)</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <returns>HTTP-POST的响应结果</returns>
-        public HttpResult UploadForm(string url, byte[] data, string method = HttpMethod.POST)
+        public HttpResult UploadForm(string url, byte[] data, string method = HttpMethodValues.POST)
         {
             return UploadData(url, data, method, HttpContentType.WWW_FORM_URLENCODED);
         }
@@ -596,9 +580,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="data">主体数据</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <returns></returns>
-        public HttpResult UploadFormByMultipart(string url, byte[] data, string method = HttpMethod.POST)
+        public HttpResult UploadFormByMultipart(string url, byte[] data, string method = HttpMethodValues.POST)
         {
             string boundary = CreateFormDataBoundary();
             string contentType = string.Format(HttpContentType.MULTIPART_FORM_DATA + "; boundary={0}", boundary);
@@ -612,13 +596,13 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="kVDatas">【必填】请求时表单键值对数据。</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="timeOut">获取或设置 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 和
         ///                       <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的超时值（以毫秒为单位）。
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public HttpResult UploadFormByMultipart(string url, Dictionary<string, string> kVDatas, string method = HttpMethod.POST, int timeOut = -1)
+        public HttpResult UploadFormByMultipart(string url, Dictionary<string, string> kVDatas, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             NameValueCollection nvc = kVDatas.ToNameValueCollection();
 
@@ -631,13 +615,13 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="url">请求目标URL</param>
         /// <param name="kVDatas">【必填】请求时表单键值对数据。</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="timeOut">获取或设置 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 和
         ///                       <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的超时值（以毫秒为单位）。
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public HttpResult UploadFormByMultipart(string url, NameValueCollection kVDatas, string method = HttpMethod.POST, int timeOut = -1)
+        public HttpResult UploadFormByMultipart(string url, NameValueCollection kVDatas, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             #region 说明
             /* 阿里云文档：https://www.alibabacloud.com/help/zh/doc-detail/42976.htm
@@ -696,6 +680,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 httpWebRequest.KeepAlive = true;
                 httpWebRequest.Timeout = timeOut;
                 httpWebRequest.UserAgent = GetUserAgent();
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
 
                 #region 步骤1：写入键值对
 
@@ -737,17 +724,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 if (httpWebResponse != null)
                 {
                     //GetHeaders(ref httpResult, httpWebResponse);
-                    GetResponse(ref httpResult, httpWebResponse);
+                    GetResponse(httpResult, httpWebResponse);
                     httpWebResponse.Close();
                 }
             }
             catch (WebException webException)
             {
-                GetWebExceptionResponse(ref httpResult, webException);
+                GetWebExceptionResponse(httpResult, webException);
             }
             catch (Exception ex)
             {
-                GetExceptionResponse(ref httpResult, ex, method, HttpContentType.MULTIPART_FORM_DATA);
+                GetExceptionResponse(httpResult, ex, method, HttpContentType.MULTIPART_FORM_DATA);
             }
             finally
             {
@@ -767,13 +754,13 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="url">请求目标URL</param>
         /// <param name="fileFullName">待上传的文件(包含全路径的完全限定名)</param>
         /// <param name="kVDatas">请求时表单键值对数据。</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="timeOut">获取或设置 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 和
         ///                       <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的超时值（以毫秒为单位）。
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public HttpResult UploadFormByMultipart(string url, string fileFullName, Dictionary<string, string> kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        public HttpResult UploadFormByMultipart(string url, string fileFullName, Dictionary<string, string> kVDatas = null, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             var nvc = kVDatas.ToNameValueCollection();
             return UploadFormByMultipart(url, fileFullName, nvc, method, timeOut);
@@ -786,13 +773,13 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="url">请求目标URL</param>
         /// <param name="fileFullName">待上传的文件(包含全路径的完全限定名)</param>
         /// <param name="kVDatas">请求时表单键值对数据。</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="timeOut">获取或设置 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 和
         ///                       <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的超时值（以毫秒为单位）。
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public HttpResult UploadFormByMultipart(string url, string fileFullName, NameValueCollection kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        public HttpResult UploadFormByMultipart(string url, string fileFullName, NameValueCollection kVDatas = null, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             string[] fileFullNames = { fileFullName };
 
@@ -806,13 +793,13 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="url">请求目标URL</param>
         /// <param name="fileFullNames">待上传的文件列表(包含全路径的完全限定名)。如果某个文件不存在，则忽略不上传</param>
         /// <param name="kVDatas">请求时表单键值对数据。</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="timeOut">获取或设置 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 和
         ///                       <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的超时值（以毫秒为单位）。
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public HttpResult UploadFormByMultipart(string url, string[] fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        public HttpResult UploadFormByMultipart(string url, string[] fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             #region 说明
             /* 阿里云文档：https://www.alibabacloud.com/help/zh/doc-detail/42976.htm
@@ -900,6 +887,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 httpWebRequest.KeepAlive = true;
                 httpWebRequest.Timeout = timeOut;
                 httpWebRequest.UserAgent = GetUserAgent();
+                httpWebRequest.Timeout = 600000; // 获取或设置 GetResponse() 和 GetRequestStream() 方法的超时值（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                httpWebRequest.ReadWriteTimeout = 600000;//设置写入或读取流时的超时（以毫秒为单位）、（默认设置10分钟 1000 * 60 * 10）
+                /*微软文档：https://docs.microsoft.com/zh-cn/dotnet/api/system.net.httpwebrequest?view=net-5.0*/
 
                 #region 步骤1：写入键值对
                 if (kVDatas != null)
@@ -978,17 +968,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 if (httpWebResponse != null)
                 {
                     //GetHeaders(ref httpResult, httpWebResponse);
-                    GetResponse(ref httpResult, httpWebResponse);
+                    GetResponse(httpResult, httpWebResponse);
                     httpWebResponse.Close();
                 }
             }
             catch (WebException webException)
             {
-                GetWebExceptionResponse(ref httpResult, webException);
+                GetWebExceptionResponse(httpResult, webException);
             }
             catch (Exception ex)
             {
-                GetExceptionResponse(ref httpResult, ex, method, HttpContentType.MULTIPART_FORM_DATA);
+                GetExceptionResponse(httpResult, ex, method, HttpContentType.MULTIPART_FORM_DATA);
             }
             finally
             {
@@ -1008,13 +998,13 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="url">请求目标URL</param>
         /// <param name="fileFullNames">待上传的文件列表(包含全路径的完全限定名)。如果某个文件不存在，则忽略不上传</param>
         /// <param name="kVDatas">请求时表单键值对数据。</param>
-        /// <param name="method">请求的方法。请使用 HttpMethod 的枚举值</param>
+        /// <param name="method">请求的方法。请使用 HttpMethodValues 类中的常量值</param>
         /// <param name="timeOut">获取或设置 <see cref="M:System.Net.HttpWebRequest.GetResponse" /> 和
         ///                       <see cref="M:System.Net.HttpWebRequest.GetRequestStream" /> 方法的超时值（以毫秒为单位）。
         ///                       -1 表示永不超时
         /// </param>
         /// <returns></returns>
-        public HttpResult UploadFormByMultipart(string url, List<string> fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethod.POST, int timeOut = -1)
+        public HttpResult UploadFormByMultipart(string url, List<string> fileFullNames, NameValueCollection kVDatas = null, string method = HttpMethodValues.POST, int timeOut = -1)
         {
             return UploadFormByMultipart(url, fileFullNames.ToArray(), kVDatas, method, timeOut);
         }
@@ -1028,7 +1018,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="httpResult">即将被HTTP请求封装函数返回的HttpResult变量</param>
         /// <param name="httpWebResponse">正在被读取的HTTP响应</param>
-        private void GetHeaders(ref HttpResult httpResult, HttpWebResponse httpWebResponse)
+        private void GetHeaders(HttpResult httpResult, HttpWebResponse httpWebResponse)
         {
             //if (httpWebResponse != null)
             //{
@@ -1076,9 +1066,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="httpResult">即将被HTTP请求封装函数返回的HttpResult变量</param>
         /// <param name="httpWebResponse">正在被读取的HTTP响应</param>
-        private void GetResponse(ref HttpResult httpResult, HttpWebResponse httpWebResponse)
+        private void GetResponse(HttpResult httpResult, HttpWebResponse httpWebResponse)
         {
-            httpResult.HttpWebResponse = httpWebResponse;
+            //httpResult.HttpWebResponse = httpWebResponse;
             httpResult.Status = HttpResult.STATUS_SUCCESS;
             httpResult.StatusDescription = httpWebResponse.StatusDescription;
             httpResult.StatusCode = (int)httpWebResponse.StatusCode;
@@ -1113,12 +1103,12 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="httpResult">即将被HTTP请求封装函数返回的HttpResult变量</param>
         /// <param name="webException">访问网络期间发生错误时引发的异常对象</param>
-        private void GetWebExceptionResponse(ref HttpResult httpResult, WebException webException)
+        private void GetWebExceptionResponse(HttpResult httpResult, WebException webException)
         {
             HttpWebResponse exResponse = webException.Response as HttpWebResponse;
             if (exResponse != null)
             {
-                httpResult.HttpWebResponse = exResponse;
+                //httpResult.HttpWebResponse = exResponse;
                 httpResult.Status = HttpResult.STATUS_FAIL;
                 httpResult.StatusDescription = exResponse.StatusDescription;
                 httpResult.StatusCode = (int)exResponse.StatusCode;
@@ -1132,6 +1122,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
 
                 exResponse.Close();
             }
+            else
+            {
+                //httpResult.HttpWebResponse = null;
+                httpResult.Status = HttpResult.STATUS_FAIL;
+                httpResult.StatusDescription = webException.Message;
+                httpResult.StatusCode = 500;
+
+                httpResult.RefCode = httpResult.StatusCode;
+                httpResult.Text = null;
+                httpResult.RefText = webException.Message;
+            }
         }
 
         /// <summary>
@@ -1141,7 +1142,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// <param name="ex">异常对象</param>
         /// <param name="method">HTTP请求的方式</param>
         /// <param name="contentType">HTTP的标头类型</param>
-        private void GetExceptionResponse(ref HttpResult httpResult, Exception ex, string method, string contentType = "")
+        private void GetExceptionResponse(HttpResult httpResult, Exception ex, string method, string contentType = "")
         {
             contentType = string.IsNullOrWhiteSpace(contentType) ? string.Empty : "-" + contentType;
             StringBuilder sb = new StringBuilder();
@@ -1149,7 +1150,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
 
             sb.AppendLine(ex.GetAllExceptionMessage());
 
-            httpResult.HttpWebResponse = null;
+            //httpResult.HttpWebResponse = null;
             httpResult.Status = HttpResult.STATUS_FAIL;
 
             httpResult.RefCode = (int)HttpStatusCode2.USER_UNDEF;
@@ -1195,16 +1196,20 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static Dictionary<String, Object> GetParameter(HttpContext context)
+        public static Dictionary<string, object> GetParameter(HttpContext context)
         {
             StreamReader reader = new StreamReader(context.Request.InputStream);
             String strJson = HttpUtility.UrlDecode(reader.ReadToEnd());
 
-            var dicParameter = strJson.DeserializeJsonToObject<Dictionary<String, Object>>();
+            var dicParameter = strJson.DeserializeJsonToObject<Dictionary<string, object>>();
             return dicParameter;
         }
 
         #endregion
+
+        #endregion
+
+        #region 下载
 
         #endregion
     }

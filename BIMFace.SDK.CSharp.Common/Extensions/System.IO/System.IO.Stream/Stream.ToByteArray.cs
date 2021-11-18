@@ -11,7 +11,10 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <returns></returns>
         public static byte[] ToByteArray(this Stream @this)
         {
-            using(var ms = new MemoryStream())
+            if (@this == null)
+                return null;
+
+            using (var ms = new MemoryStream())
             {
                 @this.CopyTo(ms);
 

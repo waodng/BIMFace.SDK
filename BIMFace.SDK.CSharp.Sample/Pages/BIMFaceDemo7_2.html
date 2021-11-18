@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>网页中使用Vue.js加载模型/图纸</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .viewer-wrap {
+            width: 100%;
+            height: 100%;
+            background: rgb(50, 50, 55) none repeat scroll 0% 0%;
+        }
+    </style>
+    <script src="../Content/js/Vue-2.6.14.min.js"></script>
+    <script src="../Content/js/axios-0.23.0.min.js"></script>
+    <script src="https://static.bimface.com/api/BimfaceSDKLoader/BimfaceSDKLoader@latest-release.js"></script>
+</head>
+<body>
+    <div id="bimContainer" class="viewer-wrap">
+
+    </div>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            //var vm =
+            new Vue({
+                el: '#bimContainer',
+                data: {
+                    /* bimFaceFileId 调用上传接口把文件发送到BIMFACE服务器后返回fileID，开发者记录下来。
+                     * fileId:10000709359577 模型
+                     * fileId:10000709090473 图纸
+                     * */
+                    fileId: 10000709359577,
+                    app: null,
+                    viewer2D: null,
+                    viewer3D: null,
+                    modelViewer: {
+                        toolbar: undefined,  // 工具条
+                        annotationmanager: undefined,  // annotation的绘制管理器
+                        annotationToolbar: undefined,
+                        annotationControl: undefined   // 重写annotation的保存、取消
+                    }
+                },
+                beforeCreate: function () {
+                    /* 在实例初始化之后，数据观测（data observer） 和 event/watcher 事件配置之前被调用 */
+                    console.log('beforCreate');
+                },
+                created: function () {
+                    /* 在实例创建完成后被立即调用。
+                     * 在这一步，实例已完成以下配置：数据观测（data observer）、属性和方法的运算、watch/event 事件回调。
+                     * 然后，挂在阶段还未开始，$el 属性目前不可见。
+                     */
+                    console.log('created');
+                },
+                beforeMount: function () {
+                    /* 在挂载开始之前被调用：相关的渲染函数首次被调用*/
+                    console.log('beforMount');
+                },
+                mounted() {
+                    /* el被新创建的 vm.$el 替换，挂载成功 */
+                    console.log('mounted');
+
+                    this.loadBIMFile(this.fileId);
+                },
+                beforeUpdate: function () {
+                    /* 数据更新时调用 */
+                    console.log('beforeUpdate');
+                },
+                updated: function () {
+                    /* 组件 DOM 已经更新，组件更新完毕 */
+                    console.log('updated');
+                },
+                methods: {
+                    loadBIMFile(bimFaceFileId) { // 加载模型或图纸
+                        document.getElementById("bimContainer").innerHTML = "";//清空容器内容。解决切换不同图纸时会保留上一次图纸内容的问题。
+
+                        // 根据FileId，查询ViewToken
+                        axios.get('../Handlers/GetViewTokenHandler.ashx', {
+                            params: {
+                                fileId: bimFaceFileId
+                            }
+                        })
+                            // .then(function (response) {  /* 匿名函数的指针，指向函数操作的本身。所以then 函数中无法调用 Vue 对象中定义的函数 */
+                            //    if (response.data.code == true) {
+                            //        alert('response.data.viewToken：' + response.data.viewToken);
+                            //        this.showBIMModel(response.data.viewToken);// 加载BIMFACE模型
+                            //    } else {
+                            //        alert("【警告】\r\n" + data.message);
+                            //    }
+                            //})
+                            .then((response) => {  /* 箭头函数的指针，指向 Vue 组件的本身 */
+                                if (response.data.code == true) {
+                                    this.showBIMModel(response.data.viewToken);// 加载BIMFACE模型
+                                } else {
+                                    alert("【警告】\r\n" + data.message);
+                                }
+                            }).catch((error) => {
+                                console.log('GetViewTokenHandler.ashx请求发生异常：' + error);
+                                alert("【异常】\r\n" + '获取ViewToken发生异常 ' + error);
+                            });
+                    },
+
+                    showBIMModel(viewToken) {// 显示BIMFACE模型
+                        var loaderConfig = new BimfaceSDKLoaderConfig(); // 设置BIMFACE JSSDK加载器的配置信息
+                        loaderConfig.viewToken = viewToken;
+                        BimfaceSDKLoader.load(loaderConfig, this.successCallback, this.failureCallback);  // 加载BIMFACE JSSDK加载器
+                    },
+
+                    successCallback(viewMetaData) { // 加载成功回调函数
+                        /* modelViewer 是全局对象，它与具体的图纸或者模型一一对应。如果切换了图纸/模型，则需要将其重置，然后在后续操作中再创建。*/
+                        modelViewer = {
+                            toolbar: undefined,  // 工具条
+                            annotationmanager: undefined,  // annotation的绘制管理器
+                            annotationToolbar: undefined,
+                            annotationControl: undefined   // 重写annotation的保存、取消
+                        };
+
+                        var dom4Show = document.getElementById('bimContainer'); // 获取DOM元素
+
+                        if (viewMetaData.viewType == "3DView") {
+                            var webAppConfig = new Glodon.Bimface.Application.WebApplication3DConfig();
+                            webAppConfig.domElement = dom4Show;
+
+                            app = new Glodon.Bimface.Application.WebApplication3D(webAppConfig); // 创建WebApplication
+                            app.addView(viewMetaData.viewToken);//temp_ViewToken   // 添加待显示的模型
+
+                            viewer3D = app.getViewer();  // 从WebApplication获取viewer3D对象
+
+                            // 监听添加view完成的事件
+                            viewer3D.addEventListener(Glodon.Bimface.Viewer.Viewer3DEvent.ViewAdded, function () {
+                                // 调用viewer3D对象的Method，可以继续扩展功能
+                                modelViewer.toolbar = dom4Show.getElementsByClassName("bf-toolbar-bottom");
+
+                                //自适应屏幕大小
+                                window.onresize = function () {
+                                    viewer3D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40);
+                                }
+                            });
+                        }
+                        else if (viewMetaData.viewType == "drawingView") {
+
+                            var webAppConfig = new Glodon.Bimface.Application.WebApplicationDrawingConfig();
+                            webAppConfig.domElement = dom4Show;
+                            webAppConfig.viewToken = viewMetaData.viewToken;
+
+                            app = new Glodon.Bimface.Application.WebApplicationDrawing(webAppConfig); // 创建WebApplication
+                            app.load(viewMetaData.viewToken);//viewToken  // 添加待显示的模型
+
+                            viewer2D = app.getViewer();// 从WebApplication获取viewerDrawing对象
+
+                            this.drawingViewExtend(viewer2D);    // 监听添加view完成的事件
+                        }
+                    },
+
+                    failureCallback(error) {// 加载失败回调函数
+                        console.log(error);
+                    },
+
+                    drawingViewExtend(viewer2D) {// 矢量dwg扩展功能
+                        var viewerEvents = Glodon.Bimface.Viewer.ViewerDrawingEvent;
+
+                        // 注册 ComponentsSelectionChanged ViewerDrawing图元点击选中事件
+                        viewer2D.addEventListener(viewerEvents.ComponentsSelectionChanged, function () {
+                            //ToTo 通过图元ID找到图框ID
+                        });
+
+                        // 注册 Loaded ViewerDrawing加载完毕事件
+                        viewer2D.addEventListener(viewerEvents.Loaded, function () {
+                            var dom4Show = document.getElementById('bimContainer'); // 获取DOM元素
+                            modelViewer.toolbar = dom4Show.getElementsByClassName('.bf-toolbar-bottom');
+
+                            //自适应屏幕大小
+                            window.onresize = function () {
+                                viewer2D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40);
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

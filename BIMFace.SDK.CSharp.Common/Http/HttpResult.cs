@@ -11,7 +11,6 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-using System.Net;
 using System.Text;
 
 namespace BIMFace.SDK.CSharp.Common.Http
@@ -76,10 +75,10 @@ namespace BIMFace.SDK.CSharp.Common.Http
         /// </summary>
         public string RefText { get; set; }
 
-        /// <summary>
-        ///  获取或设置Http的请求响应。
-        /// </summary>
-        public HttpWebResponse HttpWebResponse { get; set; }
+        ///// <summary>
+        /////  获取或设置Http的请求响应。
+        ///// </summary>
+        //public HttpWebResponse HttpWebResponse { get; set; }
 
         ///// <summary>
         ///// 参考信息(从返回消息 WebResponse 的头部获取)
@@ -103,32 +102,30 @@ namespace BIMFace.SDK.CSharp.Common.Http
             RefCode = null;
             RefText = string.Empty;
             //RefInfo = null;
-
-            HttpWebResponse = null;
         }
 
         #endregion
 
         #region 方法
 
-        /// <summary>
-        /// 对象复制
-        /// </summary>
-        /// <param name="httpResultSource">要复制其内容的来源</param>
-        public void Shadow(HttpResult httpResultSource)
-        {
-            this.Status = httpResultSource.Status;
-            this.StatusDescription = string.Empty;
-            this.StatusCode = httpResultSource.StatusCode;
-            this.Text = httpResultSource.Text;
-            this.Data = httpResultSource.Data;
+        ///// <summary>
+        ///// 对象复制
+        ///// </summary>
+        ///// <param name="httpResultSource">要复制其内容的来源</param>
+        //public void Shadow(HttpResult httpResultSource)
+        //{
+        //    this.Status = httpResultSource.Status;
+        //    this.StatusDescription = string.Empty;
+        //    this.StatusCode = httpResultSource.StatusCode;
+        //    this.Text = httpResultSource.Text;
+        //    this.Data = httpResultSource.Data;
 
-            this.RefCode = httpResultSource.RefCode;
-            this.RefText += httpResultSource.RefText;
-            //this.RefInfo = httpResultSource.RefInfo;
+        //    this.RefCode = httpResultSource.RefCode;
+        //    this.RefText += httpResultSource.RefText;
+        //    //this.RefInfo = httpResultSource.RefInfo;
 
-            this.HttpWebResponse = httpResultSource.HttpWebResponse;
-        }
+        //    this.HttpWebResponse = httpResultSource.HttpWebResponse;
+        //}
 
         /// <summary>
         /// 转换为易读或便于打印的字符串格式

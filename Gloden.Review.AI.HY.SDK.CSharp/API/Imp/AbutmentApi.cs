@@ -13,6 +13,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
@@ -52,7 +54,6 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
             return signalBatchResponse;
         }
 
-
         /// <summary>
         ///  皮卡获取模型检查进度数据
         /// </summary>
@@ -65,6 +66,14 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
 
             ReviewAIHttpHeaders headers = new ReviewAIHttpHeaders();
             headers.AddOAuth2Header(token);
+
+            //HttpContent content = new StringContent(ids.SerializeToJson());
+            //content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+            //HttpClient client = new HttpClient();
+            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            //HttpResponseMessage responseMsg = client.PostAsync(url, content).Result;
+            //string result = responseMsg.Content.ReadAsStringAsync().Result;
 
             try
             {

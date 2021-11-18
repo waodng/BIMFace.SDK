@@ -27,10 +27,10 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
             var attr =
                 @this.GetType()
                      .GetField(@this.ToString())
-                     .GetCustomAttributes(typeof(DescriptionAttribute), false)
+                     .GetCustomAttributes(typeof(DescriptionAttribute), false)?
                      .FirstOrDefault() as DescriptionAttribute;
 
-            return attr.Description;
+            return attr?.Description;
         }
 
         /// <summary>

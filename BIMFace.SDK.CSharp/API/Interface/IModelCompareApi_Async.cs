@@ -19,7 +19,7 @@ using BIMFace.SDK.CSharp.Entity.Response;
 namespace BIMFace.SDK.CSharp.API
 {
     /// <summary>
-    ///  模型对比接口
+    ///  图纸/模型对比接口
     /// </summary>
     public partial interface IModelCompareApi
     {
@@ -67,7 +67,7 @@ namespace BIMFace.SDK.CSharp.API
 
         #endregion
 
-        #region 模型对比数据
+        #region 图纸/模型对比数据
 
         /// <summary>
         /// 获取模型构件对比差异
@@ -130,6 +130,27 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="compareId">【必填】对比ID</param>
         Task<DrawingCompareDiffResponse> GetDrawingCompareDiffAllAsync(string accessToken, long compareId);
+
+        /// <summary>
+        /// 【官方非正式接口】根据 CompareId 获取图纸对比的数据包信息
+        /// </summary>
+        /// <param name="compareId">对比记录的ID</param>
+        /// <returns></returns>
+        Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabageAsync(string accessToken, long compareId);
+
+        /// <summary>
+        /// 【官方非正式接口】根据对比记录的 ViewToken 获取图纸对比的数据包信息
+        /// </summary>
+        /// <param name="compareViewToken">对比记录的ViewToken</param>
+        /// <returns></returns>
+        Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabageByCompareViewTokenAsync(string compareViewToken);
+
+        /// <summary>
+        ///  【官方非正式接口】根据图纸对比的数据包Id，获取图纸对比差异数据包结果
+        /// </summary>
+        /// <param name="databagId">图纸对比的数据包Id，</param>
+        /// <returns></returns>
+        Task<DrawingCompareDatabagDiffResult> GetDrawingCompareDatabageDiffResultAsync(string databagId);
 
         #endregion
     }

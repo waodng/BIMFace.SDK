@@ -31,7 +31,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             txtAccessToken.Text = string.Empty;
             txtResult.Text = string.Empty;
 
-            AccessTokenResponse response = GetAccessTokenAsync().Result; //GetAccessToken();
+            AccessTokenResponse response = GetAccessToken();
             if (response != null)
             {
                 txtAccessToken.Text = response.Data.Token;

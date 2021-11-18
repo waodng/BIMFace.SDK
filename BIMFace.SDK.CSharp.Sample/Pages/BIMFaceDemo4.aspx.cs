@@ -1,5 +1,5 @@
 ﻿// /* ---------------------------------------------------------------------------------------
-//    文件名：FileEntity.cs
+//    文件名：BIMFaceDemo4.cs
 //    文件功能描述：
 // 
 //    创建标识：20200308
@@ -132,6 +132,30 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             long compareId = txtCompareID.Text.ToLong();
             IModelCompareApi api = new ModelCompareApi();
             ModelCompareDiffResponse response = api.GetModelCompareDiff(txtAccessToken.Text, compareId, page: 1, pageSize: 50);
+
+            txtResult.Text = response.SerializeToJson(true);
+        }
+
+        // 获取图纸对比数据包信息
+        protected void btnGetDrawingCompareDatabage_Click(object sender, EventArgs e)
+        {
+            txtResult.Text = string.Empty;
+
+            long compareId = txtCompareID.Text.ToLong();
+            IModelCompareApi api = new ModelCompareApi();
+            DrawingCompareDatabagResponse response = api.GetDrawingCompareDatabag(txtAccessToken.Text, compareId);
+
+            txtResult.Text = response.SerializeToJson(true);
+        }
+
+        // 获取图纸对比数据包差异信息
+        protected void btnGetDrawingCompareDatabageDiffResult_Click(object sender, EventArgs e)
+        {
+            txtResult.Text = string.Empty;
+
+            string databagId = txtDatabagId.Text;
+            IModelCompareApi api = new ModelCompareApi();
+            DrawingCompareDatabagDiffResult response = api.GetDrawingCompareDatabagDiffResult(databagId);
 
             txtResult.Text = response.SerializeToJson(true);
         }

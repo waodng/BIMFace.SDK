@@ -1,8 +1,6 @@
 ﻿#region using
 
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -10,6 +8,7 @@ using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
 using Formatting = System.Xml.Formatting;
@@ -31,9 +30,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         public static string SerializeToXml(this object @this, bool isFormat = false)
         {
             if (null == @this)
-            {
-                throw new ArgumentNullException("@this");
-            }
+                throw new ArgumentNullException(nameof(@this));
 
             XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
             ns.Add("", "");
@@ -83,12 +80,11 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <summary>
         ///     自定义扩展方法：将 XML 文档中的单个节点序列化为 Json 字符串
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="this">XML 文档中的单个节点</param>
         /// <param name="isFormat">是否需要格式化，缩进显示</param>
         /// <param name="omitRootObject">是否省略写入根对象</param>
         /// <returns></returns>
-        public static string SerializeToJson<T>(this XmlNode @this, bool isFormat = false,bool omitRootObject = false) where T : class
+        public static string SerializeToJson(this XmlNode @this, bool isFormat = false, bool omitRootObject = false)
         {
             Newtonsoft.Json.Formatting formatting = isFormat ? Newtonsoft.Json.Formatting.Indented : Newtonsoft.Json.Formatting.None;
 
@@ -98,12 +94,11 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         /// <summary>
         ///     自定义扩展方法：将 System.Xml.Linq.XNode 对象序列化为Json字符串
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="this"></param>
         /// <param name="isFormat">是否需要格式化，缩进显示</param>
         /// <param name="omitRootObject">是否省略写入根对象</param>
         /// <returns></returns>
-        public static string SerializeToJson<T>(this XObject @this, bool isFormat = false,bool omitRootObject = false) where T : class
+        public static string SerializeToJson(this XObject @this, bool isFormat = false, bool omitRootObject = false)
         {
             Newtonsoft.Json.Formatting formatting = isFormat ? Newtonsoft.Json.Formatting.Indented : Newtonsoft.Json.Formatting.None;
 

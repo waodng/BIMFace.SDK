@@ -30,18 +30,18 @@ namespace BIMFace.SDK.CSharp.Entity.Request
         {
             if (name.IsNullOrWhiteSpace())
             {
-                Name = DateTime.Now.ToString("yyyyMMddHHmmss") + "集成";
+                Name = DateTime.Now.ToString("yyyyMMddHHmmss") + "-集成";
             }
         }
 
         /// <summary>
-        ///     Callback地址，待转换完毕以后，BIMFace会回调该地址
+        ///     Callback地址，待转换完毕以后，BIMFace会回调该地址。
         /// </summary>
         [JsonProperty("callback", NullValueHandling = NullValueHandling.Ignore)]
         public string CallBack { get; set; }
 
         [JsonProperty("config", NullValueHandling = NullValueHandling.Ignore)]
-        public string Config { get; set; }
+        public Dictionary<string, object> Config { get; set; }
 
         [JsonProperty("floorMapping", NullValueHandling = NullValueHandling.Ignore)]
         public FloorMappingItem[] FloorMapping { get; set; }
@@ -58,8 +58,8 @@ namespace BIMFace.SDK.CSharp.Entity.Request
         [JsonProperty("parentIntegrateId", NullValueHandling = NullValueHandling.Ignore)]
         public long? ParentIntegrateId { get; set; }
 
-        [JsonProperty("priority", NullValueHandling = NullValueHandling.Ignore)]
-        public int Priority { get; set; }
+        //[JsonProperty("priority", NullValueHandling = NullValueHandling.Ignore)]
+        //public int Priority { get; set; }
 
         [JsonProperty("propertyOverrides", NullValueHandling = NullValueHandling.Ignore)]
         public ElementPropertyOverride[] PropertyOverrides { get; set; }

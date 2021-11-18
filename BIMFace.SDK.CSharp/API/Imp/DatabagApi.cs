@@ -80,6 +80,7 @@ namespace BIMFace.SDK.CSharp.API
             {
                 DatabagLengthQueryResponse response;
                 HttpManager httpManager = new HttpManager(headers);
+           
                 HttpResult httpResult = httpManager.Get(url);
                 if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                 {
@@ -178,5 +179,7 @@ namespace BIMFace.SDK.CSharp.API
                 throw new BIMFaceException("[获取缩略图链接]发生异常！", ex);
             }
         }
+
+
     }
 }
