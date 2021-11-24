@@ -166,7 +166,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.ClientSize = new System.Drawing.Size(1239, 688);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmCefSharpDemo3";
-            this.Text = "CefSharp组件加载BIMFACE模型/图纸2  复杂应用(单窗体加载多网页)";
+            this.Text = "CefSharp组件加载BIMFACE模型/图纸2  复杂应用(多窗体加载多网页)";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

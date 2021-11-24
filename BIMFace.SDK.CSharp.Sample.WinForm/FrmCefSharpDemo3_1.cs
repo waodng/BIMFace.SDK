@@ -6,51 +6,32 @@ using System.Windows.Forms;
 using CefSharp;
 using CefSharp.WinForms;
 
-using DevComponents.DotNetBar;
-
 namespace BIMFace.SDK.CSharp.Sample.WinForm
 {
-    public partial class FrmCefSharpDemo3_2 : Form
+    public partial class FrmCefSharpDemo3_1 : Form
     {
-        public static int CaclTimes = 0;
-        private int RegisterFlag = 0; //注册 ChromiumWebBrowserBindObject 对象标记。0：未注册，1：已注册
-        private int RegisterFlag2 = 0;//注册 ChromiumWebBrowserBindObject 对象标记。0：未注册，1：已注册
+        static int CaclTimes31 = 0;
 
-
+        string TabKey = string.Empty;
         Dictionary<string, ChromiumWebBrowser> dicFileIdAndChroms; //key： FileId 。Value：ChromiumWebBrowser 对象
 
-        public static FrmCefSharpDemo3_2 Form; 
+        public static FrmCefSharpDemo3_1 Form;
 
-        public FrmCefSharpDemo3_2()
+        public FrmCefSharpDemo3_1(string tabKey)
         {
             InitializeComponent();
 
-            dicFileIdAndChroms = new Dictionary<string, ChromiumWebBrowser>();
+            tabControl.TabPages.Clear();
 
-            SetControl();
+            TabKey = tabKey;
+
+            dicFileIdAndChroms = new Dictionary<string, ChromiumWebBrowser>();
 
             Form = this;
         }
 
         // 设置控件
-        private void SetControl()
-        {
-            tabControl.CloseButtonOnTabsVisible = true;
-            tabControl.CloseButtonPosition = eTabCloseButtonPosition.Right;
-            tabControl.Tabs.Clear();// 删除所有Tab页
-            tabControl.TabItemClose += TabControl1_TabItemClose;
-        }
-
-        private void TabControl1_TabItemClose(object sender, TabStripActionEventArgs e)
-        {
-            if (dicFileIdAndChroms.ContainsKey(tabControl.SelectedTab.Name))
-            {
-                dicFileIdAndChroms.Remove(tabControl.SelectedTab.Name); // 从集合中移除对应的键值对
-            }
-
-            tabControl.Tabs.Remove(tabControl.SelectedTab);// 关闭Tab页签（必须在删除字典之后进行）
-        }
-
+      
         // 加载 BIMFACE 模型
         private void btnLoadBIMFaceFile1_Click(object sender, EventArgs e)
         {
@@ -85,14 +66,16 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             CreateTabAndLoadChromium(fileId);
         }
 
+
+
         private void CreateTabAndLoadChromium(string bimFaceFileId)
         {
             // 如果图纸已经打开，则直接切换到目标tab，无需再创建
-            foreach (TabItem tItem in tabControl.Tabs)
+            foreach (TabPage tabPage in tabControl.TabPages)
             {
-                if (bimFaceFileId == tItem.Name)
+                if (bimFaceFileId == tabPage.Name)
                 {
-                    tabControl.SelectedTab = tItem;
+                    tabControl.SelectedTab = tabPage;
                     return;
                 }
             }
@@ -101,21 +84,12 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             chromeBrowser.ActivateBrowserOnCreation = false;
             chromeBrowser.Dock = DockStyle.Fill;
 
-            TabControlPanel tabPanel = new TabControlPanel();
-            tabPanel.Name = bimFaceFileId;
+            TabPage newTabPage = new TabPage();
+            newTabPage.Text = newTabPage.Name = bimFaceFileId;
+            newTabPage.Controls.Add(chromeBrowser);
 
-            TabItem tabItem = tabControl.CreateTab(bimFaceFileId);
-            tabItem.Name = bimFaceFileId;
-            tabItem.Text = bimFaceFileId;
-            tabItem.AttachedControl = tabPanel;
-
-            tabPanel.TabItem = tabItem;
-            tabPanel.Dock = DockStyle.Fill;
-
-            tabPanel.Controls.Add(chromeBrowser);
-
-            tabControl.Controls.Add(tabPanel);
-            tabControl.SelectedTab = tabItem;
+            tabControl.TabPages.Add(newTabPage);
+            tabControl.SelectedTab = newTabPage;
 
             // 文件已在BIMFACE平台转换。使用BIMFACE查看器查看模型
             LoadChromium(chromeBrowser, bimFaceFileId);
@@ -129,23 +103,13 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             /* 如何暴露.NET 类，提供给Javascript
              * 参考：https://github.com/cefsharp/CefSharp/wiki/General-Usage#3-how-do-you-expose-a-net-class-to-javascript*/
 
-            var objToBind = new ChromiumWebBrowserBindObject2();
+            var objToBind = new ChromiumWebBrowserBindObject3();
             chromeBrowser.JavascriptObjectRepository.Register("_chromeBrowser", objToBind, true, BindingOptions.DefaultBinder);
 
-            string url = "https://localhost:44389/Pages/BIMFaceDemo7_3_2.html?fileId=" + bimFaceFileId;
+            string url = "https://localhost:44389/Pages/BIMFaceDemo7_3_3.html?fileId=" + bimFaceFileId;
             chromeBrowser.Load(url);
         }
 
-        /// <summary>
-        /// 计算网页调用C#方法的次数
-        /// </summary>
-        public void CalcTimes()
-        {
-            ++CaclTimes;
-
-            lblCalcTimes.Text = CaclTimes.ToString();
-            lblCalcTimes.Refresh();
-        }
 
         // C# 调用模型网页 JS 方法
         private void btnCsharpCallJsMethod1_Click(object sender, EventArgs e)
@@ -160,11 +124,11 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             }
 
             // 如果图纸已经打开，则直接切换到目标tab，无需再创建
-            foreach (TabItem tItem in tabControl.Tabs)
+            foreach (TabPage tabPage in tabControl.TabPages)
             {
-                if (fileId == tItem.Name)
+                if (fileId == tabPage.Name)
                 {
-                    tabControl.SelectedTab = tItem;
+                    tabControl.SelectedTab = tabPage;
 
                     Task<JavascriptResponse> jsResponse = dicFileIdAndChroms[fileId].EvaluateScriptAsync("jsMethodForCSharpTestCalcSub", 25, 7);
 
@@ -195,11 +159,11 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             }
 
             // 如果图纸已经打开，则直接切换到目标tab，无需再创建
-            foreach (TabItem tItem in tabControl.Tabs)
+            foreach (TabPage tabPage in tabControl.TabPages)
             {
-                if (fileId == tItem.Name)
+                if (fileId == tabPage.Name)
                 {
-                    tabControl.SelectedTab = tItem;
+                    tabControl.SelectedTab = tabPage;
 
                     Task<JavascriptResponse> jsResponse = dicFileIdAndChroms[fileId].EvaluateScriptAsync("jsMethodForCSharpTestCalcSub", 19, 15);
 
@@ -215,7 +179,18 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
 
             // 未加载图纸，直接加载
             CreateTabAndLoadChromium(fileId);
+           
+        }
 
+        /// <summary>
+        /// 计算网页调用C#方法的次数
+        /// </summary>
+        public void CalcTimes()
+        {
+            ++CaclTimes31;
+
+            lblCalcTimes.Text = CaclTimes31.ToString();
+            lblCalcTimes.Refresh();
         }
     }
 }

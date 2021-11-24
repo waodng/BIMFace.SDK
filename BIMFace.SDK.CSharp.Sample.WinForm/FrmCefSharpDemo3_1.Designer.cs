@@ -1,7 +1,7 @@
 ﻿
 namespace BIMFace.SDK.CSharp.Sample.WinForm
 {
-    partial class FrmCefSharpDemo4
+    partial class FrmCefSharpDemo3_1
     {
         /// <summary>
         /// Required designer variable.
