@@ -10,15 +10,17 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
 {
     public partial class FrmCefSharpDemo3 : Form
     {
-        static Dictionary<string, FrmCefSharpDemo3_1> DicModelAndForm;    //key：BIM   Value：窗体
+        static int CaclTimes3 = 0;
 
-        Dictionary<string, ChromiumWebBrowser> dicFileIdAndChroms; //key：FileId 。Value：ChromiumWebBrowser 对象
+        public static Dictionary<string, FrmCefSharpDemo4> DicModelAndForm;    //key：BIM   Value：窗体
+
+        public static Dictionary<string, ChromiumWebBrowser> dicFileIdAndChroms; //key：FileId 。Value：ChromiumWebBrowser 对象
 
         public FrmCefSharpDemo3()
         {
             InitializeComponent();
 
-            DicModelAndForm = new Dictionary<string, FrmCefSharpDemo3_1>();
+            DicModelAndForm = new Dictionary<string, FrmCefSharpDemo4>();
             dicFileIdAndChroms = new Dictionary<string, ChromiumWebBrowser>();
 
             SetControl();
@@ -26,7 +28,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
 
         private void SetControl()
         {
-           tabControl.TabPages.Clear();// 删除所有Tab页
+            tabControl.TabPages.Clear();// 删除所有Tab页
         }
 
         // 加载 BIMFACE 模型
@@ -49,8 +51,8 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
 
             TabPage newTabPage = new TabPage();
             newTabPage.Text = newTabPage.Name = key;
-           
-            FrmCefSharpDemo3_1 frm = new FrmCefSharpDemo3_1(key);
+
+            FrmCefSharpDemo4 frm = new FrmCefSharpDemo4(key);
             frm.TopLevel = false;
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Parent = newTabPage;
@@ -93,6 +95,17 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
                     return;
                 }
             }
+        }
+
+        /// <summary>
+        /// 计算网页调用C#方法的次数
+        /// </summary>
+        public void CalcTimes()
+        {
+            ++CaclTimes3;
+
+            lblCalcTimes.Text = CaclTimes3.ToString();
+            lblCalcTimes.Refresh();
         }
     }
 }

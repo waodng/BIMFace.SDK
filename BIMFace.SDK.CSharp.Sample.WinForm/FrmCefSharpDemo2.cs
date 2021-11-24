@@ -10,11 +10,11 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
 {
     public partial class FrmCefSharpDemo2 : Form
     {
-        public static int CaclTimes = 0;
+        static int CaclTimes2 = 0;
 
         Dictionary<string, ChromiumWebBrowser> dicFileIdAndChroms; //key： FileId 。Value：ChromiumWebBrowser 对象
 
-        public static FrmCefSharpDemo2 Form; 
+        public static FrmCefSharpDemo2 Form;
 
         public FrmCefSharpDemo2()
         {
@@ -81,6 +81,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             }
 
             ChromiumWebBrowser chromeBrowser = new ChromiumWebBrowser();
+            chromeBrowser = new ChromiumWebBrowser();
             chromeBrowser.ActivateBrowserOnCreation = false;
             chromeBrowser.Dock = DockStyle.Fill;
 
@@ -108,17 +109,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
 
             string url = "https://localhost:44389/Pages/BIMFaceDemo7_3_2.html?fileId=" + bimFaceFileId;
             chromeBrowser.Load(url);
-        }
-
-        /// <summary>
-        /// 计算网页调用C#方法的次数
-        /// </summary>
-        public void CalcTimes()
-        {
-            ++CaclTimes;
-
-            lblCalcTimes.Text = CaclTimes.ToString();
-            lblCalcTimes.Refresh();
         }
 
         // C# 调用模型网页 JS 方法
@@ -189,7 +179,17 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
 
             // 未加载图纸，直接加载
             CreateTabAndLoadChromium(fileId);
+        }
 
+        /// <summary>
+        /// 计算网页调用C#方法的次数
+        /// </summary>
+        public void CalcTimes()
+        {
+            ++CaclTimes2;
+
+            lblCalcTimes.Text = CaclTimes2.ToString();
+            lblCalcTimes.Refresh();
         }
     }
 }

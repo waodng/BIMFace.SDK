@@ -79,7 +79,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.txtBIMFaceFileId.Name = "txtBIMFaceFileId";
             this.txtBIMFaceFileId.Size = new System.Drawing.Size(350, 28);
             this.txtBIMFaceFileId.TabIndex = 1;
-            this.txtBIMFaceFileId.Text = "10000709359577";
             // 
             // label1
             // 

@@ -125,7 +125,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.txtBIMFaceFileId2.Name = "txtBIMFaceFileId2";
             this.txtBIMFaceFileId2.Size = new System.Drawing.Size(350, 28);
             this.txtBIMFaceFileId2.TabIndex = 5;
-            this.txtBIMFaceFileId2.Text = "10000714680909";
             // 
             // label2
             // 
@@ -142,7 +141,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.txtBIMFaceFileId1.Name = "txtBIMFaceFileId1";
             this.txtBIMFaceFileId1.Size = new System.Drawing.Size(350, 28);
             this.txtBIMFaceFileId1.TabIndex = 3;
-            this.txtBIMFaceFileId1.Text = "10000706968508";
             // 
             // label1
             // 
@@ -200,7 +198,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1231, 548);
+            this.tabPage2.Size = new System.Drawing.Size(1231, 561);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;

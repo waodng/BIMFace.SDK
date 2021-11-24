@@ -138,6 +138,7 @@
     <Content Include="Pages\BIMFaceDemo7_2.html" />
     <Content Include="Pages\BIMFaceDemo7_3_1.html" />
     <Content Include="Pages\BIMFaceDemo7_3_2.html" />
+    <Content Include="Pages\BIMFaceDemo7_3_3.html" />
     <Content Include="Pages\BIMFaceDemo8.aspx" />
     <Content Include="Pages\rac_basic_sample_project.rvt" />
     <Content Include="Pages\rst_basic_sample_family.rfa" />

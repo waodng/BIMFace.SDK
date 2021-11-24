@@ -13,6 +13,9 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
     public partial class FrmDemoList : Form
     {
         public static FrmCefSharpDemo2 FrmCefSharpDemo2 { get; set; }
+        public static FrmCefSharpDemo3 FrmCefSharpDemo3 { get; set; }
+
+        public static FrmCefSharpDemo4 FrmCefSharpDemo3_1 { get; set; }
 
         public FrmDemoList()
         {
@@ -41,13 +44,15 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
         {
             FrmCefSharpDemo3 frm = new FrmCefSharpDemo3();
             frm.WindowState = FormWindowState.Maximized;
+            FrmCefSharpDemo3 = frm;
+
             frm.ShowDialog();
         }
 
         // 使用 WebView2 加载网页 简单应用
         private void btnUseWebView2Simple_Click(object sender, EventArgs e)
         {
-            FrmCefSharpDemo3_1 frm = new FrmCefSharpDemo3_1("123");
+            FrmCefSharpDemo4 frm = new FrmCefSharpDemo4("123");
             frm.WindowState = FormWindowState.Maximized;
             frm.ShowDialog();
         }

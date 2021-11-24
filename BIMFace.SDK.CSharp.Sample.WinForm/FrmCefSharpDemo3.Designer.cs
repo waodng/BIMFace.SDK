@@ -30,6 +30,8 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblCalcTimes = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtBIMFaceFileId1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCsharpCallJsMethod1 = new System.Windows.Forms.Button();
@@ -37,8 +39,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lblCalcTimes = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -68,6 +68,28 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.splitContainer1.Size = new System.Drawing.Size(1239, 688);
             this.splitContainer1.SplitterDistance = 61;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // lblCalcTimes
+            // 
+            this.lblCalcTimes.AutoSize = true;
+            this.lblCalcTimes.Font = new System.Drawing.Font("微软雅黑", 20F);
+            this.lblCalcTimes.ForeColor = System.Drawing.Color.Red;
+            this.lblCalcTimes.Location = new System.Drawing.Point(1172, 4);
+            this.lblCalcTimes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCalcTimes.Name = "lblCalcTimes";
+            this.lblCalcTimes.Size = new System.Drawing.Size(45, 52);
+            this.lblCalcTimes.TabIndex = 13;
+            this.lblCalcTimes.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1014, 22);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(152, 18);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "父窗体计算次数：";
             // 
             // txtBIMFaceFileId1
             // 
@@ -132,32 +154,10 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1231, 584);
+            this.tabPage2.Size = new System.Drawing.Size(1231, 585);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lblCalcTimes
-            // 
-            this.lblCalcTimes.AutoSize = true;
-            this.lblCalcTimes.Font = new System.Drawing.Font("微软雅黑", 20F);
-            this.lblCalcTimes.ForeColor = System.Drawing.Color.Red;
-            this.lblCalcTimes.Location = new System.Drawing.Point(1163, 4);
-            this.lblCalcTimes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCalcTimes.Name = "lblCalcTimes";
-            this.lblCalcTimes.Size = new System.Drawing.Size(45, 52);
-            this.lblCalcTimes.TabIndex = 13;
-            this.lblCalcTimes.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1063, 20);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 18);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "计算次数：";
             // 
             // FrmCefSharpDemo3
             // 

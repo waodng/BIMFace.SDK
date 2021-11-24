@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="ChromiumWebBrowserBindObject.cs" />
     <Compile Include="ChromiumWebBrowserBindObject2.cs" />
+    <Compile Include="ChromiumWebBrowserBindObject3.cs" />
     <Compile Include="FrmCefSharpDemo2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,11 +81,11 @@
     <Compile Include="FrmCefSharpDemo3.Designer.cs">
       <DependentUpon>FrmCefSharpDemo3.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCefSharpDemo3_1.cs">
+    <Compile Include="FrmCefSharpDemo4.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmCefSharpDemo3_1.Designer.cs">
-      <DependentUpon>FrmCefSharpDemo3_1.cs</DependentUpon>
+    <Compile Include="FrmCefSharpDemo4.Designer.cs">
+      <DependentUpon>FrmCefSharpDemo4.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmDemoList.cs">
       <SubType>Form</SubType>
@@ -103,8 +104,8 @@
     <EmbeddedResource Include="FrmCefSharpDemo3.resx">
       <DependentUpon>FrmCefSharpDemo3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCefSharpDemo3_1.resx">
-      <DependentUpon>FrmCefSharpDemo3_1.cs</DependentUpon>
+    <EmbeddedResource Include="FrmCefSharpDemo4.resx">
+      <DependentUpon>FrmCefSharpDemo4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDemoList.resx">
       <DependentUpon>FrmDemoList.cs</DependentUpon>
