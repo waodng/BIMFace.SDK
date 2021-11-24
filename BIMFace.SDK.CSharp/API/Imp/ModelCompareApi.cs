@@ -15,7 +15,6 @@ using System;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
-using BIMFace.SDK.CSharp.Common.Utils;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Request;
 using BIMFace.SDK.CSharp.Entity.Response;
