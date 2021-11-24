@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>网页中使用jQuery加载模型/图纸（用于WinForm程序中使用CefSharp组件集成测试3）</title>
+    <title>网页中使用jQuery加载模型/图纸（用于WinForm程序中使用WebView2组件集成测试1）</title>
     <style>
         * {
             margin: 0;
@@ -49,8 +49,7 @@
 <body>
     <div id="btns" class="buttons">
         <button class="button" id="btn1" onclick="reFresh();">刷新</button>
-        <button class="button" id="btn2" style="width: 160px;" onclick="callCharpMethod();">JS 调用 C# 方法(本窗体)</button>
-        <button class="button" id="btn3" style="width: 160px;" onclick="callParentCharpMethod();">JS 调用 C# 方法(父窗体)</button>
+        <button class="button" id="btn2" style="width: 120px;" onclick="callCharpMethod();">JS 调用 C# 方法</button>
     </div>
 
     <div class="container">
@@ -66,6 +65,7 @@
     <!--<script src="../Content/js/BimfaceSDKLoader@latest-release-3.6.159.js.js"></script>--> <!--方式1：引用本地文件-->
     <script src="https://static.bimface.com/api/BimfaceSDKLoader/BimfaceSDKLoader@latest-release.js"></script><!--方式2：引用官网在线文件-->
 
+
     <script type="text/javascript">
 
         /* bimFaceFileId 调用上传接口把文件发送到BIMFACE服务器后返回fileID，开发者记录下来。
@@ -73,7 +73,6 @@
          * fileId:10000709090473 图纸
          * */
         var fileId = getQueryParas("fileId");   //10000709359577;
-        var tabKey = getQueryParas("tabKey"); //
         var app;
         var viewer2D;
         var viewer3D;
@@ -87,10 +86,6 @@
         $(document).ready(function () {
             loadBIMFile(fileId);
 
-            (async function () {
-                //该方法从WinForm窗体中获取注册的C#类对象 _chromeBrowser，在网页中可以使用该对象
-                await CefSharp.BindObjectAsync("_chromeBrowser");
-            })();
         });
 
         // 加载模型或图纸
@@ -158,6 +153,8 @@
                         viewer3D.resize(document.documentElement.clientWidth, document.documentElement.clientHeight - 40);
                     }
                 });
+
+
             }
             else if (viewMetaData.viewType == "drawingView") {
 
@@ -205,28 +202,11 @@
             location.reload();
         }
 
-        // js 调用 C# 方法（本窗体）
-        function callCharpMethod() {
-            // 特别提醒：C# 类中定义的方法名称采用 Pascal 命名。网页中调用的时候必须将方法名称的第一个字母改为小写。否则调用不成功。
-            _chromeBrowser.testCalcTimes(fileId, 6, 8)
-                .then(function (response) {
-                    alert(response);
-                })
-                .catch(function (err) {
-                    alert(' js 调用 C# 方法 testCalcTimes()，发生异常。' + err);
-                });
-        }
-
-        // js 调用 C# 方法（父窗体）
-        function callParentCharpMethod() {
-            // 特别提醒：C# 类中定义的方法名称采用 Pascal 命名。网页中调用的时候必须将方法名称的第一个字母改为小写。否则调用不成功。
-            _chromeBrowser.testParentCalcTimes(fileId, 7, 9)
-                .then(function (response) {
-                    alert(response);
-                })
-                .catch(function (err) {
-                    alert(' js 调用 C# 方法 testCalcTimes()，发生异常。' + err);
-                });
+        // js 调用 C# 方法
+        async function callCharpMethod() {
+            var webView2Obj = window.chrome.webview.hostObjects.webView2Obj;
+            var result = await webView2Obj.TestCalcAdd(fileId, 6, 8);
+            alert(result);
         }
 
         // js 方法，供C#调用
@@ -234,6 +214,7 @@
             /*如果参数需要是复杂类型，则传递Json格式的字符串，然后反序列化为对象即可使用*/
 
             alert('传入的参数num1：' + num1 + ", num2：" + num2 + '  减法运算 num1 - num2 = ' + (num1 - num2));
+            return ('JS方法运算结果：  减法运算 num1 - num2 = ' + (num1 - num2));
         }
 
         // 使用正则表达式获取地址栏参数(使用 decodeURI 解码)

@@ -32,7 +32,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.btnUseCefSharpSimple = new System.Windows.Forms.Button();
             this.btnUseCefSharpComplex = new System.Windows.Forms.Button();
             this.btnUseWebView2Simple = new System.Windows.Forms.Button();
-            this.btnUseWebView2Complex = new System.Windows.Forms.Button();
             this.btnUseCefSharpComplex2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -60,21 +59,11 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             // 
             this.btnUseWebView2Simple.Location = new System.Drawing.Point(183, 240);
             this.btnUseWebView2Simple.Name = "btnUseWebView2Simple";
-            this.btnUseWebView2Simple.Size = new System.Drawing.Size(470, 54);
+            this.btnUseWebView2Simple.Size = new System.Drawing.Size(490, 54);
             this.btnUseWebView2Simple.TabIndex = 2;
-            this.btnUseWebView2Simple.Text = "使用 WebView2 加载网页 简单应用";
+            this.btnUseWebView2Simple.Text = "使用 WebView2 加载网页 简单应用(单窗体加载单网页）";
             this.btnUseWebView2Simple.UseVisualStyleBackColor = true;
             this.btnUseWebView2Simple.Click += new System.EventHandler(this.btnUseWebView2Simple_Click);
-            // 
-            // btnUseWebView2Complex
-            // 
-            this.btnUseWebView2Complex.Location = new System.Drawing.Point(183, 300);
-            this.btnUseWebView2Complex.Name = "btnUseWebView2Complex";
-            this.btnUseWebView2Complex.Size = new System.Drawing.Size(470, 54);
-            this.btnUseWebView2Complex.TabIndex = 3;
-            this.btnUseWebView2Complex.Text = "使用 WebView2 加载网页 复杂应用";
-            this.btnUseWebView2Complex.UseVisualStyleBackColor = true;
-            this.btnUseWebView2Complex.Click += new System.EventHandler(this.btnUseWebView2Complex_Click);
             // 
             // btnUseCefSharpComplex2
             // 
@@ -92,7 +81,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 450);
             this.Controls.Add(this.btnUseCefSharpComplex2);
-            this.Controls.Add(this.btnUseWebView2Complex);
             this.Controls.Add(this.btnUseWebView2Simple);
             this.Controls.Add(this.btnUseCefSharpComplex);
             this.Controls.Add(this.btnUseCefSharpSimple);
@@ -108,7 +96,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
         private System.Windows.Forms.Button btnUseCefSharpSimple;
         private System.Windows.Forms.Button btnUseCefSharpComplex;
         private System.Windows.Forms.Button btnUseWebView2Simple;
-        private System.Windows.Forms.Button btnUseWebView2Complex;
         private System.Windows.Forms.Button btnUseCefSharpComplex2;
     }
 }
