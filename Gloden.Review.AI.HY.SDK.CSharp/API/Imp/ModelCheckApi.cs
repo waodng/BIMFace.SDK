@@ -33,12 +33,13 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
         /// </summary>
         /// <param name="token">【必填】【必填】登录认证后获取到的authorization值</param>
         /// <param name="id">【必填】第三方web平台批次id（理解为一个项目ID）</param>
-        /// <param name="files">【必填】文件信息集合。特别说明：集合中的rvt模型必须是来自同一版本的Revit软件，否则审查失败。目前仅支持 revit 2016、2017、2018、2019、2020 版本</param>
+        /// <param name="files">【必填】文件信息集合。特别说明：集合中的rvt模型必须是来自同一版本的Revit软件，否则审查失败。目前仅支持 revit 2020 及以上版本 版本</param>
         /// <param name="checkBackName">【选填】检查批次名称（如不填，默认为"默认项目"）</param>
         /// <param name="createdBy">【选填】检查人名称（如不填，默认为"未知"）</param>
+        /// <param name="reviewState">【选填】是否重新检查(如不填，默认为 0)</param>
         /// <param name="rules">【选填】规则信息集合（如不填，默认为"全部规则条文"）</param>
         /// <param name="projects">【选填】项目信息集合（如不填，默认为"默认项目信息参数"）</param>
-        public ReviewModelResponse Review(string token, string id, List<FilesViewModel> files, string checkBackName = "", string createdBy = "江苏群耀",
+        public ReviewModelResponse Review(string token, string id, List<FilesViewModel> files, string checkBackName = "", string createdBy = "江苏群耀", int reviewState = 0,
                            List<RulesViewModel> rules = null, List<ProjectViewModel> projects = null)
         {
             //POST
@@ -55,8 +56,6 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
 
             ReviewAIHttpHeaders headers = new ReviewAIHttpHeaders();
             headers.AddOAuth2Header(token);
-
-            var jsonData = data.SerializeToJson();
 
             try
             {

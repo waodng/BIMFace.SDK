@@ -33,7 +33,7 @@ namespace Gloden.Review.AI.HY.SDK.CSharp
             {
                 var apiHost = ConfigurationManager.AppSettings["REVIEW_AI_API_HOST"].Trim();
                 if (string.IsNullOrWhiteSpace(apiHost))
-                    throw new Configuration2Exception("请在 web.conig 或 app.conifg 中配置 REVIEW_AI_API_HOST。" );
+                    throw new Configuration2Exception("请在 web.config 或 app.config 中配置 REVIEW_AI_API_HOST。" );
 
                 return apiHost;
             }

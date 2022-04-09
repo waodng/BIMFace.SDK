@@ -13,8 +13,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Net.Http.Headers;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
@@ -34,18 +32,19 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
         ///  批量获取模型检查进度数据
         /// </summary>
         /// <param name="token">【必填】登录认证后获取到的authorization值</param>
-        /// <param name="ids">【必填】第三方平台批次Id（理解为一个项目ID）</param>
+        /// <param name="id">【必填】第三方平台批次Id（理解为一个项目ID）</param>
         public SingleBatchModelCheckProgressResponse GetModelCheckProgress(string token, string id)
         {
-            List<string> ids = new List<string>();
-            ids.Add(id);
+            List<string> ids = new List<string> { id };
 
             var batchResponse = GetModelCheckProgress(token, ids);
 
-            var signalBatchResponse = new SingleBatchModelCheckProgressResponse();
-            signalBatchResponse.Code = batchResponse.Code;
-            signalBatchResponse.Message = batchResponse.Message;
-            signalBatchResponse.Success = batchResponse.Success;
+            var signalBatchResponse = new SingleBatchModelCheckProgressResponse
+            {
+                Code = batchResponse.Code,
+                Message = batchResponse.Message,
+                Success = batchResponse.Success
+            };
             if (batchResponse.Data != null && batchResponse.Data.Count > 0)
             {
                 signalBatchResponse.Data = batchResponse.Data[0];
@@ -55,7 +54,7 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
         }
 
         /// <summary>
-        ///  皮卡获取模型检查进度数据
+        ///  批量获取模型检查进度数据
         /// </summary>
         /// <param name="token">【必填】登录认证后获取到的authorization值</param>
         /// <param name="ids">【必填】第三方平台批次Id（理解为一个项目ID）</param>
@@ -66,14 +65,6 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
 
             ReviewAIHttpHeaders headers = new ReviewAIHttpHeaders();
             headers.AddOAuth2Header(token);
-
-            //HttpContent content = new StringContent(ids.SerializeToJson());
-            //content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-            //HttpClient client = new HttpClient();
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            //HttpResponseMessage responseMsg = client.PostAsync(url, content).Result;
-            //string result = responseMsg.Content.ReadAsStringAsync().Result;
 
             try
             {

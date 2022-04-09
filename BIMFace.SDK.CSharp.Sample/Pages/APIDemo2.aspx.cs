@@ -39,9 +39,8 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         protected void btnUploadFileByStream_Click(object sender, EventArgs e)
         {
             string filePath = "G:\\大模型2.rvt"; //FileUpload1.PostedFile.FileName;//必须在IE兼容模式下才能获取到文件的绝对路径
-            filePath = @"D:\Work\江北新区\审图系统\Src2\SGTSC.WebService\UploadFile\00003931\翡翠湖别院_G8#_建筑_2019_10_17-三维视图 - {三维}20210803150442234.dwg";
 
-            filePath = @"G:\CAD图纸\A0-1.dwg";//@"G:\智能审查测试图纸与模型\CAD\翡翠湖别院_G8#_ 电气_2019_10_17 - 95B灯具连线图.dwg"; 
+            filePath = @"G:\CAD 测试图纸\建筑类\建筑图纸2-已拆分-已变更.dwg";//@"G:\智能审查测试图纸与模型\CAD\翡翠湖别院_G8#_ 电气_2019_10_17 - 95B灯具连线图.dwg"; 
 
             FileInfo fileInfo = new FileInfo(filePath);
             string fileName = fileInfo.Name;

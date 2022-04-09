@@ -23,7 +23,7 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
     /// </summary>
     public class ReviewModelRequest
     {
-
+      
     }
 
     /// <summary>
@@ -37,22 +37,34 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
         }
 
         /// <summary>
-        /// 【必填】文件id
+        /// 【必填】审图系统中的图纸/模型编号
         /// </summary>
         [JsonProperty("fileId")]
         public string FileId { get; set; }
 
         /// <summary>
-        /// 【必填】文件名称
+        /// 【必填】审图系统中的图纸/模型名称
         /// </summary>
         [JsonProperty("fileName")]
         public string FileName { get; set; }
+
+        /// <summary>
+        /// 【必填】图纸/模在BIMFACE引擎中的编号
+        /// </summary>
+        [JsonProperty("bimFaceFieldId")]
+        public string BIMFaceFieldId { get; set; }
 
         /// <summary>
         /// 【必填】文件的网络地址。例如：http://www.abc.com/测试文件.rvt
         /// </summary>
         [JsonProperty("path")]
         public string Path { get; set; }
+
+        /// <summary>
+        /// 【必填】图纸/模型对应的审查专业编号
+        /// </summary>
+        [JsonProperty("sczyCode")]
+        public string SczyCode { get; set; }
 
         /// <summary>
         /// 【选填】文件规则（拓展字段）
@@ -84,6 +96,8 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
     /// </summary>
     public class ProjectViewModel
     {
+        /*参考文档：https://docs.qq.com/doc/DQmhwZmlEbGJmT0xQ */
+
         /// <summary>
         /// 【必填】名称
         /// </summary>

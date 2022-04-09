@@ -196,6 +196,7 @@ namespace BIMFace.SDK.CSharp.Entity.Request
             ExportSystemType = null;
             ExportProperties = null;
             Unit = null;
+            ToBimtiles = null;
         }
 
         /// <summary>
@@ -239,7 +240,6 @@ namespace BIMFace.SDK.CSharp.Entity.Request
         /// </summary>
         [JsonProperty("viewImageDPI", NullValueHandling = NullValueHandling.Ignore)]
         public string ViewImageDPI { get; set; }
-
 
         /// <summary>
         ///  导出三维视图列表("all"代表所有视图)。默认值为[]
@@ -308,5 +308,12 @@ namespace BIMFace.SDK.CSharp.Entity.Request
         /// </summary>
         [JsonProperty("unit", NullValueHandling = NullValueHandling.Ignore)]
         public string Unit { get; set; }
+
+        /// <summary>
+        /// RVT文件转换为流式加载模式。true：流式加载 false：非流式加载，即全量加载。
+        /// 建议大模型，三角片面数量大于2000万以上的模型使用流式加载。
+        /// </summary>
+        [JsonProperty("toBimtiles", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? ToBimtiles { get; set; }
     }
 }

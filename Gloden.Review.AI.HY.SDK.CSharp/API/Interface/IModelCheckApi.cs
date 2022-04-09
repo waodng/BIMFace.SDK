@@ -33,7 +33,7 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.API
         /// <param name="createdBy">【选填】检查人名称（如不填，默认为"未知"）</param>
         /// <param name="rules">【选填】规则信息集合（如不填，默认为"全部规则条文"）</param>
         /// <param name="projects">【选填】项目信息集合（如不填，默认为"默认项目信息参数"）</param>
-        ReviewModelResponse Review(string token, string id, List<FilesViewModel> files, string checkBackName = "", string createdBy = "群耀",
+        ReviewModelResponse Review(string token, string id, List<FilesViewModel> files, string checkBackName = "", string createdBy = "群耀", int reviewState = 0,
                             List<RulesViewModel> rules = null, List<ProjectViewModel> projects = null);
     }
 }

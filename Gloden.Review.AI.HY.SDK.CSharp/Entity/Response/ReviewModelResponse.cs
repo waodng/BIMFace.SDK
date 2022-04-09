@@ -24,18 +24,15 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
 
     public class ReviewModelResponseModel
     {
-        [JsonProperty("queuesGuid")]
-        public string QueuesGuid { get; set; }
-
-        [JsonProperty("batchGuid")]
-        public string batchGuid { get; set; }
-
-        [JsonProperty("checkSatusCount")]
-        public int CheckSatusCount { get; set; }
-
+        /// <summary>
+        /// -100 未检查 、-1 文件下载异常 、-2 同批次文件版本不一致、-3 发送消息异常、-99 接口异常、0 队列中、1 正在检查、2 检查完成、3 检查异常
+        /// </summary>
         [JsonProperty("checkStatusMsg")]
         public string CheckStatusMsg { get; set; }
 
+        /// <summary>
+        /// -100 未检查 、-1 文件下载异常 、-2 同批次文件版本不一致、-3 发送消息异常、-99 接口异常、0 队列中、1 正在检查、2 检查完成、3 检查异常
+        /// </summary>
         [JsonProperty("checkStatus")]
         public int CheckStatus { get; set; }
 
@@ -47,5 +44,14 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
 
         [JsonProperty("checkStatusTotal")]
         public int CheckStatusTotal { get; set; }
+
+        [JsonProperty("queuesGuid")]
+        public string QueuesGuid { get; set; }
+
+        [JsonProperty("batchGuid")]
+        public string BatchGuid { get; set; }
+
+        [JsonProperty("checkStatusCount")]
+        public int CheckStatusCount { get; set; }
     }
 }

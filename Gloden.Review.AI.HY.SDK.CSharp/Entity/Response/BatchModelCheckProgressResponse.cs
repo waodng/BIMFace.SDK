@@ -64,6 +64,31 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
         public DateTime ReviewEnd { get; set; }
 
         /// <summary>
+        ///  检查状态。 队列中0、正在检查1、检查完成2、检查异常3
+        /// </summary>
+        [JsonProperty("checkStatus")]
+        public int CheckStatus { get; set; }
+
+        /// <summary>
+        ///  检查状态的描述
+        /// </summary>
+        [JsonProperty("checkStatusMsg")]
+        public string CheckStatusMsg { get; set; }
+
+        /// <summary>
+        ///  检查状态标识
+        /// <para>0 检查异常。 1 正在检查。 2 检查完成</para>
+        /// </summary>
+        [JsonProperty("checkStatusTag")]
+        public int CheckStatusTag { get; set; }
+
+        /// <summary>
+        ///  如果异常true，需要重试按钮（ 默认false）
+        /// </summary>
+        [JsonProperty("isCheckRetry")]
+        public bool IsCheckRetry { get; set; }
+
+        /// <summary>
         ///  队列Id
         /// </summary>
         [JsonProperty("mcQueuesId")]
@@ -94,24 +119,12 @@ namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
         public int McErrorCheckpoint { get; set; }
 
         /// <summary>
-        ///  检查状态。 队列中0、正在检查1、检查完成2、检查异常3
-        /// </summary>
-        [JsonProperty("checkStatus")]
-        public int CheckStatus { get; set; }
-
-        /// <summary>
-        ///  检查状态的描述
-        /// </summary>
-        [JsonProperty("checkStatusMsg")]
-        public string CheckStatusMsg { get; set; }
-
-        /// <summary>
         ///  问题分组信息
         /// </summary>
         [JsonProperty("questionGroupModels")]
         public List<QuestionGroupModel> QuestionGroupModels { get; set; }
 
-        [JsonProperty("checkQueuesDataViewModel")]
+        [JsonProperty("checkQueuesDataViewModel",NullValueHandling = NullValueHandling.Ignore)]
         public CheckQueuesDataViewModel CheckQueuesDataViewModel { get; set; }
     }
 
