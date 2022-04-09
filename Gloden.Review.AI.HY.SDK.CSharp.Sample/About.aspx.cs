@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Sample
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample
 {
     public partial class About : Page
     {

@@ -15,7 +15,7 @@ using System;
 
 using Newtonsoft.Json;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Entity
 {
     /// <summary>
     ///  登录接口返回的结果类

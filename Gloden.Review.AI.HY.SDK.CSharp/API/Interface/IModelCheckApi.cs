@@ -13,9 +13,9 @@
 
 using System.Collections.Generic;
 
-using Gloden.Review.AI.HY.SDK.CSharp.Entity;
+using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.API
+namespace Gloden.Review.AI.BIM.SDK.CSharp.API
 {
 
     /// <summary>

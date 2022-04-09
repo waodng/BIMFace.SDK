@@ -15,7 +15,7 @@ using System.Configuration;
 
 using BIMFace.SDK.CSharp.Common.Exceptions;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp
+namespace Gloden.Review.AI.BIM.SDK.CSharp
 {
     /// <summary>
     ///  API常量

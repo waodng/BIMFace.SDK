@@ -8,7 +8,7 @@
 //------------------------------------------------------------------------------
 
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Sample
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample
 {
     public partial class Contact
     {

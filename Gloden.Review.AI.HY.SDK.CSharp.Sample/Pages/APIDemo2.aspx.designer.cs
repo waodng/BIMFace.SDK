@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Sample.Pages
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample.Pages
 {
 
 

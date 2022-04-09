@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 
-using Gloden.Review.AI.HY.SDK.CSharp.API;
-using Gloden.Review.AI.HY.SDK.CSharp.Entity;
+using Gloden.Review.AI.BIM.SDK.CSharp.API;
+using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Sample.Pages
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample.Pages
 {
     public partial class APIDemo2 : System.Web.UI.Page
     {

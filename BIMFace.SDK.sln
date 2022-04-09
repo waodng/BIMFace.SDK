@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMFace.SDK.CSharp.Sample.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMFace.SDK.CSharp.Common", "BIMFace.SDK.CSharp.Common\BIMFace.SDK.CSharp.Common.csproj", "{28B58E8F-6039-4F05-A26F-32D73088075C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gloden.Review.AI.HY.SDK.CSharp", "Gloden.Review.AI.HY.SDK.CSharp\Gloden.Review.AI.HY.SDK.CSharp.csproj", "{A7C9C4DA-F1AC-41CB-B93F-697180488052}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gloden.Review.AI.BIM.SDK.CSharp", "Gloden.Review.AI.HY.SDK.CSharp\Gloden.Review.AI.BIM.SDK.CSharp.csproj", "{A7C9C4DA-F1AC-41CB-B93F-697180488052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gloden.Review.AI.HY.SDK.CSharp.Sample", "Gloden.Review.AI.HY.SDK.CSharp.Sample\Gloden.Review.AI.HY.SDK.CSharp.Sample.csproj", "{DE2DA8C5-4829-43A8-B7FA-749F2420DD5D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gloden.Review.AI.BIM.SDK.CSharp.Sample", "Gloden.Review.AI.HY.SDK.CSharp.Sample\Gloden.Review.AI.BIM.SDK.CSharp.Sample.csproj", "{DE2DA8C5-4829-43A8-B7FA-749F2420DD5D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMFace.SDK.CSharp.Sample.Web.Core", "BIMFace.SDK.CSharp.Sample.Web.Core\BIMFace.SDK.CSharp.Sample.Web.Core.csproj", "{B1E9C59A-3CCC-41BC-957F-68DC4F892853}"
 EndProject

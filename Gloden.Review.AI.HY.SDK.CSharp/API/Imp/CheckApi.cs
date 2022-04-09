@@ -11,7 +11,7 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.API
+namespace Gloden.Review.AI.BIM.SDK.CSharp.API
 {
     /// <summary>
     /// 信息检查接口

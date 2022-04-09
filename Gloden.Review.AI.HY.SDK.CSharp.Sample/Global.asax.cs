@@ -7,7 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using System.Web.SessionState;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Sample
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample
 {
     public class Global : HttpApplication
     {

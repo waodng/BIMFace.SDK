@@ -4,7 +4,7 @@ using System.Web;
 using System.Web.Routing;
 using Microsoft.AspNet.FriendlyUrls;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Sample
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample
 {
     public static class RouteConfig
     {

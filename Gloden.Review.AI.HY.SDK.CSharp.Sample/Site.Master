@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Gloden.Review.AI.HY.SDK.CSharp.Sample.SiteMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Gloden.Review.AI.BIM.SDK.CSharp.Sample.SiteMaster" %>
 
 <!DOCTYPE html>
 

@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取单一批次模型检查进度数据返回的结果类

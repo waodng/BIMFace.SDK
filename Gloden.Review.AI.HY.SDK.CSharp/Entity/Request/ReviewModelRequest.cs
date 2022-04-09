@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Entity
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Entity
 {
     /// <summary>
     /// 模型检查接口请求参数类

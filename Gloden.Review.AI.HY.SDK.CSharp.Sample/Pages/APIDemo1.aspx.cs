@@ -1,8 +1,10 @@
 ﻿using System;
-using Gloden.Review.AI.HY.SDK.CSharp.API;
+
 using BIMFace.SDK.CSharp.Common.Extensions;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.Sample.Pages
+using Gloden.Review.AI.BIM.SDK.CSharp.API;
+
+namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample.Pages
 {
     public partial class APIDemo1 : System.Web.UI.Page
     {

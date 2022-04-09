@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="APIDemo2.aspx.cs" Inherits="Gloden.Review.AI.HY.SDK.CSharp.Sample.Pages.APIDemo2" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="APIDemo2.aspx.cs" Inherits="Gloden.Review.AI.BIM.SDK.CSharp.Sample.Pages.APIDemo2" %>
 
 <!DOCTYPE html>
 

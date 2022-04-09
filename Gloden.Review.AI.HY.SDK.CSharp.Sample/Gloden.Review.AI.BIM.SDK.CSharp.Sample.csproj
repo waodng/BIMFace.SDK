@@ -244,9 +244,9 @@
       <Project>{28b58e8f-6039-4f05-a26f-32d73088075c}</Project>
       <Name>BIMFace.SDK.CSharp.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Gloden.Review.AI.HY.SDK.CSharp\Gloden.Review.AI.HY.SDK.CSharp.csproj">
+    <ProjectReference Include="..\Gloden.Review.AI.HY.SDK.CSharp\Gloden.Review.AI.BIM.SDK.CSharp.csproj">
       <Project>{a7c9c4da-f1ac-41cb-b93f-697180488052}</Project>
-      <Name>Gloden.Review.AI.HY.SDK.CSharp</Name>
+      <Name>Gloden.Review.AI.BIM.SDK.CSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

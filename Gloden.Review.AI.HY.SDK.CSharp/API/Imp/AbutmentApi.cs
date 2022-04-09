@@ -17,11 +17,11 @@ using System.Collections.Generic;
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
 
-using Gloden.Review.AI.HY.SDK.CSharp.Entity;
-using Gloden.Review.AI.HY.SDK.CSharp.Exceptions;
-using Gloden.Review.AI.HY.SDK.CSharp.Http;
+using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
+using Gloden.Review.AI.BIM.SDK.CSharp.Exceptions;
+using Gloden.Review.AI.BIM.SDK.CSharp.Http;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.API
+namespace Gloden.Review.AI.BIM.SDK.CSharp.API
 {
     /// <summary>
     ///  桥接接口

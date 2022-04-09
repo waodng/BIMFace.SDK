@@ -16,10 +16,10 @@ using System;
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
 
-using Gloden.Review.AI.HY.SDK.CSharp.Entity;
-using Gloden.Review.AI.HY.SDK.CSharp.Exceptions;
+using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
+using Gloden.Review.AI.BIM.SDK.CSharp.Exceptions;
 
-namespace Gloden.Review.AI.HY.SDK.CSharp.API
+namespace Gloden.Review.AI.BIM.SDK.CSharp.API
 {
     /// <summary>
     /// BIM 智能审图授权操作接口
