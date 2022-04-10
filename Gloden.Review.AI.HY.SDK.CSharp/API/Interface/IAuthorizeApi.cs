@@ -11,9 +11,9 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
+using BIMFace.AIReview.BIM.SDK.CSharp.Entity;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.API
+namespace BIMFace.AIReview.BIM.SDK.CSharp.API
 {
     /// <summary>
     ///  BIM 智能审图授权操作接口

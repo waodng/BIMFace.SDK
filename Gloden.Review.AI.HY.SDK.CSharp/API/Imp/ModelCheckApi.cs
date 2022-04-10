@@ -17,11 +17,11 @@ using System.Collections.Generic;
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
 
-using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
-using Gloden.Review.AI.BIM.SDK.CSharp.Exceptions;
-using Gloden.Review.AI.BIM.SDK.CSharp.Http;
+using BIMFace.AIReview.BIM.SDK.CSharp.Entity;
+using BIMFace.AIReview.BIM.SDK.CSharp.Exceptions;
+using BIMFace.AIReview.BIM.SDK.CSharp.Http;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.API
+namespace BIMFace.AIReview.BIM.SDK.CSharp.API
 {
     /// <summary>
     /// 模型检查接口
@@ -43,7 +43,7 @@ namespace Gloden.Review.AI.BIM.SDK.CSharp.API
                            List<RulesViewModel> rules = null, List<ProjectViewModel> projects = null)
         {
             //POST
-            string url = APiConstants.API_HOST + "/api/mc/review";
+            string url = ApiConstants.API_HOST + "/api/mc/review";
             var data = new
             {
                 id = id,

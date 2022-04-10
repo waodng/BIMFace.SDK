@@ -15,7 +15,7 @@ using System;
 
 using Newtonsoft.Json;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.Entity
+namespace BIMFace.AIReview.BIM.SDK.CSharp.Entity
 {
     /// <summary>
     /// 接口响应结果泛型基类

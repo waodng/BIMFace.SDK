@@ -13,7 +13,7 @@
 
 using Newtonsoft.Json;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.Entity
+namespace BIMFace.AIReview.BIM.SDK.CSharp.Entity
 {
     /// <summary>
     ///  模型检查返回的结果类

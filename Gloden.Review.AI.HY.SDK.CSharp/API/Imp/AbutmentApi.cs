@@ -17,11 +17,11 @@ using System.Collections.Generic;
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
 
-using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
-using Gloden.Review.AI.BIM.SDK.CSharp.Exceptions;
-using Gloden.Review.AI.BIM.SDK.CSharp.Http;
+using BIMFace.AIReview.BIM.SDK.CSharp.Entity;
+using BIMFace.AIReview.BIM.SDK.CSharp.Exceptions;
+using BIMFace.AIReview.BIM.SDK.CSharp.Http;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.API
+namespace BIMFace.AIReview.BIM.SDK.CSharp.API
 {
     /// <summary>
     ///  桥接接口
@@ -61,7 +61,7 @@ namespace Gloden.Review.AI.BIM.SDK.CSharp.API
         public BatchModelCheckProgressResponse GetModelCheckProgress(string token, List<string> ids)
         {
             //Post
-            string url = APiConstants.API_HOST + "/api/abutment/callBackByIds";
+            string url = ApiConstants.API_HOST + "/api/abutment/callBackByIds";
 
             ReviewAIHttpHeaders headers = new ReviewAIHttpHeaders();
             headers.AddOAuth2Header(token);

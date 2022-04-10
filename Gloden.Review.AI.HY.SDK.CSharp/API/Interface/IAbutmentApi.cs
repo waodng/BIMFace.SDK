@@ -13,9 +13,9 @@
 
 using System.Collections.Generic;
 
-using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
+using BIMFace.AIReview.BIM.SDK.CSharp.Entity;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.API
+namespace BIMFace.AIReview.BIM.SDK.CSharp.API
 {
     /// <summary>
     ///  桥接接口

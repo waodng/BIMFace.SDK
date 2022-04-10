@@ -16,10 +16,10 @@ using System;
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
 
-using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
-using Gloden.Review.AI.BIM.SDK.CSharp.Exceptions;
+using BIMFace.AIReview.BIM.SDK.CSharp.Entity;
+using BIMFace.AIReview.BIM.SDK.CSharp.Exceptions;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.API
+namespace BIMFace.AIReview.BIM.SDK.CSharp.API
 {
     /// <summary>
     /// BIM 智能审图授权操作接口
@@ -33,11 +33,11 @@ namespace Gloden.Review.AI.BIM.SDK.CSharp.API
         public virtual LoginResponse Login()
         {
             // POST
-            string url = APiConstants.API_HOST + "/api/authorize/login";
+            string url = ApiConstants.API_HOST + "/api/authorize/login";
             var data = new
             {
-                serviceKey = APiConstants.SERVICE_KEY,
-                secret = APiConstants.SERVICE_SECRET
+                serviceKey = ApiConstants.SERVICE_KEY,
+                secret = ApiConstants.SERVICE_SECRET
             };
 
             try

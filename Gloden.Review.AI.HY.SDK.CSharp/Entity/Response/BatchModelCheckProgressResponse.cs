@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.Entity
+namespace BIMFace.AIReview.BIM.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取单一批次模型检查进度数据返回的结果类
@@ -80,7 +80,7 @@ namespace Gloden.Review.AI.BIM.SDK.CSharp.Entity
         /// <para>0 检查异常。 1 正在检查。 2 检查完成</para>
         /// </summary>
         [JsonProperty("checkStatusTag")]
-        public int CheckStatusTag { get; set; }
+        public string CheckStatusTag { get; set; }
 
         /// <summary>
         ///  如果异常true，需要重试按钮（ 默认false）

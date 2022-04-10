@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 
-using Gloden.Review.AI.BIM.SDK.CSharp.API;
-using Gloden.Review.AI.BIM.SDK.CSharp.Entity;
+using BIMFace.AIReview.BIM.SDK.CSharp.API;
+using BIMFace.AIReview.BIM.SDK.CSharp.Entity;
 
 namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample.Pages
 {

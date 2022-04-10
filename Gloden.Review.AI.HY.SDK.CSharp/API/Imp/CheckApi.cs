@@ -11,7 +11,7 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.API
+namespace BIMFace.AIReview.BIM.SDK.CSharp.API
 {
     /// <summary>
     /// 信息检查接口
@@ -26,7 +26,7 @@ namespace Gloden.Review.AI.BIM.SDK.CSharp.API
         /// <returns></returns>
         public string GetRedirectUrl(string token, string id)
         {
-            return string.Format(APiConstants.API_HOST + "/api/check/authorize?id={0}&token={1}", id, token);
+            return string.Format(ApiConstants.API_HOST + "/api/check/authorize?id={0}&token={1}", id, token);
         }
     }
 }

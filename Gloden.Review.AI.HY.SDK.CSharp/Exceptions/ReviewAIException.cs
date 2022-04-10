@@ -15,7 +15,7 @@ using System;
 
 using BIMFace.SDK.CSharp.Common.Exceptions;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp.Exceptions
+namespace BIMFace.AIReview.BIM.SDK.CSharp.Exceptions
 {
     /// <summary>
     ///  智能审图 组件调用异常处理类

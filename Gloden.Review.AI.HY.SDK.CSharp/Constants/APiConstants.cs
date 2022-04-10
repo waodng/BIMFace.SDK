@@ -1,5 +1,5 @@
 ﻿// /* ---------------------------------------------------------------------------------------
-//    文件名：APiConstants.cs
+//    文件名：APIConstants.cs
 //    文件功能描述：API接口地址常量
 // 
 //    创建标识：20210715
@@ -15,12 +15,12 @@ using System.Configuration;
 
 using BIMFace.SDK.CSharp.Common.Exceptions;
 
-namespace Gloden.Review.AI.BIM.SDK.CSharp
+namespace BIMFace.AIReview.BIM.SDK.CSharp
 {
     /// <summary>
     ///  API常量
     /// </summary>
-    public class APiConstants
+    public class ApiConstants
     {
         /// <summary>
         ///  API服务器地址

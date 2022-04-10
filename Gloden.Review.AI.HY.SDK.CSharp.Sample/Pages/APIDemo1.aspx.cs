@@ -2,7 +2,7 @@
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 
-using Gloden.Review.AI.BIM.SDK.CSharp.API;
+using BIMFace.AIReview.BIM.SDK.CSharp.API;
 
 namespace Gloden.Review.AI.BIM.SDK.CSharp.Sample.Pages
 {
