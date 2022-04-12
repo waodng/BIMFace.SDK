@@ -19,7 +19,6 @@ using BIMFace.SDK.CSharp.Common.Http;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Request;
 using BIMFace.SDK.CSharp.Entity.Response;
-using BIMFace.SDK.CSharp.Exceptions;
 using BIMFace.SDK.CSharp.Http;
 
 namespace BIMFace.SDK.CSharp.API
@@ -42,7 +41,6 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileId">【必填】文件id</param>
-        /// <param name="callback">回调地址</param>
         /// <param name="request">请求参数类。
         ///     若需要离线数据包保留db文件，请求体中参数设置为
         ///     {

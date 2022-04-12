@@ -22,7 +22,6 @@ using BIMFace.SDK.CSharp.Common.Http;
 using BIMFace.SDK.CSharp.Common.Utils;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Response;
-using BIMFace.SDK.CSharp.Exceptions;
 using BIMFace.SDK.CSharp.Http;
 
 namespace BIMFace.SDK.CSharp.API
@@ -37,7 +36,7 @@ namespace BIMFace.SDK.CSharp.API
         #region 源文件上传
 
         /// <summary>
-        ///  普通文件流上传【不推荐使用该方式。推荐使用文件直传 UploadFileByPolicy()方法】
+        ///  普通文件流上传【使用BIMFACE公有云时不推荐使用该方式。推荐使用文件直传 UploadFileByPolicy()方法，效率更高】
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileName">【必填】文件的名称(不包含路径)</param>
@@ -208,7 +207,7 @@ namespace BIMFace.SDK.CSharp.API
 
         /// <summary>
         ///  通过文件直传的policy凭证，直接上传文件【推荐使用该方式】
-        /// 【特别提醒：BIMFACE公有云支持文件直传。私有化部署时使用的对象存储是 MinIO，不支持 Policy 上传。使用普通文件流上传 或者 指定外部文件URL方式上传。】
+        /// <para>特别提醒：BIMFACE公有云支持文件直传。私有化部署时使用的对象存储是 MinIO，不支持 Policy 上传。使用普通文件流上传 或者 指定外部文件URL方式上传</para>
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="fileFullName">【必填】待上传的文件(包含全路径的完全限定名)</param>

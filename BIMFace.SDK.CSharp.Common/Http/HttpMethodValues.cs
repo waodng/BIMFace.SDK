@@ -19,19 +19,9 @@ namespace BIMFace.SDK.CSharp.Common.Http
     public class HttpMethodValues
     {
         /// <summary>
-        ///  返回服务器支持的 HTTP 请求方法。
-        /// </summary>
-        public const string OPTIONS = "OPTIONS";
-
-        /// <summary>
         ///  向服务器获取指定资源。参数放在URL后面。
         /// </summary>
         public const string GET = "GET";
-
-        /// <summary>
-        ///  与 GET 相同，但只返回 HTTP 报头，不返回文档主体。
-        /// </summary>
-        public const string HEAD = "HEAD";
 
         /// <summary>
         ///  向服务器提交数据，数据放在请求体里。
@@ -47,6 +37,21 @@ namespace BIMFace.SDK.CSharp.Common.Http
         ///  删除服务器上的指定资源。
         /// </summary>
         public const string DELETE = "DELETE";
+
+        /// <summary>
+        ///  更新服务器上的指定资源。
+        /// </summary>
+        public const string PATCH = "PATCH";
+
+        /// <summary>
+        ///  返回服务器支持的 HTTP 请求方法。
+        /// </summary>
+        public const string OPTIONS = "OPTIONS";
+
+        /// <summary>
+        ///  与 GET 相同，但只返回 HTTP 报头，不返回文档主体。
+        /// </summary>
+        public const string HEAD = "HEAD";
 
         /// <summary>
         ///  回显服务器端收到的请求，测试的时候会用到这个。

@@ -57,6 +57,8 @@
     <Compile Include="API\Imp\FileApi_Async.cs" />
     <Compile Include="API\Imp\FileConvertApi.cs" />
     <Compile Include="API\Imp\FileConvertApi_Async.cs" />
+    <Compile Include="API\Imp\FileManagementApi.cs" />
+    <Compile Include="API\Imp\FileManagementApi_Async.cs" />
     <Compile Include="API\Imp\GltfDatabagApi.cs" />
     <Compile Include="API\Imp\GltfDatabagApi_Async.cs" />
     <Compile Include="API\Imp\ModelCompareApi.cs" />
@@ -85,6 +87,8 @@
     <Compile Include="API\Interface\IFileApi_Async.cs" />
     <Compile Include="API\Interface\IFileConvertApi.cs" />
     <Compile Include="API\Interface\IFileConvertApi_Async.cs" />
+    <Compile Include="API\Interface\IFileManagementApi.cs" />
+    <Compile Include="API\Interface\IFileManagementApi_Async.cs" />
     <Compile Include="API\Interface\IGltfDatabagApi.cs" />
     <Compile Include="API\Interface\IGltfDatabagApi_Async.cs" />
     <Compile Include="API\Interface\IModelCompareApi.cs" />
@@ -111,6 +115,9 @@
     <Compile Include="Constants\TransferStatus.cs" />
     <Compile Include="Constants\ViewType.cs" />
     <Compile Include="Entity\Request\DatabagDerivativeRequest.cs" />
+    <Compile Include="Entity\Request\FileManagement\FileCopy2Request.cs" />
+    <Compile Include="Entity\Request\FileManagement\FileMove2Request.cs" />
+    <Compile Include="Entity\Request\FolderContentRequest.cs" />
     <Compile Include="Entity\Request\Integrate\ElementPropertyOverride.cs" />
     <Compile Include="Entity\Request\Integrate\FileIdHashWithElementIds.cs" />
     <Compile Include="Entity\Request\Integrate\FileIntegrateRequest.cs" />
@@ -142,6 +149,19 @@
     <Compile Include="Entity\Response\Databag\DatabagLengthQueryResponse.cs" />
     <Compile Include="Entity\Response\Databag\DatabagThumbnailQueryResponse.cs" />
     <Compile Include="Entity\Response\FileEntity.cs" />
+    <Compile Include="Entity\Response\FileManagement\FileItem\FileCopy2Response.cs" />
+    <Compile Include="Entity\Response\FileManagement\FileItem\FileDelete2Response.cs" />
+    <Compile Include="Entity\Response\FileManagement\FileItem\FileDownload2Response.cs" />
+    <Compile Include="Entity\Response\FileManagement\FileItem\FileItemResponse.cs" />
+    <Compile Include="Entity\Response\FileManagement\FileItem\FileMove2Response.cs" />
+    <Compile Include="Entity\Response\FileManagement\FileItem\FilePath2Response.cs" />
+    <Compile Include="Entity\Response\FileManagement\FileItem\FileUpload2Response.cs" />
+    <Compile Include="Entity\Response\FileManagement\FileItem\FileUpload2StatusResponse.cs" />
+    <Compile Include="Entity\Response\FileManagement\FolderContentResponse.cs" />
+    <Compile Include="Entity\Response\FileManagement\FolderPathResponse.cs" />
+    <Compile Include="Entity\Response\FileManagement\FolderResponse.cs" />
+    <Compile Include="Entity\Response\FileManagement\ProjectResponse.cs" />
+    <Compile Include="Entity\Response\FileManagement\HubsResponse.cs" />
     <Compile Include="Entity\Response\GeneralResponse.cs" />
     <Compile Include="Entity\Response\05 ModelIntegrate\ElementsWithBoundingBox.cs" />
     <Compile Include="Entity\Response\ModelElementPropertyOverWrite\IntegrateModelElementPropertyDeleteResponse.cs" />
@@ -215,7 +235,7 @@
     <Compile Include="Entity\Response\01 Token\ViewTokenResponse.cs" />
     <Compile Include="Entity\Response\PropertyGroup.cs" />
     <Compile Include="Entity\Response\PropertyItem.cs" />
-    <Compile Include="Exceptions\BIMFaceException.cs" />
+    <Compile Include="BIMFaceException.cs" />
     <Compile Include="Http\BIMFaceHttpHeaders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

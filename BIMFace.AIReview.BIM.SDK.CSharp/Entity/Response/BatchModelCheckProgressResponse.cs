@@ -55,38 +55,13 @@ namespace BIMFace.AIReview.BIM.SDK.CSharp.Entity
         ///  审查开始时间
         /// </summary>
         [JsonProperty("reviewStart")]
-        public DateTime ReviewStart { get; set; }
+        public string ReviewStart { get; set; }
 
         /// <summary>
         ///  审查结束时间
         /// </summary>
         [JsonProperty("reviewEnd")]
-        public DateTime ReviewEnd { get; set; }
-
-        /// <summary>
-        ///  检查状态。 队列中0、正在检查1、检查完成2、检查异常3
-        /// </summary>
-        [JsonProperty("checkStatus")]
-        public int CheckStatus { get; set; }
-
-        /// <summary>
-        ///  检查状态的描述
-        /// </summary>
-        [JsonProperty("checkStatusMsg")]
-        public string CheckStatusMsg { get; set; }
-
-        /// <summary>
-        ///  检查状态标识
-        /// <para>0 检查异常。 1 正在检查。 2 检查完成</para>
-        /// </summary>
-        [JsonProperty("checkStatusTag")]
-        public string CheckStatusTag { get; set; }
-
-        /// <summary>
-        ///  如果异常true，需要重试按钮（ 默认false）
-        /// </summary>
-        [JsonProperty("isCheckRetry")]
-        public bool IsCheckRetry { get; set; }
+        public string ReviewEnd { get; set; }
 
         /// <summary>
         ///  队列Id
@@ -119,6 +94,31 @@ namespace BIMFace.AIReview.BIM.SDK.CSharp.Entity
         public int McErrorCheckpoint { get; set; }
 
         /// <summary>
+        ///  检查状态。 队列中0、正在检查1、检查完成2、检查异常3
+        /// </summary>
+        [JsonProperty("checkStatus")]
+        public int CheckStatus { get; set; }
+
+        /// <summary>
+        ///  检查状态的描述
+        /// </summary>
+        [JsonProperty("checkStatusMsg")]
+        public string CheckStatusMsg { get; set; }
+
+        /// <summary>
+        ///  检查状态标识
+        /// <para>0 检查异常。 1 正在检查。 2 检查完成</para>
+        /// </summary>
+        [JsonProperty("checkStatusTag")]
+        public string CheckStatusTag { get; set; }
+
+        /// <summary>
+        ///  如果异常true，需要重试按钮（ 默认false）
+        /// </summary>
+        [JsonProperty("isCheckRetry")]
+        public bool IsCheckRetry { get; set; }
+
+        /// <summary>
         ///  问题分组信息
         /// </summary>
         [JsonProperty("questionGroupModels")]
@@ -126,6 +126,12 @@ namespace BIMFace.AIReview.BIM.SDK.CSharp.Entity
 
         [JsonProperty("checkQueuesDataViewModel",NullValueHandling = NullValueHandling.Ignore)]
         public CheckQueuesDataViewModel CheckQueuesDataViewModel { get; set; }
+
+        [JsonProperty("checkResultModels")]
+        public object CheckResultModels { get; set; }
+
+        [JsonProperty("checkFileModels")]
+        public object CheckFileModels { get; set; }
     }
 
     [Serializable]
@@ -150,8 +156,8 @@ namespace BIMFace.AIReview.BIM.SDK.CSharp.Entity
         [JsonProperty("checkQueuesNumberViewModels")]
         public List<CheckQueuesNumberViewModels> CheckQueuesNumberViewModels { get; set; }
 
-        [JsonProperty("queuesTotal")]
-        public int QueuesTotal { get; set; }
+        [JsonProperty("checkStatusTotal")]
+        public int CheckStatusTotal { get; set; }
 
     }
 

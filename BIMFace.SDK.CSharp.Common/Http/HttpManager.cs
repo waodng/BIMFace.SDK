@@ -316,6 +316,17 @@ namespace BIMFace.SDK.CSharp.Common.Http
             return RequestString(url, null, HttpMethodValues.DELETE, null);
         }
 
+        /// <summary>
+        /// HTTP-PATCH方法，(不包含body数据)。
+        /// 发送 HTTP 请求并返回来自 Internet 资源的响应(HTML代码)
+        /// </summary>
+        /// <param name="url">请求目标URL</param>
+        /// <returns>HTTP-POST的响应结果</returns>
+        public HttpResult Patch(string url)
+        {
+            return RequestString(url, null, HttpMethodValues.PATCH, null);
+        }
+
         #endregion
 
         #region (包含文本的body数据) GET、POST、Put、Delete 请求
@@ -370,6 +381,19 @@ namespace BIMFace.SDK.CSharp.Common.Http
         public HttpResult Delete(string url, string data, string contentType = HttpContentType.APPLICATION_JSON_UTF8)
         {
             return RequestString(url, data, HttpMethodValues.DELETE, contentType);
+        }
+
+        /// <summary>
+        /// HTTP-PATCH方法，(包含body数据)。
+        /// 发送 HTTP 请求并返回来自 Internet 资源的响应(HTML代码)
+        /// </summary>
+        /// <param name="url">请求目标URL</param>
+        /// <param name="data">主体数据(普通文本或者JSON文本)。如果参数中有中文，请使用合适的编码方式进行编码，例如：gb2312或者utf-8</param>
+        /// <param name="contentType"><see langword="Content-type" /> HTTP 标头的值。请使用 HttpContentType 类的常量来获取</param>
+        /// <returns>HTTP-POST的响应结果</returns>
+        public HttpResult Patch(string url, string data, string contentType = HttpContentType.APPLICATION_JSON_UTF8)
+        {
+            return RequestString(url, data, HttpMethodValues.PATCH, contentType);
         }
 
         #endregion

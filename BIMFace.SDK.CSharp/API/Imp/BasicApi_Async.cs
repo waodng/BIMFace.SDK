@@ -12,20 +12,18 @@
 //  ------------------------------------------------------------------------------------------*/
 
 #region using
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 
 using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
-using BIMFace.SDK.CSharp.Common.Http2;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity.Response;
-using BIMFace.SDK.CSharp.Exceptions;
 using BIMFace.SDK.CSharp.Http;
+
 #endregion
 
 namespace BIMFace.SDK.CSharp.API
@@ -55,10 +53,7 @@ namespace BIMFace.SDK.CSharp.API
             try
             {
                 AccessTokenResponse response;
-                // HttpManager httpManager = new HttpManager(headers);
-
-                HttpClientManager httpManager = new HttpClientManager(headers);
-
+                HttpManager httpManager = new HttpManager(headers);
                 HttpResult httpResult = await httpManager.PostAsync(url);
                 if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                 {
@@ -148,7 +143,6 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="accessToken">令牌</param>
         /// <param name="compareId">模型比对ID</param>
-        /// <returns></returns>
         public async Task<ViewTokenResponse> GetViewTokenByCompareIdAsync(string accessToken, long compareId)
         {
             return await GetViewTokenAsync(accessToken, ModelType.compareId, compareId);

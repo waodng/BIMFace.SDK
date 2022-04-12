@@ -16,9 +16,8 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         internal static string JoinWith<T>(this IEnumerable<T> @this, string separator)
         {
             if (@this == null || @this.Any() == false)
-            {
                 return "";
-            }
+
             return string.Join(separator, @this);
         }
 
@@ -32,9 +31,8 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         internal static string JoinWith<T>(this IEnumerable<T> @this, char separator)
         {
             if (@this == null || @this.Any() == false)
-            {
                 return "";
-            }
+
             return string.Join(separator.ToString(), @this);
         }
 
@@ -48,9 +46,8 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         public static string ToStringWith<T>(this IEnumerable<T> @this, string separator)
         {
             if (@this == null || @this.Any() == false)
-            {
                 return "";
-            }
+
             return string.Join(separator, @this);
         }
 
@@ -65,9 +62,7 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
         public static string ToStringLine<T>(this IEnumerable<T> @this, bool ignoreNullObj = true)
         {
             if (@this == null || @this.Any() == false)
-            {
                 return "";
-            }
 
             StringBuilder sb = new StringBuilder();
             foreach (var obj in @this)
@@ -78,10 +73,10 @@ namespace BIMFace.SDK.CSharp.Common.Extensions
                 }
                 else
                 {
-                    if(ignoreNullObj == false)
+                    if (ignoreNullObj == false)
                     {
                         sb.AppendLine("NULL");
-                    }  
+                    }
                 }
             }
 

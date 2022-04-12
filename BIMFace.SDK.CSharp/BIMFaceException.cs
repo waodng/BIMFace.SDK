@@ -15,7 +15,7 @@ using System;
 
 using BIMFace.SDK.CSharp.Common.Exceptions;
 
-namespace BIMFace.SDK.CSharp.Exceptions
+namespace BIMFace.SDK.CSharp
 {
     /// <summary>
     ///  BIMFace 组件调用异常处理类

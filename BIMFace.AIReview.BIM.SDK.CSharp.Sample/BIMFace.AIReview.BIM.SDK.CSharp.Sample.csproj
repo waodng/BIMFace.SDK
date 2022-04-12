@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Gloden.Review.AI.HY.SDK.CSharp.Sample</RootNamespace>
-    <AssemblyName>Gloden.Review.AI.HY.SDK.CSharp.Sample</AssemblyName>
+    <RootNamespace>BIMFace.AIReview.BIM.SDK.CSharp.Sample</RootNamespace>
+    <AssemblyName>BIMFace.AIReview.BIM.SDK.CSharp.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -240,13 +240,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BIMFace.AIReview.BIM.SDK.CSharp\BIMFace.AIReview.BIM.SDK.CSharp.csproj">
+      <Project>{a7c9c4da-f1ac-41cb-b93f-697180488052}</Project>
+      <Name>BIMFace.AIReview.BIM.SDK.CSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BIMFace.SDK.CSharp.Common\BIMFace.SDK.CSharp.Common.csproj">
       <Project>{28b58e8f-6039-4f05-a26f-32d73088075c}</Project>
       <Name>BIMFace.SDK.CSharp.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Gloden.Review.AI.HY.SDK.CSharp\BIMFace.AIReview.BIM.SDK.CSharp.csproj">
-      <Project>{a7c9c4da-f1ac-41cb-b93f-697180488052}</Project>
-      <Name>BIMFace.AIReview.BIM.SDK.CSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
