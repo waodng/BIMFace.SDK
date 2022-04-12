@@ -13,7 +13,7 @@
 using System;
 
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  图纸拆分接口返回的信息类

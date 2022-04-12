@@ -13,7 +13,7 @@
 
 using System;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  删除文件返回的结果类

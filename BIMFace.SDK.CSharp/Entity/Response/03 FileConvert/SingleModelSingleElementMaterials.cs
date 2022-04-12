@@ -17,7 +17,7 @@ using BIMFace.SDK.CSharp.Common.Extensions;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     /// 获取单个模型单个构件的材质列表返回的结果类

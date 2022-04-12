@@ -16,7 +16,7 @@ using System;
 using Newtonsoft.Json;
 
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///     项目下文件夹操作的返回类

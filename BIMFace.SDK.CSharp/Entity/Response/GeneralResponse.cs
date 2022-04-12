@@ -15,7 +15,7 @@ using System;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  请求 BIMFACE 服务端 API的响应结果统一的返回类

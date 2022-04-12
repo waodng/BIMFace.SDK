@@ -11,7 +11,7 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  删除分享链接的响应结果类

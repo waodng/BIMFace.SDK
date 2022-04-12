@@ -13,7 +13,7 @@
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     /// 分页获取模型对比结果的响应类

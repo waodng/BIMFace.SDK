@@ -13,7 +13,7 @@
 
 using System;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     /// 获取文件夹路径的返回类

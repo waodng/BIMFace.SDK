@@ -11,7 +11,7 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取rfa文件族类型属性列表的影响结果类

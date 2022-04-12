@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     /// 获取项目列表操作的返回类

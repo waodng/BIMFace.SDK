@@ -13,7 +13,7 @@
 
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  查询指定模型构件属性的所有可能值的响应结果类

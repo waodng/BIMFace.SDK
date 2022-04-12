@@ -14,7 +14,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取图纸拆分结果的相应类

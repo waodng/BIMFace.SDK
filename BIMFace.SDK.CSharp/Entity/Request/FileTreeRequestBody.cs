@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取模型的构建分类树请求体类

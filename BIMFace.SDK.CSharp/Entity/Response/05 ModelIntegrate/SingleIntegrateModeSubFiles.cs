@@ -13,7 +13,7 @@
 
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取参与集成的子文件列表的响应结果类

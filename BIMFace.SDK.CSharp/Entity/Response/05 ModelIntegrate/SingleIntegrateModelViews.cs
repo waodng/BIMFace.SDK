@@ -13,7 +13,7 @@
 
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取集成模型的视图信息的响应结果类

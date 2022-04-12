@@ -11,7 +11,7 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     public class ModelIntegrateDeleteResponse : GeneralResponse<string>
     {

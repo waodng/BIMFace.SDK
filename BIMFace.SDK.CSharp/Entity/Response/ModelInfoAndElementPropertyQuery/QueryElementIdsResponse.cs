@@ -13,7 +13,7 @@
 
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  查询符合条件的构件ID列表的响应结果类

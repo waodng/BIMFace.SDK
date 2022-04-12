@@ -18,8 +18,7 @@ using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
 
 using BIMFace.AIReview.BIM.SDK.CSharp.Entity;
-using BIMFace.AIReview.BIM.SDK.CSharp.Exceptions;
-using BIMFace.AIReview.BIM.SDK.CSharp.Http;
+using BIMFace.AIReview.BIM.SDK.CSharp;
 
 namespace BIMFace.AIReview.BIM.SDK.CSharp.API
 {

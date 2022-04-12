@@ -13,7 +13,7 @@
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  BIMFACE 返回的分页信息对象

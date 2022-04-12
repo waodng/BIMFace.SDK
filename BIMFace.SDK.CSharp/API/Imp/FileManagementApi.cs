@@ -22,9 +22,7 @@ using BIMFace.SDK.CSharp.Common.Extensions;
 using BIMFace.SDK.CSharp.Common.Http;
 using BIMFace.SDK.CSharp.Common.Utils;
 using BIMFace.SDK.CSharp.Constants;
-using BIMFace.SDK.CSharp.Entity.Request;
-using BIMFace.SDK.CSharp.Entity.Response;
-using BIMFace.SDK.CSharp.Http;
+using BIMFace.SDK.CSharp.Entity;
 
 namespace BIMFace.SDK.CSharp.API
 {

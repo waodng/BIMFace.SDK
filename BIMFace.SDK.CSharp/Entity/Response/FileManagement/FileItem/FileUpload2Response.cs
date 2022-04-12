@@ -13,7 +13,7 @@
 
 using System;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  File Management 模块中普通文件流上传文件的返回类

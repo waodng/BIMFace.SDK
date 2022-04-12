@@ -13,7 +13,7 @@
 
 using System;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  FileManagement功能中打包下载压缩文件接口的返回结果类

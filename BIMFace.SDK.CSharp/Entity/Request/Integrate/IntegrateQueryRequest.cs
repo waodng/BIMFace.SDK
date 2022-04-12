@@ -13,7 +13,7 @@
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     /// 批量查询集成模型状态详情的请求参数类

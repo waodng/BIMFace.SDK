@@ -18,7 +18,7 @@ using BIMFace.SDK.CSharp.Common.Extensions;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取单个模型的构件分类树(2.0的默认分类树 floor, category, family, familyType)返回的结果类（默认模式）

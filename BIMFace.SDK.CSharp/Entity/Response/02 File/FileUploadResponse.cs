@@ -13,7 +13,7 @@
 
 using System;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  普通文件流上传返回的结果类

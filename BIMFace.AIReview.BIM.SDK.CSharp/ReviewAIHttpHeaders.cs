@@ -13,7 +13,7 @@
 
 using System.Net;
 
-namespace BIMFace.AIReview.BIM.SDK.CSharp.Http
+namespace BIMFace.AIReview.BIM.SDK.CSharp
 {
     /// <summary>
     ///  调用智能审图相关API时，需要放置在 http header 中的参数集合类

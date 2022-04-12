@@ -16,7 +16,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取单个模型的链接信息返回的结果类

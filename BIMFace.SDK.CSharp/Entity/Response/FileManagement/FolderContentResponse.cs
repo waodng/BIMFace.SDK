@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///     获取文件夹下的所有文件的返回类

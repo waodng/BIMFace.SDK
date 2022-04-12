@@ -17,7 +17,7 @@ using BIMFace.SDK.CSharp.Common.Extensions;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  图纸信息类

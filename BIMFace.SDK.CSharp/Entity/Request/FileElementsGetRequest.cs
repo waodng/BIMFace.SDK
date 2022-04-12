@@ -17,7 +17,7 @@ using BIMFace.SDK.CSharp.Constants;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  查询满足条件的构件ID列表请求参数类

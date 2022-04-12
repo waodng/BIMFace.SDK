@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  FileManagement功能中复制文件接口的返回结果类

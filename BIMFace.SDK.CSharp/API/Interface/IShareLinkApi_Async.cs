@@ -14,7 +14,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using BIMFace.SDK.CSharp.Entity.Response;
+using BIMFace.SDK.CSharp.Entity;
 
 namespace BIMFace.SDK.CSharp.API
 {

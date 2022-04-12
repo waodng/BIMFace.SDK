@@ -13,7 +13,7 @@
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  File Management 模块中获取文件上传状态的返回类

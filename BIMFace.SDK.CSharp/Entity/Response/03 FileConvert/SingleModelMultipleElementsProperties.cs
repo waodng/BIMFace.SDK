@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     /// 批量获取单个模型的多个构件属性返回的结果类

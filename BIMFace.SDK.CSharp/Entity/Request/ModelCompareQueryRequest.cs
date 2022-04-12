@@ -13,7 +13,7 @@
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  批量获取模型对比状态的请求参数类

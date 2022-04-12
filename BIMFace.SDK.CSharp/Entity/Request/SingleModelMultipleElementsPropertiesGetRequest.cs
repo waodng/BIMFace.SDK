@@ -15,7 +15,7 @@ using System;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///   批量获取构件属性的请求参数

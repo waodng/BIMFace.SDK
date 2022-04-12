@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  获取三维视点或二维视图列表的返回结果类

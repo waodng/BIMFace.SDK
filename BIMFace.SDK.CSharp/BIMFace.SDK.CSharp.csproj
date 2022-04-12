@@ -236,7 +236,7 @@
     <Compile Include="Entity\Response\PropertyGroup.cs" />
     <Compile Include="Entity\Response\PropertyItem.cs" />
     <Compile Include="BIMFaceException.cs" />
-    <Compile Include="Http\BIMFaceHttpHeaders.cs" />
+    <Compile Include="BIMFaceHttpHeaders.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

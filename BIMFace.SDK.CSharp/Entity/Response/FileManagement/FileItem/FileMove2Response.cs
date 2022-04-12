@@ -14,7 +14,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  File Management 模块中移动文件位置接口的返回类

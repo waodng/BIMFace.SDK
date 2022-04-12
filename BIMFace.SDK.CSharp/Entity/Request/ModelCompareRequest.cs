@@ -17,7 +17,7 @@ using BIMFace.SDK.CSharp.Common.Extensions;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///     模型对比请求参数类

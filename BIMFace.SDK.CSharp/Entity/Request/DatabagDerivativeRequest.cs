@@ -12,11 +12,10 @@
 //  ------------------------------------------------------------------------------------------*/
 
 using System;
-using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  为文件创建bake数据包或者离线数据包的请求类

@@ -15,7 +15,7 @@ using System;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  文件发起耗时操作(比如：大文件转换、文件对比等)完毕后，根据应用传入的回调地址，BIMFace 服务器返回的通知结果类(可能成功、也可能失败) 

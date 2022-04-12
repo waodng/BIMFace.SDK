@@ -11,7 +11,7 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
-using BIMFace.SDK.CSharp.Entity.Response;
+using BIMFace.SDK.CSharp.Entity;
 
 namespace BIMFace.SDK.CSharp.API
 {

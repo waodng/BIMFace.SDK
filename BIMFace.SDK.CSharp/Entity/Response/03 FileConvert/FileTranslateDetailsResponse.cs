@@ -16,7 +16,7 @@ using System.Text;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  批量获取转换状态详情返回的结果类

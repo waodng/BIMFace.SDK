@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 
 using System.Collections.Generic;
 
-namespace BIMFace.SDK.CSharp.Entity.Response
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  图纸对比的数据包信息类

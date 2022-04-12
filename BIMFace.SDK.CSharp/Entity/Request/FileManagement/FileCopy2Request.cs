@@ -15,7 +15,7 @@ using System.Collections.Generic;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///  FileManagement功能中复制文件接口的请求参数类

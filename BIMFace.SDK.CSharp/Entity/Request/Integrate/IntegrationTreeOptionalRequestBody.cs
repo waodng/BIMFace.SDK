@@ -13,11 +13,11 @@
 
 using System.Collections.Generic;
 
-using BIMFace.SDK.CSharp.Entity.Response;
+using BIMFace.SDK.CSharp.Entity;
 
 using Newtonsoft.Json;
 
-namespace BIMFace.SDK.CSharp.Entity.Request
+namespace BIMFace.SDK.CSharp.Entity
 {
     public class IntegrationTreeOptionalRequestBody
     {

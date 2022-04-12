@@ -15,7 +15,7 @@ using System.Net;
 
 using BIMFace.SDK.CSharp.Common.Utils;
 
-namespace BIMFace.SDK.CSharp.Http
+namespace BIMFace.SDK.CSharp
 {
     /// <summary>
     ///  调用BimFace相关API时，需要放置在 http header 中的参数集合类
