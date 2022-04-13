@@ -48,7 +48,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  不同版本的模型文件上传并转换成功后，即可发起模型对比。由于对比不能立即完成，BIMFace支持在模型对比完成以后，通过Callback机制通知应用；另外，应用也可以通过接口查询对比状态
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="request">对比时的请求参数</param>
+        /// <param name="request">必填】对比时的请求参数</param>
         /// <returns></returns>
         public virtual async Task<ModelCompareResponse> CompareAsync(string accessToken, CompareRequest request)
         {
@@ -56,7 +56,7 @@ namespace BIMFace.SDK.CSharp.API
 
             //POST https://api.bimface.com/v2/compare
             string url = BIMFaceConstants.API_HOST + "/v2/compare";
-            string data = request.SerializeToJson();
+            string data = await request.SerializeToJsonAsync();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -141,7 +141,7 @@ namespace BIMFace.SDK.CSharp.API
 
             //POST https://api.bimface.com/compares
             string url = BIMFaceConstants.API_HOST + "/compares";
-            string data = request.SerializeToJson();
+            string data = await request.SerializeToJsonAsync();
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
@@ -472,16 +472,17 @@ namespace BIMFace.SDK.CSharp.API
         /// <summary>
         /// 【官方非正式接口】根据 CompareId 获取图纸对比的数据包信息
         /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
         /// <param name="compareId">对比记录的ID</param>
         /// <returns></returns>
-        public virtual async Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabageAsync(string accessToken, long compareId)
+        public virtual async Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabagAsync(string accessToken, long compareId)
         {
             IBasicApi api = new BasicApi();
 
-            ViewTokenResponse viewTokenResponse = api.GetViewTokenByCompareId(accessToken, compareId);
+            ViewTokenResponse viewTokenResponse = await api.GetViewTokenByCompareIdAsync(accessToken, compareId);
             if (viewTokenResponse != null && viewTokenResponse.Code == "success" && viewTokenResponse.Data != null)
             {
-                return await GetDrawingCompareDatabageByCompareViewTokenAsync(viewTokenResponse.Data);
+                return await GetDrawingCompareDatabagByCompareViewTokenAsync(viewTokenResponse.Data);
             }
 
             return null;
@@ -492,7 +493,7 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="compareViewToken">对比记录的ViewToken</param>
         /// <returns></returns>
-        public virtual async Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabageByCompareViewTokenAsync(string compareViewToken)
+        public virtual async Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabagByCompareViewTokenAsync(string compareViewToken)
         {
             //GET https://api.bimface.com/inside/databag?viewToken=b80412dcba2a47b0860eeff8f2c578a9
 
@@ -528,7 +529,7 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="databagId">图纸对比的数据包Id，</param>
         /// <returns></returns>
-        public virtual async Task<DrawingCompareDatabagDiffResult> GetDrawingCompareDatabageDiffResultAsync(string databagId)
+        public virtual async Task<DrawingCompareDatabagDiffResult> GetDrawingCompareDatabagDiffResultAsync(string databagId)
         {
             //GET  https://m.bimface.com/{databagId}/result.json
 

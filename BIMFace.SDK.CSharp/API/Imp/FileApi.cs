@@ -239,7 +239,7 @@ namespace BIMFace.SDK.CSharp.API
                 {
                     string url = policyResponse.Data.Host;
 
-                    /* C# 语言 Dictionary 字典中 key 是关键字，不能添加进去。所以同意添加了响应的后缀 _BIMFACE_，解析时再去除后缀 */
+                    /* C# 语言 Dictionary 字典中 key 是关键字，不能添加进去。所以统一添加了响应的后缀 _BIMFACE_，解析时再去除后缀 */
                     NameValueCollection kVDatas = new NameValueCollection();
                     kVDatas.Add("name" + StringUtils.Symbol.KEY_SUFFIX, fileName);
                     kVDatas.Add("key" + StringUtils.Symbol.KEY_SUFFIX, policyResponse.Data.ObjectKey);
@@ -249,7 +249,10 @@ namespace BIMFace.SDK.CSharp.API
                     kVDatas.Add("callback" + StringUtils.Symbol.KEY_SUFFIX, policyResponse.Data.CallbackBody);
                     kVDatas.Add("signature" + StringUtils.Symbol.KEY_SUFFIX, policyResponse.Data.Signature);
 
-                    HttpManager httpManager = new HttpManager();
+                   // BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
+                   // headers.AddOAuth2Header(accessToken);
+
+                    HttpManager httpManager = new HttpManager(); //new HttpManager(headers);
                     HttpResult httpResult = httpManager.UploadFormByMultipart(url, fileFullName, kVDatas);
                     if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                     {

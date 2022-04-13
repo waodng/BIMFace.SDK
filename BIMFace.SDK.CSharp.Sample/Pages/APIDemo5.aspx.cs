@@ -17,7 +17,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            txtResult.Text = string.Empty;
         }
 
         // 获取 AccessToken

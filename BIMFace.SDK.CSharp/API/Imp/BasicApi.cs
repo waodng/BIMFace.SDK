@@ -193,9 +193,7 @@ namespace BIMFace.SDK.CSharp.API
         public ConcurrentDictionary<long, ViewTokenResponse> GetViewTokenList(string accessToken, ModelType modelType, List<long> objectIds)
         {
             if (objectIds.IsNullOrEmpty())
-            {
                 return null;
-            }
 
             ConcurrentDictionary<long, ViewTokenResponse> responses = new ConcurrentDictionary<long, ViewTokenResponse>();
             foreach (var fileId in objectIds)
@@ -223,9 +221,8 @@ namespace BIMFace.SDK.CSharp.API
         public ConcurrentDictionary<long, ViewTokenResponse> GetViewTokenList(string accessToken, ConcurrentDictionary<ModelType, List<long>> objectInfos)
         {
             if (objectInfos.IsNullOrEmpty())
-            {
                 return null;
-            }
+
 
             ConcurrentDictionary<long, ViewTokenResponse> responses = new ConcurrentDictionary<long, ViewTokenResponse>();
 

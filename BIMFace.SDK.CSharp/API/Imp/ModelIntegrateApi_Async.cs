@@ -80,7 +80,7 @@ namespace BIMFace.SDK.CSharp.API
             request.Sources = new IntegrateSource[] { source1, source2 };
             request.CallBack = callBack;
 
-            string data = request.SerializeToJson();
+            string data = await request.SerializeToJsonAsync();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -136,11 +136,13 @@ namespace BIMFace.SDK.CSharp.API
                 i++;
             }
 
-            FileIntegrateRequest request = new FileIntegrateRequest();
-            request.Sources = sources;
-            request.CallBack = callBack;
+            FileIntegrateRequest request = new FileIntegrateRequest
+            {
+                Sources = sources,
+                CallBack = callBack
+            };
 
-            string data = request.SerializeToJson();
+            string data = await request.SerializeToJsonAsync();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -183,7 +185,7 @@ namespace BIMFace.SDK.CSharp.API
         {
             //PUT https://api.bimface.com/integrate
             string url = BIMFaceConstants.API_HOST + "/integrate";
-            string data = request.SerializeToJson();
+            string data = await request.SerializeToJsonAsync();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -264,7 +266,8 @@ namespace BIMFace.SDK.CSharp.API
         {
             //POST https://api.bimface.com/integrateDetails
             string url = BIMFaceConstants.API_HOST + "/integrateDetails";
-            string data = request.SerializeToJson();
+            string data = await request.SerializeToJsonAsync();
+
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 
@@ -355,7 +358,7 @@ namespace BIMFace.SDK.CSharp.API
             string data = string.Empty;
             if (request != null)
             {
-                data = request.SerializeToJson();
+                data = await request.SerializeToJsonAsync();
             }
 
             try
@@ -441,7 +444,7 @@ namespace BIMFace.SDK.CSharp.API
             string data = string.Empty;
             if (fileIdWithEleIdList.IsNotNullAndEmpty())
             {
-                data = fileIdWithEleIdList.SerializeToJson();
+                data = await fileIdWithEleIdList.SerializeToJsonAsync();
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -525,10 +528,10 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="integrateId">【必填】集成ID</param>
-        /// <param name="fileIdHashWithElementIdsL"></param>
+        /// <param name="fileIdHashWithElementIds"></param>
         /// <param name="includeOverrides">【非必填】是否查询修改的属性</param>
         /// <returns></returns>
-        public virtual async Task<SingleModelMultipleElementsCommonProperties> GetSingleModelMultipleElementsCommonPropertiesAsync(string accessToken, long integrateId, FileIdHashWithElementIds[] fileIdHashWithElementIdsL = null, bool? includeOverrides = null)
+        public virtual async Task<SingleModelMultipleElementsCommonProperties> GetSingleModelMultipleElementsCommonPropertiesAsync(string accessToken, long integrateId, FileIdHashWithElementIds[] fileIdHashWithElementIds = null, bool? includeOverrides = null)
         {
             // POST https://api.bimface.com/data/v2/integrations/{integrateId}/commonElementProperties
             string url = string.Format(BIMFaceConstants.API_HOST + "/data/v2/integrations/{0}/commonElementProperties", integrateId);
@@ -538,9 +541,9 @@ namespace BIMFace.SDK.CSharp.API
             }
 
             string data = string.Empty;
-            if (fileIdHashWithElementIdsL.IsNotNullAndEmpty())
+            if (fileIdHashWithElementIds.IsNotNullAndEmpty())
             {
-                data = fileIdHashWithElementIdsL.SerializeToJson();
+                data = await fileIdHashWithElementIds.SerializeToJsonAsync();
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -865,7 +868,7 @@ namespace BIMFace.SDK.CSharp.API
             string data = string.Empty;
             if (request != null)
             {
-                data = request.SerializeToJson();
+                data = await request.SerializeToJsonAsync();
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();

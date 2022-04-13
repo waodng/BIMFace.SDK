@@ -129,10 +129,10 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="integrateId">【必填】集成ID</param>
-        /// <param name="fileIdHashWithElementIdsL"></param>
+        /// <param name="fileIdHashWithElementIds"></param>
         /// <param name="includeOverrides">【非必填】是否查询修改的属性</param>
         /// <returns></returns>
-        Task<SingleModelMultipleElementsCommonProperties> GetSingleModelMultipleElementsCommonPropertiesAsync(string accessToken, long integrateId, FileIdHashWithElementIds[] fileIdHashWithElementIdsL = null, bool? includeOverrides = null);
+        Task<SingleModelMultipleElementsCommonProperties> GetSingleModelMultipleElementsCommonPropertiesAsync(string accessToken, long integrateId, FileIdHashWithElementIds[] fileIdHashWithElementIds = null, bool? includeOverrides = null);
 
         /// <summary>
         /// 获取子文件/链接内的指定构件的属性

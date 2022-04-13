@@ -43,7 +43,7 @@ namespace BIMFace.SDK.CSharp.API
             string data = string.Empty;
             if (propertyGroups.IsNotNullAndEmpty())
             {
-                data = propertyGroups.SerializeToJson();
+                data = await propertyGroups.SerializeToJsonAsync();
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -90,7 +90,7 @@ namespace BIMFace.SDK.CSharp.API
             string data = string.Empty;
             if (propertyGroups.IsNotNullAndEmpty())
             {
-                data = propertyGroups.SerializeToJson();
+                data = await propertyGroups.SerializeToJsonAsync();
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -138,7 +138,7 @@ namespace BIMFace.SDK.CSharp.API
             string data = string.Empty;
             if (propertyGroups.IsNotNullAndEmpty())
             {
-                data = propertyGroups.SerializeToJson();
+                data = await propertyGroups.SerializeToJsonAsync();
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -186,7 +186,7 @@ namespace BIMFace.SDK.CSharp.API
             string data = string.Empty;
             if (propertyGroups.IsNotNullAndEmpty())
             {
-                data = propertyGroups.SerializeToJson();
+                data = await propertyGroups.SerializeToJsonAsync();
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();

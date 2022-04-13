@@ -23,7 +23,8 @@ namespace BIMFace.SDK.CSharp.Constants
     public class BIMFaceConstants
     {
         /// <summary>
-        ///  API服务器地址。公有云返回 https://api.bimface.com 。私有云返回自定义配置地址
+        ///  API服务器地址。
+        /// <para>公有云返回 https://api.bimface.com 。私有云返回自定义配置地址</para>
         /// </summary>
         public static string API_HOST
         {
@@ -31,7 +32,7 @@ namespace BIMFace.SDK.CSharp.Constants
             {
                 var apiHost = ConfigurationManager.AppSettings["BIMFACE_API_HOST"].Trim();
                 if (string.IsNullOrWhiteSpace(apiHost))
-                    throw new Configuration2Exception("请在 web.conig 或 app.conifg 中配置 BIMFACE_API_HOST。\r\n" +
+                    throw new Configuration2Exception("请在 web.config 或 app.config 中配置 BIMFACE_API_HOST。\r\n" +
                         "如果采用BIMFACE公有云，请填写 https://api.bimface.com \r\n" +
                         "如果采用BIMFACE私有化部署，请填写部署时自定义地址。");
 
@@ -40,9 +41,9 @@ namespace BIMFace.SDK.CSharp.Constants
         }
 
         /// <summary>
-        ///  文件上传API服务器地址
+        ///  文件上传API服务器地址。
+        /// <para>公有云返回 https://file.bimface.com 。私有云返回自定义配置地址</para>
         /// </summary>
-        //public const string FILE_HOST = "https://file.bimface.com"; //20210112 mark by zcn 改为配置方式。主要考虑到私有化部署时，文件存储地址变更的问题。
         public static string FILE_HOST
         {
             get

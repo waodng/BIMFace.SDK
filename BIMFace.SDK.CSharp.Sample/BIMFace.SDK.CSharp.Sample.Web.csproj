@@ -130,6 +130,7 @@
     <Content Include="Pages\APIDemo3.aspx" />
     <Content Include="Pages\APIDemo4.aspx" />
     <Content Include="Pages\APIDemoList.html" />
+    <Content Include="Pages\BIMFaceDemo_10.aspx" />
     <Content Include="Pages\BIMFaceDemo2.aspx" />
     <Content Include="Pages\BIMFaceDemo3.aspx" />
     <Content Include="Pages\BIMFaceDemo4.aspx" />
@@ -141,6 +142,9 @@
     <Content Include="Pages\BIMFaceDemo7_3_3.html" />
     <Content Include="Pages\BIMFaceDemo7_4_1.html" />
     <Content Include="Pages\BIMFaceDemo8.aspx" />
+    <Content Include="Pages\BIMFaceDemo_11.aspx" />
+    <Content Include="Pages\BIMFaceDemo_12.aspx" />
+    <Content Include="Pages\BIMFaceDemo_13.aspx" />
     <Content Include="Pages\rac_basic_sample_project.rvt" />
     <Content Include="Pages\rst_basic_sample_family.rfa" />
     <Content Include="Pages\BIMFaceCallbackHandler.ashx" />
@@ -239,6 +243,13 @@
     <Compile Include="Pages\BIMFaceDemo1.aspx.designer.cs">
       <DependentUpon>BIMFaceDemo1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BIMFaceDemo_10.aspx.cs">
+      <DependentUpon>BIMFaceDemo_10.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BIMFaceDemo_10.aspx.designer.cs">
+      <DependentUpon>BIMFaceDemo_10.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\BIMFaceDemo2.aspx.cs">
       <DependentUpon>BIMFaceDemo2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -273,6 +284,27 @@
     </Compile>
     <Compile Include="Pages\BIMFaceDemo8.aspx.designer.cs">
       <DependentUpon>BIMFaceDemo8.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BIMFaceDemo_11.aspx.cs">
+      <DependentUpon>BIMFaceDemo_11.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BIMFaceDemo_11.aspx.designer.cs">
+      <DependentUpon>BIMFaceDemo_11.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BIMFaceDemo_12.aspx.cs">
+      <DependentUpon>BIMFaceDemo_12.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BIMFaceDemo_12.aspx.designer.cs">
+      <DependentUpon>BIMFaceDemo_12.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\BIMFaceDemo_13.aspx.cs">
+      <DependentUpon>BIMFaceDemo_13.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\BIMFaceDemo_13.aspx.designer.cs">
+      <DependentUpon>BIMFaceDemo_13.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

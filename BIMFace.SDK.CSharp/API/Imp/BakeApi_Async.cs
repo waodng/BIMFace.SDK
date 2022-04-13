@@ -71,10 +71,10 @@ namespace BIMFace.SDK.CSharp.API
                 url += "?callback=" + callback;
             }
 
-            string data = String.Empty;
+            string data = string.Empty;
             if (request != null)
             {
-                data = request.SerializeToJson();
+                data = await request.SerializeToJsonAsync();
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();

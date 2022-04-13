@@ -47,25 +47,27 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual HubsResponse GetHubs(string accessToken, string dateTimeFrom = "", string dateTimeTo = "", string info = "", string name = "", string tenantCode = "BIMFACE")
         {
+            /*官方文档：https://bimface.com/docs/file-management/v1/api-reference/getHubListUsingGET.html */
+
             //GET https://api.bimface.com/bdfs/domain/v1/hubs
             string url = BIMFaceConstants.API_HOST + "/bdfs/domain/v1/hubs?1=1";
-            if (string.IsNullOrWhiteSpace(dateTimeFrom))
+            if (!string.IsNullOrWhiteSpace(dateTimeFrom))
             {
                 url += "&dateTimeFrom=" + dateTimeFrom;
             }
-            if (string.IsNullOrWhiteSpace(dateTimeTo))
+            if (!string.IsNullOrWhiteSpace(dateTimeTo))
             {
                 url += "&dateTimeTo=" + dateTimeTo;
             }
-            if (string.IsNullOrWhiteSpace(info))
+            if (!string.IsNullOrWhiteSpace(info))
             {
                 url += "&info=" + info;
             }
-            if (string.IsNullOrWhiteSpace(name))
+            if (!string.IsNullOrWhiteSpace(name))
             {
                 url += "&name=" + name;
             }
-            if (string.IsNullOrWhiteSpace(tenantCode))
+            if (!string.IsNullOrWhiteSpace(tenantCode))
             {
                 url += "&tenantCode=" + tenantCode;
             }
@@ -109,6 +111,8 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual HubMetaResponse GetHubMeta(string accessToken, string hubId)
         {
+            /*官方文档：https://bimface.com/docs/file-management/v1/api-reference/getHubMetaUsingGET.html */
+
             //GET https://api.bimface.com/bdfs/domain/v1/hubs/{hubId}
             string url = BIMFaceConstants.API_HOST + "/bdfs/domain/v1/hubs/" + hubId;
 
@@ -156,16 +160,18 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="projectThumbnail">【选填】项目缩略图url</param>
         /// <returns></returns>
         /// <exception cref="BIMFaceException"></exception>
-        public virtual ProjectResponse CreateProject(string accessToken, string hubId, string projectName, string projectInfo = "", string projectThumbnail = "")
+        public virtual ProjectResponse CreateProject(string accessToken, string hubId, string projectName, string projectInfo = null, string projectThumbnail = null)
         {
+            /*官方文档：https://bimface.com/docs/file-management/v1/api-reference/createProjectUsingPOST.html */
+
             //POST https://api.bimface.com/bdfs/domain/v1/hubs/{hubId}/projects
             string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/domain/v1/hubs/{0}/projects", hubId);
 
-            string data = new
+            string data = new ProjectSaveRequest
             {
-                name = projectName,
-                thumbnail = projectThumbnail,
-                info = projectInfo
+                Name = projectName,
+                Thumbnail = projectThumbnail,
+                Info = projectInfo
             }.SerializeToJson();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -209,9 +215,11 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual ProjectsGetResponse GetProjects(string accessToken, string hubId, string projectName = "", bool useFuzzySearch = false)
         {
+            /*官方文档：https://bimface.com/docs/file-management/v1/api-reference/getProjectListUsingGET.html */
+
             //GET https://api.bimface.com/bdfs/domain/v1/hubs/{hubId}/projects
             string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/domain/v1/hubs/{0}/projects", hubId) + "?1=1";
-            if (string.IsNullOrWhiteSpace(projectName))
+            if (!string.IsNullOrWhiteSpace(projectName))
             {
                 url += "&name=" + projectName;
             }
@@ -258,6 +266,8 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual ProjectResponse GetProjectInfo(string accessToken, string hubId, string projectId)
         {
+            /*官方文档：https://bimface.com/docs/file-management/v1/api-reference/getProjectMetaUsingGET.html */
+
             //GET https://api.bimface.com/bdfs/domain/v1/hubs/{hubId}/projects/{projectId}
             string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/domain/v1/hubs/{0}/projects/{1}", hubId, projectId);
 
@@ -291,6 +301,60 @@ namespace BIMFace.SDK.CSharp.API
         }
 
         /// <summary>
+        /// 更新项目
+        /// <para>通过接口，可修改指定项目的信息，包含项目名称、项目描述、项目缩略图。</para>
+        /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
+        /// <param name="hubId">【必填】hub编号</param>
+        /// <param name="projectId">【必填】项目编号</param>
+        /// <param name="projectName">【选填】项目名称</param>
+        /// <param name="projectInfo">【选填】项目描述，最多255个字符</param>
+        /// <param name="projectThumbnail">【选填】项目缩略图url，若不填则使用默认缩略图</param>
+        /// <returns></returns>
+        /// <exception cref="BIMFaceException"></exception>
+        public virtual ProjectResponse UpdateProject(string accessToken, string hubId, string projectId, string projectName = null, string projectInfo = null, string projectThumbnail = null)
+        {
+            /* 官方文档： https: //bimface.com/docs/file-management/v1/api-reference/updateProjectUsingPATCH.html */
+
+            //PATCH https://api.bimface.com/bdfs/domain/v1/hubs/{hubId}/projects/{projectId}
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/domain/v1/hubs/{0}/projects/{1}", hubId, projectId);
+            string data = new ProjectSaveRequest
+            {
+                Name = projectName,
+                Thumbnail = projectThumbnail,
+                Info = projectInfo
+            }.SerializeToJson();
+
+            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
+            headers.AddOAuth2Header(accessToken);
+
+            try
+            {
+                ProjectResponse response;
+
+                HttpManager httpManager = new HttpManager(headers);
+                HttpResult httpResult = httpManager.Patch(url, data);
+                if (httpResult.Status == HttpResult.STATUS_SUCCESS)
+                {
+                    response = httpResult.Text.DeserializeJsonToObject<ProjectResponse>();
+                }
+                else
+                {
+                    response = new ProjectResponse
+                    {
+                        Message = httpResult.RefText
+                    };
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw new BIMFaceException("[更新项目信息]发生异常！", ex);
+            }
+        }
+
+        /// <summary>
         /// 根据项目ID删除项目
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
@@ -300,6 +364,8 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual ProjectResponse DeleteProject(string accessToken, string hubId, string projectId)
         {
+            /* 官方文档： https: //bimface.com/docs/file-management/v1/api-reference/deleteProjectUsingDELETE.html */
+
             //DELETE https://api.bimface.com/bdfs/domain/v1/hubs/{hubId}/projects/{projectId}
             string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/domain/v1/hubs/{0}/projects/{1}", hubId, projectId);
 
@@ -332,58 +398,6 @@ namespace BIMFace.SDK.CSharp.API
             }
         }
 
-        /// <summary>
-        /// 更新项目
-        /// <para>通过接口，可修改指定项目的信息，包含项目名称、项目描述、项目缩略图。</para>
-        /// </summary>
-        /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="hubId">【必填】hub编号</param>
-        /// <param name="projectId">【必填】项目编号</param>
-        /// <param name="projectName">【选填】项目名称</param>
-        /// <param name="projectInfo">【选填】项目描述，最多255个字符</param>
-        /// <param name="projectThumbnail">【选填】项目缩略图url，若不填则使用默认缩略图</param>
-        /// <returns></returns>
-        /// <exception cref="BIMFaceException"></exception>
-        public virtual ProjectResponse UpdateProject(string accessToken, string hubId, string projectId, string projectName = "", string projectInfo = "", string projectThumbnail = "")
-        {
-            //PATCH https://api.bimface.com/bdfs/domain/v1/hubs/{hubId}/projects/{projectId}
-            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/domain/v1/hubs/{0}/projects/{1}", hubId, projectId);
-            string data = new
-            {
-                name = projectName,
-                thumbnail = projectThumbnail,
-                info = projectInfo
-            }.SerializeToJson();
-
-            BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
-            headers.AddOAuth2Header(accessToken);
-
-            try
-            {
-                ProjectResponse response;
-
-                HttpManager httpManager = new HttpManager(headers);
-                HttpResult httpResult = httpManager.Patch(url, data);
-                if (httpResult.Status == HttpResult.STATUS_SUCCESS)
-                {
-                    response = httpResult.Text.DeserializeJsonToObject<ProjectResponse>();
-                }
-                else
-                {
-                    response = new ProjectResponse
-                    {
-                        Message = httpResult.RefText
-                    };
-                }
-
-                return response;
-            }
-            catch (Exception ex)
-            {
-                throw new BIMFaceException("[更新项目信息]发生异常！", ex);
-            }
-        }
-
         #endregion
 
         #region Folders
@@ -400,17 +414,18 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="autoRename">【选填】当存在同名文件夹时,是否重命名（默认false，false情况下有同名文件夹则报错）</param>
         /// <returns></returns>
         /// <exception cref="BIMFaceException"></exception>
-        public virtual FolderResponse CreateFolder(string accessToken, string projectId, string folderName, string parentPath, string parentId, bool autoRename = false)
+        public virtual FolderResponse CreateFolder(string accessToken, string projectId, string folderName, string parentPath, string parentId, bool? autoRename = null)
         {
+            /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/createFolderUsingPOST.html */
+
             //POST https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders
             string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders", projectId);
-
-            string data = new
+            string data = new FolderCreateRequest
             {
-                name = folderName,
-                parentPath = parentPath,
-                parentId = parentId,
-                autoRename = autoRename
+                Name = folderName,
+                ParentPath = parentPath,
+                ParentId = parentId,
+                AutoRename = autoRename
             }.SerializeToJson();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -421,7 +436,7 @@ namespace BIMFace.SDK.CSharp.API
                 FolderResponse response;
 
                 HttpManager httpManager = new HttpManager(headers);
-                HttpResult httpResult = httpManager.Post(url, data);
+                HttpResult httpResult = httpManager.Post(url,data);
                 if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                 {
                     response = httpResult.Text.DeserializeJsonToObject<FolderResponse>();
@@ -453,8 +468,18 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual FolderResponse GetFolder(string accessToken, string projectId, string folderId, string folderPath)
         {
+            /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/getFolderUsingGET.html */
+
             //GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders
-            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders?folderId={1}&path={2}", projectId, folderId, folderPath);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders?1=1", projectId);
+            if (!string.IsNullOrWhiteSpace(folderId))
+            {
+                url = url + "&folderId=" + folderId;
+            }
+            if (!string.IsNullOrWhiteSpace(folderPath))
+            {
+                url = url + "&path=" + folderPath.UrlEncode(Encoding.UTF8);
+            }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -495,6 +520,8 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual FolderContentResponse GetFolderContent(string accessToken, string projectId, FolderContentRequest request)
         {
+            /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/getFolderChildrenUsingPOST.html */
+
             //POST https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders/contents
             string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders/contents", projectId);
             string data = request.SerializeToJson();
@@ -539,6 +566,8 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual FolderPathResponse GetFolderPath(string accessToken, string projectId, string folderId)
         {
+            /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/getFolderPathByIdUsingGET.html */
+
             //GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders/{folderId}/path
             string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders/{1}/path", projectId, folderId);
 
@@ -582,6 +611,8 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         public virtual FolderResponse GetParentFolder(string accessToken, string projectId, string folderId)
         {
+            /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/getParentUsingGET.html */
+
             //GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders/{folderId}/parent
             string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders/{1}/parent", projectId, folderId);
 
@@ -626,17 +657,18 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="autoRename">【选填】存在同名文件夹时,是否自动重命名（默认false,false情况下有同名文件夹则报错）</param>
         /// <returns></returns>
         /// <exception cref="BIMFaceException"></exception>
-        public virtual FolderResponse UpdateFolder(string accessToken, string projectId, string folderName, string folderId, string folderPath, bool autoRename = false)
+        public virtual FolderResponse UpdateFolder(string accessToken, string projectId, string folderName, string folderId, string folderPath, bool? autoRename = null)
         {
-            //PATCH https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders
-            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders", projectId);
-            string data = new
-            {
-                name = folderName,
-                folderId = folderId,
-                path = folderPath,
-                autoRename = autoRename
+            /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/updateFolderUsingPATCH.html */
 
+            // PATCH https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders", projectId);
+            string data = new FolderUpdateRequest
+            {
+                Name = folderName,
+                Path = folderPath,
+                FolderId = folderId,
+                AutoRename = autoRename
             }.SerializeToJson();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -679,9 +711,18 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         public virtual FolderDeleteResponse DeleteFolder(string accessToken, string projectId, string folderId, string folderPath)
         {
-            //DELETE https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders
-            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders", projectId)
-                       + "?folderId=" + folderId + "&path=" + folderPath;
+            /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/deleteFolderUsingDELETE.html */
+
+            // DELETE https://api.bimface.com/bdfs/data/v1/projects/{projectId}/folders
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/folders?1=1", projectId);
+            if (!string.IsNullOrWhiteSpace(folderId))
+            {
+                url = url + "&folderId=" + folderId;
+            }
+            if (!string.IsNullOrWhiteSpace(folderPath))
+            {
+                url = url + "&path=" + folderPath;
+            }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -729,7 +770,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="autoRename">【可选】当存在同名文件时,是否自动重命名，默认为false </param>
         /// <param name="sourceId">【可选】调用方的文件源ID，不能重复</param>
         /// <returns></returns>
-        public virtual FileUpload2Response UploadFileByStream(string accessToken, string projectId, string fileName, Stream fileStream, string parentId, string parentPath, bool autoRename = false, string sourceId = "")
+        public virtual FileUpload2Response UploadFileByStream(string accessToken, string projectId, string fileName, Stream fileStream, string parentId, string parentPath, bool? autoRename = null, string sourceId = "")
         {
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/uploadFileItemUsingPOST.html */
 
@@ -737,24 +778,30 @@ namespace BIMFace.SDK.CSharp.API
 
             /* 重要提示：使用普通文件流上传，不支持表单方式; 文件流需要在 request body 中传递 */
 
+            byte[] fileBytes = fileStream.ToByteArray();
+
             //POST https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems", projectId);
-            url = url + "?name =" + fileName.UrlEncode(Encoding.UTF8); // 使用URL编码（UTF-8）
-            if (parentId.IsNotNullAndWhiteSpace())
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems", projectId);
+            url = url + "?name=" + fileName.UrlEncode(Encoding.UTF8); // 使用URL编码（UTF-8）
+            if (!string.IsNullOrEmpty(parentId))
             {
                 url = url + "&parentId=" + parentId;
             }
-            if (parentPath.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrEmpty(parentPath))
             {
                 url = url + "&parentPath=" + parentPath;
             }
-            if (sourceId.IsNotNullAndWhiteSpace())
+
+            url = url + "&length=" + fileBytes.Length;
+
+            if (autoRename.HasValue)
+            {
+                url = url + "&autoRename=" + autoRename.Value;
+            }
+            if (!string.IsNullOrEmpty(sourceId))
             {
                 url = url + "&sourceId=" + sourceId;
             }
-            url = url + "&autoRename=" + autoRename;
-
-            byte[] fileBytes = fileStream.ToByteArray();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -764,7 +811,7 @@ namespace BIMFace.SDK.CSharp.API
                 FileUpload2Response response;
 
                 HttpManager httpManager = new HttpManager(headers);
-                HttpResult httpResult = httpManager.UploadData(url, fileBytes, WebRequestMethods.Http.Put);
+                HttpResult httpResult = httpManager.UploadData(url, fileBytes, WebRequestMethods.Http.Post);
                 if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                 {
                     response = httpResult.Text.DeserializeJsonToObject<FileUpload2Response>();
@@ -800,7 +847,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="etag">【可选】文件etag</param>
         /// <param name="maxLength">【可选】</param>
         /// <returns></returns>
-        public virtual FileUpload2Response UploadFileByUrl(string accessToken, string projectId, string fileName, string parentId, string parentPath, string fileUrl, bool autoRename = false, string sourceId = "", string etag = "", long? maxLength = null)
+        public virtual FileUpload2Response UploadFileByUrl(string accessToken, string projectId, string fileName, string parentId, string parentPath, string fileUrl, bool? autoRename = null, string sourceId = "", string etag = "", long? maxLength = null)
         {
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/uploadByUrlUsingPOST.html */
 
@@ -809,22 +856,25 @@ namespace BIMFace.SDK.CSharp.API
             /* 如果需要上传的文件不在本地，且该文件可以通过指定的HTTP URL可以下载，BIMFACE支持直接传一个外部的HTTP文件URL, BIMFACE会去下载该文件，而无须用户先下载，再上传。 */
 
             //POST https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/sourceUrl
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems/sourceUrl", projectId);
-            url = url + "?name =" + fileName.UrlEncode(Encoding.UTF8); // 使用URL编码（UTF-8）
-            url = url + "&url=" + fileUrl.UriEscapeDataString();
-            if (parentId.IsNotNullAndWhiteSpace())
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/sourceUrl", projectId);
+            url = url + "?name=" + fileName.UrlEncode(Encoding.UTF8); // 使用URL编码（UTF-8）
+
+            if (!string.IsNullOrWhiteSpace(parentId))
             {
                 url = url + "&parentId=" + parentId;
             }
-            if (parentPath.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrWhiteSpace(parentPath))
             {
                 url = url + "&parentPath=" + parentPath;
             }
-            if (sourceId.IsNotNullAndWhiteSpace())
+
+            url = url + "&url=" + fileUrl.UriEscapeDataString();
+
+            if (autoRename.HasValue)
             {
-                url = url + "&sourceId=" + sourceId;
+                url = url + "&autoRename=" + autoRename.Value;
             }
-            if (etag.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrWhiteSpace(etag))
             {
                 url = url + "&etag=" + etag;
             }
@@ -832,7 +882,10 @@ namespace BIMFace.SDK.CSharp.API
             {
                 url = url + "&maxLength=" + maxLength.Value;
             }
-            url = url + "&autoRename=" + autoRename;
+            if (!string.IsNullOrWhiteSpace(sourceId))
+            {
+                url = url + "&sourceId=" + sourceId;
+            }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -865,7 +918,7 @@ namespace BIMFace.SDK.CSharp.API
 
         /// <summary>
         ///  获取文件直传的policy凭证。
-        /// 【特别提醒：BIMFACE公有云支持文件直传。私有化部署时使用的对象存储是 MinIO，不支持 Policy 上传。使用普通文件流上传 或者 指定外部文件URL方式上传。】
+        /// 【特别提醒：BIMFACE公有云支持文件直传。私有化部署时使用的对象存储是 MinIO，不支持 Policy 上传，使用普通文件流上传 或者 指定外部文件URL方式上传。】
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="projectId">【必填】项目ID</param>
@@ -876,7 +929,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="sourceId">【可选】调用方的文件源ID，不能重复</param>
         /// <param name="maxLength">【可选】</param>
         /// <returns></returns>
-        internal virtual FileUploadPolicyResponse GetFileUploadPolicy(string accessToken, string projectId, string fileName, string parentId, string parentPath, bool autoRename = false, string sourceId = "", long? maxLength = null)
+        internal virtual FileUploadPolicyResponse GetFileUploadPolicy(string accessToken, string projectId, string fileName, string parentId, string parentPath, bool? autoRename = null, string sourceId = "", long? maxLength = null)
         {
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/getFilePolicyUsingGET.html */
 
@@ -894,17 +947,21 @@ namespace BIMFace.SDK.CSharp.API
              */
 
             //GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/policy
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems/policy", projectId);
-            url = url + "?name =" + fileName.UrlEncode(Encoding.UTF8); // 使用URL编码（UTF-8）
-            if (parentId.IsNotNullAndWhiteSpace())
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/policy", projectId);
+            url = url + "?name=" + fileName; //.UrlEncode(Encoding.UTF8); // 使用URL编码（UTF-8）
+            if (!string.IsNullOrWhiteSpace(parentId))
             {
                 url = url + "&parentId=" + parentId;
             }
-            if (parentPath.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrWhiteSpace(parentPath))
             {
                 url = url + "&parentPath=" + parentPath;
             }
-            if (sourceId.IsNotNullAndWhiteSpace())
+            if (autoRename.HasValue)
+            {
+                url = url + "&autoRename=" + autoRename.Value;
+            }
+            if (!string.IsNullOrWhiteSpace(sourceId))
             {
                 url = url + "&sourceId=" + sourceId;
             }
@@ -912,7 +969,6 @@ namespace BIMFace.SDK.CSharp.API
             {
                 url = url + "&maxLength=" + maxLength.Value;
             }
-            url = url + "&autoRename=" + autoRename;
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -957,7 +1013,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="sourceId">【可选】调用方的文件源ID，不能重复</param>
         /// <param name="maxLength">【可选】</param>
         /// <returns></returns>
-        public virtual FileUpload2Response UploadFileByPolicy(string accessToken, string projectId, string fileFullName, string parentId, string parentPath, bool autoRename = false, string sourceId = "", long? maxLength = null)
+        public virtual FileUpload2Response UploadFileByPolicy(string accessToken, string projectId, string fileFullName, string parentId, string parentPath, bool? autoRename = null, string sourceId = "", long? maxLength = null)
         {
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/uploadByPolicyUsingPOST.html */
             /* 此API详解，参考作者博客：《C#开发BIMFACE系列5 服务端API之文件直传》 https://www.cnblogs.com/SavionZhang/p/11425945.html */
@@ -974,7 +1030,6 @@ namespace BIMFace.SDK.CSharp.API
                 3、开发者应用使用在第二个步骤中获取的URL信息，直接上传文件数据到BIMFACE后端的分布式对象存储。
              */
 
-
             FileUpload2Response response = null;
             try
             {
@@ -983,10 +1038,18 @@ namespace BIMFace.SDK.CSharp.API
                 FileUploadPolicyResponse policyResponse = GetFileUploadPolicy(accessToken, projectId, fileName, parentId, parentPath, autoRename, sourceId, maxLength);
                 if (policyResponse.Code == HttpResult.STATUS_SUCCESS)
                 {
-                    // POST https: //api.bimface.com/bdfs/data/v1/projects/policy
-                    string url = BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/policy";
+                    /* 官方文档 https://bimface.com/docs/file-management/v1/api-reference/getFilePolicyUsingGET.html
+                     * 中说明该接口的请求地址为：POST https://api.bimface.com/bdfs/data/v1/projects/policy
+                     *
+                     *  经测试
+                     * （1）使用该地址在postman中测试可以成功。但是使用本程序测试失败，提示 unauthorized。Full authentication is required to access this resource。
+                     * （2）使用“获取文件直传的policy凭证”接口中返回的 host 地址(https://bf-prod-srcfile.oss-cn-beijing.aliyuncs.com)，本程序测试成功。
+                     */
 
-                    /* C# 语言 Dictionary 字典中 key 是关键字，不能添加进去。所以同意添加了响应的后缀 _BIMFACE_，解析时再去除后缀 */
+                    //string url = BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/policy";
+                    string url = policyResponse.Data.Host;
+
+                    /* C# 语言 Dictionary 字典中 key 是关键字，不能添加进去。所以统一添加了响应的后缀 _BIMFACE_，解析时再去除后缀 */
                     NameValueCollection kVDatas = new NameValueCollection();
                     kVDatas.Add("name" + StringUtils.Symbol.KEY_SUFFIX, fileName);
                     kVDatas.Add("key" + StringUtils.Symbol.KEY_SUFFIX, policyResponse.Data.ObjectKey);
@@ -996,7 +1059,10 @@ namespace BIMFace.SDK.CSharp.API
                     kVDatas.Add("callback" + StringUtils.Symbol.KEY_SUFFIX, policyResponse.Data.CallbackBody);
                     kVDatas.Add("signature" + StringUtils.Symbol.KEY_SUFFIX, policyResponse.Data.Signature);
 
-                    HttpManager httpManager = new HttpManager();
+                    BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
+                    headers.AddOAuth2Header(accessToken);
+
+                    HttpManager httpManager = new HttpManager(headers);
                     HttpResult httpResult = httpManager.UploadFormByMultipart(url, fileFullName, kVDatas);
                     if (httpResult.Status == HttpResult.STATUS_SUCCESS)
                     {
@@ -1029,21 +1095,24 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="filePath">【必填】 文件所在路径，使用URL编码（UTF-8），最多256个字符（fileItemId和path,必须二选一填入 ）</param>
         /// <param name="withItemSource">【选填】</param>
         /// <returns></returns>
-        public virtual FileItemResponse GetFile(string accessToken, string projectId, string fileItemId, string filePath, bool withItemSource = false)
+        public virtual FileItemResponse GetFile(string accessToken, string projectId, string fileItemId, string filePath, bool? withItemSource = null)
         {
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/copyFileUsingPOST.html */
 
             //GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/meta
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems/meta?1=1", projectId);
-            if (fileItemId.IsNotNullAndWhiteSpace())
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/meta?1=1", projectId);
+            if (!string.IsNullOrWhiteSpace(fileItemId))
             {
                 url = url + "&fileItemId=" + fileItemId;
             }
-            if (filePath.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrWhiteSpace(filePath))
             {
                 url = url + "&path=" + filePath;
             }
-            url = url + "&withItemSource=" + withItemSource;
+            if (withItemSource.HasValue)
+            {
+                url = url + "&withItemSource=" + withItemSource.Value;
+            }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -1088,14 +1157,14 @@ namespace BIMFace.SDK.CSharp.API
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/getFileItemUploadStatusUsingGET.html */
 
             // GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/status
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems/status?1=1", projectId);
-            if (fileItemId.IsNotNullAndWhiteSpace())
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/status?1=1", projectId);
+            if (!string.IsNullOrEmpty(fileItemId))
             {
                 url = url + "&fileItemId=" + fileItemId;
             }
-            if (filePath.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrEmpty(filePath))
             {
-                url = url + "&filePath=" + filePath;
+                url = url + "&path=" + filePath;
             }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
@@ -1142,16 +1211,16 @@ namespace BIMFace.SDK.CSharp.API
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/getFileItemSignedUrlUsingGET.html */
 
             // GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/downloadUrl
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/data/v1/projects/{0}/fileItems/downloadUrl?1=1", projectId);
-            if (fileItemId.IsNotNullAndWhiteSpace())
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/downloadUrl?1=1", projectId);
+            if (!string.IsNullOrWhiteSpace(fileItemId))
             {
                 url = url + "&fileItemId=" + fileItemId;
             }
-            if (filePath.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrWhiteSpace(filePath))
             {
-                url = url + "&filePath=" + filePath;
+                url = url + "&path=" + filePath;
             }
-            if (expireTime.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrWhiteSpace(expireTime))
             {
                 url = url + "&expireTime=" + expireTime;
             }
@@ -1198,7 +1267,7 @@ namespace BIMFace.SDK.CSharp.API
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/getFileItemPathByIdUsingGET.html */
 
             // GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/{fileItemId}/fileItemsPath
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems/{1}/fileItemsPath?1=1", projectId, fileItemId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/{1}/fileItemsPath", projectId, fileItemId);
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -1246,7 +1315,7 @@ namespace BIMFace.SDK.CSharp.API
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/copyFileUsingPOST.html */
 
             //POST https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/copyItem
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems/copyItem", projectId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/copyItem", projectId);
             string data = new FileCopy2Request()
             {
                 TargetParentId = targetParentId,
@@ -1302,7 +1371,7 @@ namespace BIMFace.SDK.CSharp.API
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/moveFileUsingPATCH.html */
 
             // PATCH https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/moveItem
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems/moveItem", projectId);
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/moveItem", projectId);
             string data = new FileMove2Request()
             {
                 FileItemIds = fileItemIds,
@@ -1350,24 +1419,27 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="fileItemId">【必填】文件ID(fileItemId和path,必须二选一填入 ）</param>
         /// <param name="filePath">【必填】 文件所在路径，使用URL编码（UTF-8），最多256个字符（fileItemId和path,必须二选一填入 ）</param>
         /// <param name="newFileName">【必填】 新文件名称</param>
-        /// <param name="withItemSource">【选填】</param>
+        /// <param name="autoRename">【选填】文件存在同名时,是否重命名,默认false,false情况下有同名文件则报错</param>
         /// <returns></returns>
-        public virtual FileItemResponse RenameFile(string accessToken, string projectId, string fileItemId, string filePath, string newFileName, bool withItemSource = false)
+        public virtual FileItemResponse RenameFile(string accessToken, string projectId, string fileItemId, string filePath, string newFileName, bool? autoRename = null)
         {
             /* 官方文档：https://bimface.com/docs/file-management/v1/api-reference/fileRenameUsingPATCH.html */
 
             // PATCH https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems", projectId);
-            url = url + "?name=" + newFileName;
-            if (fileItemId.IsNotNullAndWhiteSpace())
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems", projectId);
+            url = url + "?name=" + newFileName.UrlEncode(Encoding.UTF8);
+            if (!string.IsNullOrWhiteSpace(fileItemId))
             {
                 url = url + "&fileItemId=" + fileItemId;
             }
-            if (filePath.IsNotNullAndWhiteSpace())
+            if (!string.IsNullOrWhiteSpace(filePath))
             {
                 url = url + "&path=" + filePath;
             }
-            url = url + "&withItemSource=" + withItemSource;
+            if (autoRename.HasValue)
+            {
+                url = url + "&autoRename=" + autoRename.Value;
+            }
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -1413,8 +1485,8 @@ namespace BIMFace.SDK.CSharp.API
                 throw new BIMFaceException("DeleteFiles()方法中参数" + nameof(fileItemIds) + "无值。");
 
             // DELETE https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems", projectId);
-            string data = new { fileItemIds = fileItemIds }.SerializeToJson();
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems", projectId);
+            string data = fileItemIds.SerializeToJson();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
@@ -1460,7 +1532,7 @@ namespace BIMFace.SDK.CSharp.API
                 throw new BIMFaceException("DownloadFilesByZip()方法中参数" + nameof(fileItemIds) + "无值。");
 
             // GET https://api.bimface.com/bdfs/data/v1/projects/{projectId}/fileItems/downloadZip
-            string url = string.Format(BIMFaceConstants.FILE_HOST + "/bdfs/data/v1/projects/{0}/fileItems/downloadZip", projectId) + "?fileItemIds =" + fileItemIds.ToStringWith(",");
+            string url = string.Format(BIMFaceConstants.API_HOST + "/bdfs/data/v1/projects/{0}/fileItems/downloadZip", projectId) + "?fileItemIds=" + fileItemIds.ToStringWith(",");
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);

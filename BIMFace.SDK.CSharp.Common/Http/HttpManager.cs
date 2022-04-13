@@ -918,8 +918,7 @@ namespace BIMFace.SDK.CSharp.Common.Http
                 #region 步骤1：写入键值对
                 if (kVDatas != null)
                 {
-                    string formDataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n" +
-                                              "{1}\r\n";
+                    string formDataTemplate = "Content-Disposition: form-data; name=\"{0}\"\r\n\r\n" + "{1}\r\n";
 
                     foreach (string key in kVDatas.Keys)
                     {

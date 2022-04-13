@@ -15,7 +15,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
 
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+            txtResult.Text = string.Empty;
         }
 
         // 获取 AccessToken
@@ -32,7 +32,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
         // 获取policy凭证
         protected void btnGetPolicy_Click(object sender, EventArgs e)
         {
-            string filePath = FileUpload1.PostedFile.FileName; //必须在IE兼容模式下才能获取到文件的绝对路径
+            string filePath = @"G:\BIM 示例模型\01_BIMFACE示例文件-Revit模型5.rvt"; //FileUpload1.PostedFile.FileName; //必须在IE兼容模式下才能获取到文件的绝对路径
 
             FileInfo fileInfo = new FileInfo(filePath);
             string fileName = fileInfo.Name;
@@ -49,7 +49,7 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             
             IFileApi api = new FileApi();
 
-            filePath = @"D:\Work\江北新区\审图系统\Src2\SGTSC.WebService\UploadFile\00003931\翡翠湖别院_G8#_建筑_2019_10_17-三维视图 - {三维}-001.dwg";
+            filePath = @"G:\BIM 示例模型\01_BIMFACE示例文件-Revit模型5.rvt";
             FileUploadResponse fileUploadResponse = api.UploadFileByPolicy(txtAccessToken.Text, filePath);
             txtResult.Text = fileUploadResponse.SerializeToJson(true);
         }

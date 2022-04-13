@@ -24,7 +24,6 @@ using BIMFace.SDK.CSharp.Common.Utils;
 using BIMFace.SDK.CSharp.Constants;
 using BIMFace.SDK.CSharp.Entity;
 
-
 namespace BIMFace.SDK.CSharp.API
 {
     /// <summary>
@@ -235,12 +234,12 @@ namespace BIMFace.SDK.CSharp.API
                 FileInfo fileInfo = new FileInfo(fileFullName);
                 string fileName = fileInfo.Name;
 
-                FileUploadPolicyResponse policyResponse = GetFileUploadPolicy(accessToken, fileName);
+                FileUploadPolicyResponse policyResponse = await GetFileUploadPolicyAsync(accessToken, fileName);
                 if (policyResponse.Code == HttpResult.STATUS_SUCCESS)
                 {
                     string url = policyResponse.Data.Host;
 
-                    /* C# 语言 Dictionary 字典中 key 是关键字，不能添加进去。所以同意添加了响应的后缀 _BIMFACE_，解析时再去除后缀 */
+                    /* C# 语言 Dictionary 字典中 key 是关键字，不能添加进去。所以统一添加了响应的后缀 _BIMFACE_，解析时再去除后缀 */
                     NameValueCollection kVDatas = new NameValueCollection();
                     kVDatas.Add("name" + StringUtils.Symbol.KEY_SUFFIX, fileName);
                     kVDatas.Add("key" + StringUtils.Symbol.KEY_SUFFIX, policyResponse.Data.ObjectKey);
@@ -340,10 +339,10 @@ namespace BIMFace.SDK.CSharp.API
             FileInfoListGetResponse response = new FileInfoListGetResponse();
 
             #region 校验
+
             if (rows < 0 || rows > 500)
             {
                 response.Message = "参数[rows]超出范围。要求控制在1到500之间！";
-
                 return response;
             }
 
@@ -502,6 +501,7 @@ namespace BIMFace.SDK.CSharp.API
             {
                 url = url + "&name=" + name.UriEscapeDataString();
             }
+
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
 

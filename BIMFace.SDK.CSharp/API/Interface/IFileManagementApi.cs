@@ -49,7 +49,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         /// <exception cref="BIMFaceException"></exception>
         HubMetaResponse GetHubMeta(string accessToken, string hubId);
-        
+
         #endregion
 
         #region Project
@@ -114,7 +114,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <exception cref="BIMFaceException"></exception>
         ProjectResponse UpdateProject(string accessToken, string hubId, string projectId, string projectName = "",
                                       string projectInfo = "", string projectThumbnail = "");
-       
+
         #endregion
 
         #region Folders
@@ -132,7 +132,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         /// <exception cref="BIMFaceException"></exception>
         FolderResponse CreateFolder(string accessToken, string projectId, string folderName, string parentPath,
-                                    string parentId, bool autoRename = false);
+                                    string parentId, bool? autoRename = null);
 
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <returns></returns>
         /// <exception cref="BIMFaceException"></exception>
         FolderResponse UpdateFolder(string accessToken, string projectId, string folderName, string folderId,
-                                    string folderPath, bool autoRename = false);
+                                    string folderPath, bool? autoRename = null);
 
 
         /// <summary>
@@ -204,7 +204,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="folderPath">【必填】文件夹路径,使用URL编码（UTF-8），最多256个字符(folderId和path,必须二选一填入)</param>
         /// <returns></returns>
         FolderDeleteResponse DeleteFolder(string accessToken, string projectId, string folderId, string folderPath);
-        
+
         #endregion
 
         #region FolderItems
@@ -223,7 +223,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="sourceId">【可选】调用方的文件源ID，不能重复</param>
         /// <returns></returns>
         FileUpload2Response UploadFileByStream(string accessToken, string projectId, string fileName, Stream fileStream,
-                                               string parentId, string parentPath, bool autoRename = false, string sourceId = "");
+                                               string parentId, string parentPath, bool? autoRename = null, string sourceId = "");
 
         /// <summary>
         ///  指定外部文件url方式上传文件。
@@ -241,7 +241,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="maxLength">【可选】</param>
         /// <returns></returns>
         FileUpload2Response UploadFileByUrl(string accessToken, string projectId, string fileName, string parentId,
-                                            string parentPath, string fileUrl, bool autoRename = false,
+                                            string parentPath, string fileUrl, bool? autoRename = null,
                                             string sourceId = "", string etag = "", long? maxLength = null);
 
         /// <summary>
@@ -259,7 +259,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="maxLength">【可选】</param>
         /// <returns></returns>
         FileUpload2Response UploadFileByPolicy(string accessToken, string projectId, string fileFullName,
-                                               string parentId, string parentPath, bool autoRename = false,
+                                               string parentId, string parentPath, bool? autoRename = null,
                                                string sourceId = "", long? maxLength = null);
 
         /// <summary>
@@ -272,7 +272,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="filePath">【必填】 文件所在路径，使用URL编码（UTF-8），最多256个字符（fileItemId和path,必须二选一填入 ）</param>
         /// <param name="withItemSource">【选填】</param>
         /// <returns></returns>
-        FileItemResponse GetFile(string accessToken, string projectId, string fileItemId, string filePath, bool withItemSource = false);
+        FileItemResponse GetFile(string accessToken, string projectId, string fileItemId, string filePath, bool? withItemSource = null);
 
         /// <summary>
         /// 获取文件状态。
@@ -295,7 +295,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="filePath">【必填】 文件所在路径，使用URL编码（UTF-8），最多256个字符（fileItemId和path,必须二选一填入 ）</param>
         /// <param name="expireTime">【选填】有限期，默认3600s</param>
         /// <returns></returns>
-        FilePath2Response GetFileDownloadUrl(string accessToken, string projectId, string fileItemId, string filePath,string expireTime = null);
+        FilePath2Response GetFileDownloadUrl(string accessToken, string projectId, string fileItemId, string filePath, string expireTime = null);
 
         /// <summary>
         /// 获取文件路径。
@@ -345,9 +345,9 @@ namespace BIMFace.SDK.CSharp.API
         /// <param name="fileItemId">【必填】文件ID(fileItemId和path,必须二选一填入 ）</param>
         /// <param name="filePath">【必填】 文件所在路径，使用URL编码（UTF-8），最多256个字符（fileItemId和path,必须二选一填入 ）</param>
         /// <param name="newFileName">【必填】 新文件名称</param>
-        /// <param name="withItemSource">【选填】</param>
+        /// <param name="autoRename">【选填】文件存在同名时,是否重命名,默认false,false情况下有同名文件则报错</param>
         /// <returns></returns>
-        FileItemResponse RenameFile(string accessToken, string projectId, string fileItemId, string filePath, string newFileName, bool withItemSource = false);
+        FileItemResponse RenameFile(string accessToken, string projectId, string fileItemId, string filePath, string newFileName, bool? autoRename = null);
 
         /// <summary>
         /// 批量删除文件。

@@ -11,6 +11,8 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
+using System;
+
 using Newtonsoft.Json;
 
 namespace BIMFace.SDK.CSharp.Entity
@@ -18,6 +20,7 @@ namespace BIMFace.SDK.CSharp.Entity
     /// <summary>
     ///  BIMFACE 返回的分页信息对象
     /// </summary>
+    [Serializable]
     public class Page
     {
         /// <summary>

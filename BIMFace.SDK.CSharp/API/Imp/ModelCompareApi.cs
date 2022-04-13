@@ -47,7 +47,7 @@ namespace BIMFace.SDK.CSharp.API
         ///  不同版本的模型文件上传并转换成功后，即可发起模型对比。由于对比不能立即完成，BIMFace支持在模型对比完成以后，通过Callback机制通知应用；另外，应用也可以通过接口查询对比状态
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
-        /// <param name="request">对比时的请求参数</param>
+        /// <param name="request">必填】对比时的请求参数</param>
         /// <returns></returns>
         public virtual ModelCompareResponse Compare(string accessToken, CompareRequest request)
         {
@@ -471,6 +471,7 @@ namespace BIMFace.SDK.CSharp.API
         /// <summary>
         /// 【官方非正式接口】根据 CompareId 获取图纸对比的数据包信息
         /// </summary>
+        /// <param name="accessToken">【必填】令牌</param>
         /// <param name="compareId">对比记录的ID</param>
         /// <returns></returns>
         public DrawingCompareDatabagResponse GetDrawingCompareDatabag(string accessToken, long compareId)

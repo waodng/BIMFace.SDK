@@ -25,23 +25,23 @@ namespace BIMFace.SDK.CSharp.Entity
     {
         public FolderContentRequest()
         {
-            WithItemSource = false;
-            PageNo = 1;
-            PageSize = 20;
-            UseFuzzySearch = true;
-            ExcludeFolder = false;
+           // WithItemSource = false;
+           // PageNo = 1;
+           // PageSize = 20;
+           // UseFuzzySearch = true;
+           // ExcludeFolder = false;
         }
 
         /// <summary>
         /// 【必填】父目录文件id(parentId和parentPath，必须二选一填入)
         /// </summary>
-        [JsonProperty("parentId")]
+        [JsonProperty("parentId", NullValueHandling = NullValueHandling.Ignore)]
         public string ParentId { get; set; }
 
         /// <summary>
         /// 【必填】父目录文件路径(parentId和parentPath，必须二选一填入)
         /// </summary>
-        [JsonProperty("parentPath")]
+        [JsonProperty("parentPath", NullValueHandling = NullValueHandling.Ignore)]
         public string ParentPath { get; set; }
 
         /// <summary>
@@ -60,19 +60,19 @@ namespace BIMFace.SDK.CSharp.Entity
         /// 【选填】 	是否返回ItemSource信息，默认为false
         /// </summary>
         [JsonProperty("withItemSource", NullValueHandling = NullValueHandling.Ignore)]
-        public bool WithItemSource { get; set; }
+        public bool? WithItemSource { get; set; }
 
         /// <summary>
         /// 【选填】 	开始页码，默认为1
         /// </summary>
         [JsonProperty("pageNo", NullValueHandling = NullValueHandling.Ignore)]
-        public int PageNo { get; set; }
+        public int? PageNo { get; set; }
 
         /// <summary>
         /// 【选填】 每页大小，默认20
         /// </summary>
         [JsonProperty("pageSize", NullValueHandling = NullValueHandling.Ignore)]
-        public int PageSize { get; set; }
+        public int? PageSize { get; set; }
 
         /// <summary>
         /// 【选填】开始时间，格式为YYYY-MM-DD HH:mm:ss 	
@@ -96,12 +96,12 @@ namespace BIMFace.SDK.CSharp.Entity
         /// 【选填】 	当传了name,是否开启模糊查询,默认开启
         /// </summary>
         [JsonProperty("useFuzzySearch", NullValueHandling = NullValueHandling.Ignore)]
-        public bool UseFuzzySearch { get; set; }
+        public bool? UseFuzzySearch { get; set; }
 
         /// <summary>
         /// 【选填】是否排除文件夹，默认为false
         /// </summary>
         [JsonProperty("excludeFolder", NullValueHandling = NullValueHandling.Ignore)]
-        public bool ExcludeFolder { get; set; }
+        public bool? ExcludeFolder { get; set; }
     }
 }

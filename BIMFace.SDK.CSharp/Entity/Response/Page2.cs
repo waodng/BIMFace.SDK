@@ -11,10 +11,13 @@
 //    修改描述：
 //  ------------------------------------------------------------------------------------------*/
 
+using System;
+
 using Newtonsoft.Json;
 
 namespace BIMFace.SDK.CSharp.Entity
 {
+    [Serializable]
     public class Page2 : Page
     {
         [JsonProperty("htmlDisplay", NullValueHandling = NullValueHandling.Ignore)]

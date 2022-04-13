@@ -14,14 +14,26 @@
 using System;
 using System.Collections.Generic;
 
+using Newtonsoft.Json;
+
 namespace BIMFace.SDK.CSharp.Entity
 {
     /// <summary>
     ///     获取文件夹下的所有文件的返回类
     /// </summary>
     [Serializable]
-    public class FolderContentResponse : GeneralResponse<List<FolderResponse>>
+    public class FolderContentResponse : GeneralResponse<FolderContentEntity>
     {
         
+    }
+
+    [Serializable]
+    public class FolderContentEntity
+    {
+        [JsonProperty("list")]
+        public List<FileItemEntity> FileItems { get; set; }
+
+        [JsonProperty("page")]
+        public Page2 Page { get; set; }
     }
 }

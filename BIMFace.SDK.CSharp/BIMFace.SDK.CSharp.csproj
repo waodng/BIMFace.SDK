@@ -117,6 +117,9 @@
     <Compile Include="Entity\Request\DatabagDerivativeRequest.cs" />
     <Compile Include="Entity\Request\FileManagement\FileCopy2Request.cs" />
     <Compile Include="Entity\Request\FileManagement\FileMove2Request.cs" />
+    <Compile Include="Entity\Request\FileManagement\FolderCreateRequest.cs" />
+    <Compile Include="Entity\Request\FileManagement\FolderUpdateRequest.cs" />
+    <Compile Include="Entity\Request\FileManagement\ProjectSaveRequest.cs" />
     <Compile Include="Entity\Request\FolderContentRequest.cs" />
     <Compile Include="Entity\Request\Integrate\ElementPropertyOverride.cs" />
     <Compile Include="Entity\Request\Integrate\FileIdHashWithElementIds.cs" />

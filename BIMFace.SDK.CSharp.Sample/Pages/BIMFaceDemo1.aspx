@@ -16,12 +16,13 @@
         </div>
         <div style="margin: 25px;">
             文件：<asp:TextBox ID="txtFile" runat="server" Width="780px">F:\BIM示例模型文件\Samples\rac_advanced_sample_project.rvt</asp:TextBox>
-            &nbsp;&nbsp;<br /><br />
-           <div style="padding-left: 330px;">
-               <asp:Button ID="btnUpload" runat="server" Text="上传 -- 普通文件流" OnClick="btnUpload_Click" Width="160px" />
-               &nbsp;<asp:Button ID="btnUpload2" runat="server" Text="上传 -- 文件直传" OnClick="btnUpload2_Click" Width="160px" />
-           </div>
-          
+            &nbsp;&nbsp;<br />
+            <br />
+            <div style="padding-left: 330px;">
+                <asp:Button ID="btnUpload" runat="server" Text="上传 -- 普通文件流" OnClick="btnUpload_Click" Width="160px" />
+                &nbsp;<asp:Button ID="btnUpload2" runat="server" Text="上传 -- 文件直传" OnClick="btnUpload2_Click" Width="160px" />
+            </div>
+
         </div>
         <div style="margin: 25px;">
             <asp:Label ID="Label1" runat="server" Text="文件ID：">
@@ -31,13 +32,13 @@
             &nbsp;<asp:Button ID="btnGetFileUploadStatus" runat="server" Text="获取文件上传状态信息" OnClick="btnGetFileUploadStatus_Click" Width="210px" />
             &nbsp;<asp:Button ID="btnGetFileList" runat="server" Text="获取文件信息列表" OnClick="btnGetFileList_Click" Width="227px" />
             &nbsp;<br />
-           
+
             <div style="margin-top: 10px; padding-left: 330px;">
                 <asp:Button ID="btnGetFileSupport" runat="server" Text="获取应用支持的文件类型" OnClick="btnGetFileSupport_Click" Width="251px" />
                 &nbsp;<asp:Button ID="btnGetFileDownloadUrl" runat="server" Text=" 获取文件下载链接" OnClick="btnGetFileDownloadUrl_Click" Width="209px" />
                 &nbsp;<asp:Button ID="btnDeleteFile" runat="server" Text=" 根据文件ID删除文件" OnClick="btnDeleteFile_Click" Width="197px" />
             </div>
-         
+
             <div style="margin-top: 10px; padding-left: 330px;">
                 <asp:Button ID="btnGetViewTokenByFileId" runat="server" Text="获取 ViewToken【文件转换ID】" Width="483px" OnClick="btnGetViewTokenByFileId_Click" />
             </div>

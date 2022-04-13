@@ -135,21 +135,21 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="compareId">对比记录的ID</param>
         /// <returns></returns>
-        Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabageAsync(string accessToken, long compareId);
+        Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabagAsync(string accessToken, long compareId);
 
         /// <summary>
         /// 【官方非正式接口】根据对比记录的 ViewToken 获取图纸对比的数据包信息
         /// </summary>
         /// <param name="compareViewToken">对比记录的ViewToken</param>
         /// <returns></returns>
-        Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabageByCompareViewTokenAsync(string compareViewToken);
+        Task<DrawingCompareDatabagResponse> GetDrawingCompareDatabagByCompareViewTokenAsync(string compareViewToken);
 
         /// <summary>
         ///  【官方非正式接口】根据图纸对比的数据包Id，获取图纸对比差异数据包结果
         /// </summary>
         /// <param name="databagId">图纸对比的数据包Id，</param>
         /// <returns></returns>
-        Task<DrawingCompareDatabagDiffResult> GetDrawingCompareDatabageDiffResultAsync(string databagId);
+        Task<DrawingCompareDatabagDiffResult> GetDrawingCompareDatabagDiffResultAsync(string databagId);
 
         #endregion
     }

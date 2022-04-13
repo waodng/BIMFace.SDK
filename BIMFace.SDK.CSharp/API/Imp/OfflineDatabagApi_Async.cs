@@ -143,7 +143,6 @@ namespace BIMFace.SDK.CSharp.API
         /// </summary>
         /// <param name="accessToken">【必填】令牌</param>
         /// <param name="compareId">【必填】模型对比id</param>
-        /// <param name="callback">回调地址</param>
         /// <param name="request">请求参数类。
         ///     若需要离线数据包保留db文件，请求体中参数设置为
         ///     {
@@ -189,11 +188,13 @@ namespace BIMFace.SDK.CSharp.API
 
             if (request == null)
             {
-                request = new DatabagDerivativeRequest();
-                request.Config = new Config();
+                request = new DatabagDerivativeRequest
+                {
+                    Config = new Config()
+                };
             }
 
-            string data = request.SerializeToJson();
+            string data = await request.SerializeToJsonAsync();
 
             BIMFaceHttpHeaders headers = new BIMFaceHttpHeaders();
             headers.AddOAuth2Header(accessToken);
