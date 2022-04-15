@@ -45,7 +45,7 @@
             <br />
             <asp:Label ID="Label3" runat="server" Text="父目录路径："></asp:Label>
             <asp:TextBox ID="txtParentPath" runat="server" Width="400px"></asp:TextBox>&nbsp;
-            <asp:Button ID="btnCreateFolderByParentPath" runat="server" Text="指定目录下创建文件夹" Width="150px" OnClick="btnCreateFolderByParentPath_Click" />&nbsp;
+            <asp:Button ID="btnCreateFolderByParentPath" runat="server" Text="指定目录下创建文件夹" Width="170px" OnClick="btnCreateFolderByParentPath_Click" />&nbsp;
             <asp:Button ID="btnGetFolderContents" runat="server" Text="获取文件夹下的所有文件" Width="170px" OnClick="btnGetFolderContents_Click" />&nbsp;
             <br />
             <br />

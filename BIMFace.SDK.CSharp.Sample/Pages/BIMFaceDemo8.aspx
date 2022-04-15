@@ -9,28 +9,24 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="margin: 10px;">
-            <asp:TextBox ID="txtAccessToken" runat="server" Width="311px"></asp:TextBox>
+        <div style="margin: 10px; padding-left: 195px;">
+            <asp:TextBox ID="txtAccessToken" runat="server" Width="310px"></asp:TextBox>
             &nbsp;
-            <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" Width="260px" OnClick="btnGetAccessToken_Click" />
+            <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" Width="170px" OnClick="btnGetAccessToken_Click" />
         </div>
 
         <div style="margin: 10px; width: 860px;">
-
             <asp:Panel ID="Panel1ForDWG" runat="server" BorderStyle="Dotted" GroupingText="离线数据包">
-                <div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                   FileId:
+                <div style="padding-left: 125px;">
+                    FileId:
                   <asp:TextBox ID="txtFileId" runat="server" Width="418px"></asp:TextBox>
                 </div>
-                <div style="margin-top: 10px;">
-                    &nbsp;  &nbsp; 
-                IntegratId：
+                <div style="margin-top: 10px; padding-left: 70px;">
+                    IntegrateId：
                 <asp:TextBox ID="txtIntegratId" runat="server" Width="418px"></asp:TextBox>
                 </div>
-                <div style="margin-top: 10px;">
-                    &nbsp; 
-                CompareId：
+                <div style="margin-top: 10px; padding-left: 70px;">
+                    CompareId：
                 <asp:TextBox ID="txtCompareId" runat="server" Width="418px"></asp:TextBox>
                 </div>
                 <div style="margin-top: 10px;">
@@ -38,23 +34,24 @@
                 离线数据包下载地址：
                 <asp:TextBox ID="txtOffilineDataBagDownloadUrl" runat="server" Width="418px"></asp:TextBox>
                 </div>
-                <div style="margin: 5px;">
-                    &nbsp;<asp:Button ID="btnCreateOffilineDataBagByFileId" runat="server" Text="创建文件离线数据包" Width="260px" OnClick="btnCreateOffilineDataBagByFileId_Click" />
-                    &nbsp;<asp:Button ID="btnCreateOffilineDataBagByIntegratId" runat="server" Text="创建集成文件离线数据包" Width="260px" OnClick="btnCreateOffilineDataBagByIntegratId_Click" />
-                    &nbsp;<asp:Button ID="btnCreateOffilineDataBagByCompareId" runat="server" Text="创建对比文件离线数据包" Width="260px" OnClick="btnCreateOffilineDataBagByCompareId_Click" />
-                    <br /><br />
-                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagByFileId" runat="server" Text="查询文件离线数据包" Width="260px" OnClick="btnQueryOffilineDataBagByFileId_Click" />
-                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagByIntegratId" runat="server" Text="查询集成文件离线数据包" Width="260px" OnClick="btnQueryOffilineDataBagByIntegratId_Click" />
-                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagByCompareId" runat="server" Text="查询对比文件离线数据包" Width="260px" OnClick="btnQueryOffilineDataBagByCompareId_Click" />
-                    <br /><br />
-                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagDownloadUrlByFileId" runat="server" Text="获取数据包下载地址" Width="260px" OnClick="btnQueryOffilineDataBagDownloadUrlByFileId_Click" />
-                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagDownloadUrlByIntegratId" runat="server" Text="获取数据包下载地址(集成)" Width="260px" OnClick="btnQueryOffilineDataBagDownloadUrlByIntegratId_Click" />
-                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagDownloadUrlByCompareId" runat="server" Text="获取数据包下载地址(集成)" Width="260px" OnClick="btnQueryOffilineDataBagDownloadUrlByCompareId_Click"  />
-                    <br /><br />
-                    &nbsp;<asp:Button ID="btnDownloadOffilineDataBag" runat="server" Text="下载离线数据包" Width="260px" OnClick="btnDownloadOffilineDataBag_Click"   />
-
+                <div style="margin: 5px; padding-left: 60px;">
+                    &nbsp;<asp:Button ID="btnCreateOffilineDataBagByFileId" runat="server" Text="创建文件离线数据包" Width="170px" OnClick="btnCreateOffilineDataBagByFileId_Click" />
+                    &nbsp;<asp:Button ID="btnCreateOffilineDataBagByIntegratId" runat="server" Text="创建集成文件离线数据包" Width="170px" OnClick="btnCreateOffilineDataBagByIntegratId_Click" />
+                    &nbsp;<asp:Button ID="btnCreateOffilineDataBagByCompareId" runat="server" Text="创建对比文件离线数据包" Width="170px" OnClick="btnCreateOffilineDataBagByCompareId_Click" />
+                    <br />
+                    <br />
+                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagByFileId" runat="server" Text="查询文件离线数据包" Width="170px" OnClick="btnQueryOffilineDataBagByFileId_Click" />
+                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagByIntegratId" runat="server" Text="查询集成文件离线数据包" Width="170px" OnClick="btnQueryOffilineDataBagByIntegratId_Click" />
+                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagByCompareId" runat="server" Text="查询对比文件离线数据包" Width="170px" OnClick="btnQueryOffilineDataBagByCompareId_Click" />
+                    <br />
+                    <br />
+                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagDownloadUrlByFileId" runat="server" Text="获取数据包下载地址" Width="170px" OnClick="btnQueryOffilineDataBagDownloadUrlByFileId_Click" />
+                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagDownloadUrlByIntegratId" runat="server" Text="获取数据包下载地址(集成)" Width="170px" OnClick="btnQueryOffilineDataBagDownloadUrlByIntegratId_Click" />
+                    &nbsp;<asp:Button ID="btnQueryOffilineDataBagDownloadUrlByCompareId" runat="server" Text="获取数据包下载地址(集成)" Width="170px" OnClick="btnQueryOffilineDataBagDownloadUrlByCompareId_Click" />
+                    <br />
+                    <br />
+                    &nbsp;<asp:Button ID="btnDownloadOffilineDataBag" runat="server" Text="下载离线数据包" Width="170px" OnClick="btnDownloadOffilineDataBag_Click" />
                 </div>
-
             </asp:Panel>
         </div>
 

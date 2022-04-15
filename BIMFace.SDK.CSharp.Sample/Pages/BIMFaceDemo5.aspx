@@ -9,29 +9,27 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="margin: 10px;">
-            <asp:TextBox ID="txtAccessToken" runat="server" Width="311px"></asp:TextBox>
+        <div style="margin: 10px;padding-left: 150px;">
+            <asp:TextBox ID="txtAccessToken" runat="server" Width="310px"></asp:TextBox>
             &nbsp;
-            <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" Width="260px" OnClick="btnGetAccessToken_Click" />
+            <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" Width="170px" OnClick="btnGetAccessToken_Click" />
         </div>
         <div style="margin: 10px; width: 860px;">
 
             <asp:Panel ID="Panel1ForDWG" runat="server" BorderStyle="Dotted" GroupingText="模型集成">
-                <div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                    <asp:Label ID="Label1" runat="server" Text="文件1_ID：">
-                    </asp:Label><asp:TextBox ID="txtFile1Id" runat="server" Width="246px"></asp:TextBox>
-                    &nbsp;
-                    <asp:Label ID="Label2" runat="server" Text="文件2_ID：">
-                    </asp:Label><asp:TextBox ID="txtFile2Id" runat="server" Width="246px"></asp:TextBox>
+                <div style="padding-left: 35px; ">
+                     &nbsp;  <asp:Label ID="Label1" runat="server" Text="文件1_ID：" />
+                    <asp:TextBox ID="txtFile1Id" runat="server" Width="240px"></asp:TextBox>
+                    <br />
+                     &nbsp; <asp:Label ID="Label2" runat="server" Text="文件2_ID："  />
+                    <asp:TextBox ID="txtFile2Id" runat="server" Width="240px"></asp:TextBox>
+                    <br />
+                    <asp:Label ID="Label4" runat="server" Text="IntegratID："/>
+                    <asp:TextBox ID="txtIntegratID" runat="server" Width="240px"></asp:TextBox>
                 </div>
-                <br />
-                  &nbsp; 
-                IntegratID：
-                <asp:TextBox ID="txtIntegratID" runat="server" Width="418px"></asp:TextBox>
-                <div style="margin: 5px;">
-                    &nbsp;<asp:Button ID="btnStartIntegrate" runat="server" Text="开始集成" Width="260px" OnClick="btnStartIntegrate_Click" />
-                    &nbsp;<asp:Button ID="btnGetIntegrateStatus" runat="server" Text="获取集成状态" Width="260px" OnClick="btnGetIntegrateStatus_Click"  />
+                <div style="margin: 5px; padding-left: 50px;">
+                    <asp:Button ID="btnStartIntegrate" runat="server" Text="开始集成" Width="170px" OnClick="btnStartIntegrate_Click" />
+                    &nbsp;<asp:Button ID="btnGetIntegrateStatus" runat="server" Text="获取集成状态" Width="170px" OnClick="btnGetIntegrateStatus_Click"  />
                 </div>
 
             </asp:Panel>

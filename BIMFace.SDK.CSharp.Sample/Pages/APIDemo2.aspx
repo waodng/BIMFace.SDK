@@ -15,14 +15,14 @@
 <body>
     <form id="form1" runat="server">
         <div style="margin: 20px;">
-            <asp:Label ID="Label0" runat="server" Text="源文件："></asp:Label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="Label0" runat="server" Text="源文件："></asp:Label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:FileUpload ID="FileUpload1" runat="server" Width="492px" />
         </div>
         <div style="margin: 20px;">
             AccessToken：
             <asp:TextBox ID="txtAccessToken" runat="server" Width="500px" ReadOnly="True"></asp:TextBox>
         </div>
-        <div style="margin: 20px;padding-left:108px;">
+        <div style="margin: 20px;padding-left:115px;">
             <asp:Button ID="btnGetAccessToken" runat="server" Text="获取 AccessToken" Width="150px" OnClick="btnGetAccessToken_Click" /> &nbsp;
             <asp:Button ID="btnUploadFileByStream" runat="server" Text="普通文件流上传" Width="150px" OnClick="btnUploadFileByStream_Click" />&nbsp;
             <asp:Button ID="btnUploadFileByUrl" runat="server" Text="指定外部文件url方式上传" Width="180px" OnClick="btnUploadFileByUrl_Click"/>
