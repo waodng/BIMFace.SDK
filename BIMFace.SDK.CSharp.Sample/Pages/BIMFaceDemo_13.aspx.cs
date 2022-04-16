@@ -231,8 +231,8 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             txtResult.Text = string.Empty;
 
             List<string> lstFileIds = new List<string>();
-            lstFileIds.Add("10000736648113");
-            lstFileIds.Add("10000736648068");
+            lstFileIds.Add("10000737158730");
+            //lstFileIds.Add("10000736648068");
 
             IFileManagementApi api = new FileManagementApi();
             var response = api.DownloadFilesByZip(txtAccessToken.Text, txtProjectId.Text, lstFileIds);
@@ -248,8 +248,8 @@ namespace BIMFace.SDK.CSharp.Sample.Pages
             txtResult.Text = string.Empty;
 
             List<string> lstFileIds = new List<string>();
-            lstFileIds.Add("10000736648113");
-            lstFileIds.Add("10000736648068");
+            lstFileIds.Add(txtFileId.Text.Trim());
+           
 
             IFileManagementApi api = new FileManagementApi();
             var response = api.DeleteFiles(txtAccessToken.Text, txtProjectId.Text, lstFileIds);
