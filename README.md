@@ -12,7 +12,7 @@ BIMFace.SDK.CSharp 项目已加入 [dotNET China](https://gitee.com/dotnetchina)
 
 #### 功能简介
 
-【 **BIMFACE.SDK.CSharp** 】 是基于微软.NET 技术封装的用于 BIMFACE 二次开发的通用类库。其中封装了BIMFace服务端API，包含
+【 **BIMFACE.SDK.CSharp** 】 是基于微软.NET Standard 技术封装的用于 BIMFACE 二次开发的通用类库。其中封装了BIMFace服务端API，包含
 
 - 基础API
 - 文件上传API
@@ -29,21 +29,22 @@ BIMFace.SDK.CSharp 项目已加入 [dotNET China](https://gitee.com/dotnetchina)
 - rfa构建数据API
 - 分享链接API
 - 回调API等服务器端接口
+- 文档管理API
 
 #### 软件架构
-本项目使用 .NET Framework 4.5、VS2019 创建。 如果使用低版本的VS，请自行创建解决方案，然后手动添加 BIMFace.SDK.CSharp、BIMFace.SDK.CSharp.Common、BIMFace.SDK.CSharp.Sample 项目即可。
+本项目使用 VS2019 创建，如果使用低版本的VS，请自行创建解决方案，然后手动添加 BIMFace.SDK.CSharp、BIMFace.SDK.CSharp.Common、BIMFace.SDK.CSharp.Sample 项目即可。
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0722/105216_c142ea10_1273526.jpeg "22.jpg")
 
 #### 使用说明
 
-1、下载完整项目，本项目使用VS2019创建，使用VS2019打开该项目。
+1、下载完整项目，本项目使用VS2019创建，使用VS2019、VS2022打开该项目。
 
 2、重新生成解决方案。 
 
 3、项目结构说明 
 
-（1）BIMFace.SDK.CSharp 为 SDK，里面包含了基础API、文件上传API、文件转换API、模型对比API等。 
+（1）BIMFace.SDK.CSharp 为 SDK，里面包含了基础API、文件上传API、文件转换API、模型对比API、生成离线数据包API、文档管理API等。 
 
 （2）BIMFace.SDK.CSharp.Common 为项目公用类库。 
 
