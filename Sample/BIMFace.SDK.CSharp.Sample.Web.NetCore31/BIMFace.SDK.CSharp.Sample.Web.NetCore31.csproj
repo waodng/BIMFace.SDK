@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Src\BIMFace.SDK.CSharp.Common\BIMFace.SDK.CSharp.Common.csproj" />
+    <ProjectReference Include="..\..\Src\BIMFace.SDK.CSharp\BIMFace.SDK.CSharp.csproj" />
+  </ItemGroup>
+
+</Project>
