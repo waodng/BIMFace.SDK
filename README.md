@@ -9,7 +9,6 @@ BIMFace.SDK 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组�
 【 **BIMFace.SDK** 】是由BIMFACE社区参与者、贡献者、产品深度用户  **张传宁**  提供的开源免费SDK。
 
 ![输入图片说明](Src/BIMFace.SDK.CSharp/Imgs/01.png)
-![输入图片说明](Src/BIMFace.SDK.CSharp/Imgs/02.png)
 
 #### 功能简介
 
@@ -35,7 +34,7 @@ BIMFace.SDK 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组�
 #### 软件架构
 本项目使用 VS2019 创建，建议使用VS2019或者VS2022版本打开该项目。
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0722/105216_c142ea10_1273526.jpeg "22.jpg")
+![输入图片说明](Src/BIMFace.SDK.CSharp/Imgs/02.png)
 
 
 #### 使用说明
