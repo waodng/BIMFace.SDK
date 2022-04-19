@@ -8,8 +8,8 @@ BIMFace.SDK 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组�
 #### 介绍
 【 **BIMFace.SDK** 】是由BIMFACE社区参与者、贡献者、产品深度用户  **张传宁**  提供的开源免费SDK。
 
-![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115613_095f6cd4_1273526.jpeg "24.jpg")
-
+![输入图片说明](Src/BIMFace.SDK.CSharp/Imgs/01.png)
+![输入图片说明](Src/BIMFace.SDK.CSharp/Imgs/02.png)
 
 #### 功能简介
 
@@ -46,11 +46,23 @@ BIMFace.SDK 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组�
 
 3、项目结构说明 
 
-（1）BIMFace.SDK.CSharp 为 SDK，里面包含了基础API、文件上传API、文件转换API、模型对比API、生成离线数据包API、文档管理API等。 
+（1）Src/BIMFace.SDK.CSharp.Common 为项目公用类库。 
 
-（2）BIMFace.SDK.CSharp.Common 为项目公用类库。 
+（2）Src/BIMFace.SDK.CSharp 里面包含了BIMFACE服务器端端基础API、文件上传API、文件转换API、模型对比API、生成离线数据包API、文档管理API等。 
 
-（3）BIMFace.SDK.CSharp.Sample 为API使用示例。编译时会自动还原NuGet包。
+（3）Src/BIMFace.AIReview.BIM.SDK.CSharp 是基于BIMFACE进行人工智能审查的SDK。
+
+（4）Sample/BIMFace.SDK.CSharp.Sample.Web 是 ASP.NET WebForm 测试程序，测试封装的API示例。编译时会自动还原NuGet包。
+
+（5）Sample/BIMFace.SDK.CSharp.Sample.Web.NET6 是 ASP.NET Core 6.0 测试程序，测试封装的API示例。编译时会自动还原NuGet包。
+
+（6）Sample/BIMFace.SDK.CSharp.Sample.Web.NetCore31 是 ASP.NET Core 3.1 测试程序，测试封装的API示例。编译时会自动还原NuGet包。
+
+（7）Sample/BIMFace.SDK.CSharp.Sample.WinForm 是WinForm客户端测试程序，提供客户端集成BIMFace应用的多种解决方案。
+
+（8）Sample/BIMFace.SDK.CSharp.Sample.WPF 是WPF客户端测试程序，提供客户端集成BIMFace应用的多种解决方案。
+
+（9）Sample/BIMFace.AIReview.BIM.SDK.CSharp.Sample 是 ASP.NET WebForm 测试程序，测试封装的API示例。编译时会自动还原NuGet包。
 
 4、BIMFace.SDK.CSharp.Sample 为示例项目，使用前需要在web.config中配置 BIMFACE 的BIMFACE_AppKey、BIMFACE_AppSecret、BIMFACE_Callback。
 
