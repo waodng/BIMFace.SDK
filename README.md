@@ -63,7 +63,7 @@ BIMFace.SDK 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组�
 
 （9）Sample/BIMFace.AIReview.BIM.SDK.CSharp.Sample 是 ASP.NET WebForm 测试程序，测试封装的API示例。编译时会自动还原NuGet包。
 
-4、Sample结构下为SDK测试程序，每个实例程序里面有详细的使用说明，阅读后再测试。
+4、Sample结构下为SDK测试程序，每个示例程序里面有详细的使用说明，阅读后再测试。
 
 #### 使用教程
 
