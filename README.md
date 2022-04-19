@@ -1,4 +1,4 @@
-# BIMFACE.SDK
+# BIMFace.SDK
 
 ## 特别声明
 
