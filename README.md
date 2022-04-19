@@ -6,7 +6,7 @@ BIMFace.SDK 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组�
 ![dotnetchina](https://images.gitee.com/uploads/images/2021/0324/120117_2da9922c_416720.png "132645_21007ea0_974299.png")
 
 #### 介绍
-【 **BIMFACE.SDK** 】是由BIMFACE社区参与者、贡献者、产品深度用户  **张传宁**  提供的开源免费SDK。
+【 **BIMFace.SDK** 】是由BIMFACE社区参与者、贡献者、产品深度用户  **张传宁**  提供的开源免费SDK。
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0625/115613_095f6cd4_1273526.jpeg "24.jpg")
 
