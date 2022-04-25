@@ -19,6 +19,7 @@ BIMFace.SDK 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组�
 - 文件转换API
 - 模型集成API
 - 模型对比API
+- 模型碰撞检测API
 - 模型构建属性重写API
 - 模型信息和构建属性查询API
 - 构建空间关系计算API
