@@ -8,4 +8,8 @@
     <ProjectReference Include="..\BIMFace.SDK.CSharp.Common\BIMFace.SDK.CSharp.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entity\Response\ClashDetective\" />
+  </ItemGroup>
+
 </Project>

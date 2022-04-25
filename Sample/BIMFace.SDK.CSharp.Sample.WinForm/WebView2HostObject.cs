@@ -11,6 +11,10 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
     [ComVisible(true)]
     public class WebView2HostObject
     {
+        /* 1、微软官方文档教程 https://docs.microsoft.com/zh-cn/microsoft-edge/webview2/
+         * 2、示例下载 https://github.com/MicrosoftEdge/WebView2Samples
+         */
+
         /// <summary>
         /// 测试计算2个整数的加法
         /// </summary>

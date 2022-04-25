@@ -12,7 +12,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
     {
         static int CaclTimes3 = 0;
 
-        public static Dictionary<string, FrmCefSharpDemo3_1> DicModelAndForm;    //key：BIM   Value：窗体
+        public static Dictionary<string, FrmCefSharpDemo5> DicModelAndForm;    //key：BIM   Value：窗体
 
         public static Dictionary<string, ChromiumWebBrowser> dicFileIdAndChroms; //key：FileId 。Value：ChromiumWebBrowser 对象
 
@@ -20,7 +20,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
         {
             InitializeComponent();
 
-            DicModelAndForm = new Dictionary<string, FrmCefSharpDemo3_1>();
+            DicModelAndForm = new Dictionary<string, FrmCefSharpDemo5>();
             dicFileIdAndChroms = new Dictionary<string, ChromiumWebBrowser>();
 
             SetControl();
@@ -52,7 +52,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             TabPage newTabPage = new TabPage();
             newTabPage.Text = newTabPage.Name = key;
 
-            FrmCefSharpDemo3_1 frm = new FrmCefSharpDemo3_1(key);
+            FrmCefSharpDemo5 frm = new FrmCefSharpDemo5(key);
             frm.TopLevel = false;
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Parent = newTabPage;

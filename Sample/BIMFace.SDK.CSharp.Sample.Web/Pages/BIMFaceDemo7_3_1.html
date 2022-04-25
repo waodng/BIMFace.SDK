@@ -72,13 +72,13 @@
          * fileId:10000709359577 模型
          * fileId:10000709090473 图纸
          * */
-        var fileId = getQueryParas("fileId");   //10000709359577;
+        var fileId = 10000735698465; //getQueryParas("fileId");   //10000709359577;
         var app;
         var viewer2D;
         var viewer3D;
         var modelViewer = {
             toolbar: undefined,  // 工具条
-            annotationmanager: undefined,  // annotation的绘制管理器
+            annotationManager: undefined,  // annotation的绘制管理器
             annotationToolbar: undefined,
             annotationControl: undefined   // 重写annotation的保存、取消
         };
@@ -87,7 +87,7 @@
             loadBIMFile(fileId);
 
             (async function () {
-                //该方法从WinForm窗体中获取注册的C#类对象 _chromeBrowser，在网页中可以使用该对象
+                //该方法从WinForm窗体中获取注册的C#类对象 _chromeBrowser(CefSharp组件)，在网页中可以使用该对象
                 await CefSharp.BindObjectAsync("_chromeBrowser");
             })();
         });
@@ -131,7 +131,7 @@
             /* modelViewer 是全局对象，它与具体的图纸或者模型一一对应。如果切换了图纸/模型，则需要将其重置，然后在后续操作中再创建。*/
             modelViewer = {
                 toolbar: undefined,  // 工具条
-                annotationmanager: undefined,  // annotation的绘制管理器
+                annotationManager: undefined,  // annotation的绘制管理器
                 annotationToolbar: undefined,
                 annotationControl: undefined   // 重写annotation的保存、取消
             };

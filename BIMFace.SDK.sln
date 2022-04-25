@@ -30,9 +30,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMFace.AIReview.BIM.SDK.CS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMFace.SDK.CSharp.Sample.WinForm", "Sample\BIMFace.SDK.CSharp.Sample.WinForm\BIMFace.SDK.CSharp.Sample.WinForm.csproj", "{44D9ACF5-6B84-45E6-A54A-2BF0FA9AEDEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMFace.SDK.CSharp.Sample.Web.NetCore31", "Sample\BIMFace.SDK.CSharp.Sample.Web.NetCore31\BIMFace.SDK.CSharp.Sample.Web.NetCore31.csproj", "{ED32DDF7-E0B4-410E-802E-25841B2A3670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMFace.SDK.CSharp.Sample.Web.NetCore31", "Sample\BIMFace.SDK.CSharp.Sample.Web.NetCore31\BIMFace.SDK.CSharp.Sample.Web.NetCore31.csproj", "{ED32DDF7-E0B4-410E-802E-25841B2A3670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BIMFace.SDK.CSharp.Sample.Web.NET6", "Sample\BIMFace.SDK.CSharp.Sample.Web.NET6\BIMFace.SDK.CSharp.Sample.Web.NET6.csproj", "{3A873B64-5C49-42B8-94CE-99D23230B888}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BIMFace.SDK.CSharp.Sample.Web.NET6", "Sample\BIMFace.SDK.CSharp.Sample.Web.NET6\BIMFace.SDK.CSharp.Sample.Web.NET6.csproj", "{3A873B64-5C49-42B8-94CE-99D23230B888}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

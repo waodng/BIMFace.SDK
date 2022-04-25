@@ -1,7 +1,7 @@
 ﻿
 namespace BIMFace.SDK.CSharp.Sample.WinForm
 {
-    partial class FrmCefSharpDemo3_1
+    partial class FrmCefSharpDemo5
     {
         /// <summary>
         /// Required designer variable.
@@ -206,15 +206,15 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // FrmCefSharpDemo3_1
+            // FrmCefSharpDemo5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1239, 688);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "FrmCefSharpDemo3_1";
-            this.Text = "CefSharp组件加载BIMFACE模型/图纸2  复杂应用(单窗体加载多网页)";
+            this.Name = "FrmCefSharpDemo5";
+            this.Text = "WebView2组件加载BIMFACE模型/图纸2  复杂应用(单窗体加载多网页)";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);

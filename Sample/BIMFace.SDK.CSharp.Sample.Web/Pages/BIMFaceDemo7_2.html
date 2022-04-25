@@ -45,14 +45,14 @@
                     viewer3D: null,
                     modelViewer: {
                         toolbar: undefined,  // 工具条
-                        annotationmanager: undefined,  // annotation的绘制管理器
+                        annotationManager: undefined,  // annotation的绘制管理器
                         annotationToolbar: undefined,
                         annotationControl: undefined   // 重写annotation的保存、取消
                     }
                 },
                 beforeCreate: function () {
                     /* 在实例初始化之后，数据观测（data observer） 和 event/watcher 事件配置之前被调用 */
-                    console.log('beforCreate');
+                    console.log('beforeCreate');
                 },
                 created: function () {
                     /* 在实例创建完成后被立即调用。
@@ -63,7 +63,7 @@
                 },
                 beforeMount: function () {
                     /* 在挂载开始之前被调用：相关的渲染函数首次被调用*/
-                    console.log('beforMount');
+                    console.log('beforeCreate');
                 },
                 mounted() {
                     /* el被新创建的 vm.$el 替换，挂载成功 */
@@ -119,7 +119,7 @@
                         /* modelViewer 是全局对象，它与具体的图纸或者模型一一对应。如果切换了图纸/模型，则需要将其重置，然后在后续操作中再创建。*/
                         modelViewer = {
                             toolbar: undefined,  // 工具条
-                            annotationmanager: undefined,  // annotation的绘制管理器
+                            annotationManager: undefined,  // annotation的绘制管理器
                             annotationToolbar: undefined,
                             annotationControl: undefined   // 重写annotation的保存、取消
                         };

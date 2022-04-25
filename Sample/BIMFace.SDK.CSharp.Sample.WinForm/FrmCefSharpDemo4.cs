@@ -1,6 +1,4 @@
-﻿using CefSharp;
-
-using System;
+﻿using System;
 using System.Windows.Forms;
 
 namespace BIMFace.SDK.CSharp.Sample.WinForm
@@ -19,21 +17,6 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
             await webView2.EnsureCoreWebView2Async(null);
         }
 
-        private void chromiumWebBrowser1_LoadError(object sender, LoadErrorEventArgs e)
-        {
-            MessageBox.Show("加载网页出错o(╥﹏╥)o"
-                + Environment.NewLine
-                + Environment.NewLine
-                + "FailedUrl：" + e.FailedUrl
-                + Environment.NewLine
-                + "ErrorCode：" + e.ErrorCode
-                + Environment.NewLine
-                + "ErrorText：" + e.ErrorText,
-                "提示",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-        }
-
         // 加载模型/图纸
         private void btnLoadBIMFaceFile_Click(object sender, EventArgs e)
         {
@@ -48,7 +31,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
                 return;
             }
 
-            // 想网页注册C#对象，供JS调用
+            // 向网页注册C#对象，供JS调用
             webView2.CoreWebView2.AddHostObjectToScript("webView2Obj", new WebView2HostObject());
 
             string url = "https://localhost:44389/Pages/BIMFaceDemo7_4_1.html?fileId=" + fileId;

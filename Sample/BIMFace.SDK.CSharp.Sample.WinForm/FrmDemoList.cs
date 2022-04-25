@@ -15,7 +15,7 @@ namespace BIMFace.SDK.CSharp.Sample.WinForm
         public static FrmCefSharpDemo2 FrmCefSharpDemo2 { get; set; }
         public static FrmCefSharpDemo3 FrmCefSharpDemo3 { get; set; }
 
-        public static FrmCefSharpDemo3_1 FrmCefSharpDemo3_1 { get; set; }
+        public static FrmCefSharpDemo5 FrmCefSharpDemo3_1 { get; set; }
 
         public FrmDemoList()
         {

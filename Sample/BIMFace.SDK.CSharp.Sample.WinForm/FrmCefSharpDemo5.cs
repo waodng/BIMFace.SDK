@@ -8,16 +8,16 @@ using CefSharp.WinForms;
 
 namespace BIMFace.SDK.CSharp.Sample.WinForm
 {
-    public partial class FrmCefSharpDemo3_1 : Form
+    public partial class FrmCefSharpDemo5 : Form
     {
         static int CaclTimes31 = 0;
 
         string TabKey = string.Empty;
         Dictionary<string, ChromiumWebBrowser> dicFileIdAndChroms; //key： FileId 。Value：ChromiumWebBrowser 对象
 
-        public static FrmCefSharpDemo3_1 Form;
+        public static FrmCefSharpDemo5 Form;
 
-        public FrmCefSharpDemo3_1(string tabKey)
+        public FrmCefSharpDemo5(string tabKey)
         {
             InitializeComponent();
 

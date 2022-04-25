@@ -49,7 +49,7 @@
 <body>
     <div id="btns" class="buttons">
         <button class="button" id="btn1" onclick="reFresh();">刷新</button>
-        <button class="button" id="btn2" style="width: 120px;" onclick="callCharpMethod();">JS 调用 C# 方法</button>
+        <button class="button" id="btn2" style="width: 120px;" onclick="callCSharpMethod();">JS 调用 C# 方法</button>
     </div>
 
     <div class="container">
@@ -72,13 +72,13 @@
          * fileId:10000709359577 模型
          * fileId:10000709090473 图纸
          * */
-        var fileId = getQueryParas("fileId");   //10000709359577;
+        var fileId = 10000735698465; //getQueryParas("fileId");   //10000709359577;
         var app;
         var viewer2D;
         var viewer3D;
         var modelViewer = {
             toolbar: undefined,  // 工具条
-            annotationmanager: undefined,  // annotation的绘制管理器
+            annotationManager: undefined,  // annotation的绘制管理器
             annotationToolbar: undefined,
             annotationControl: undefined   // 重写annotation的保存、取消
         };
@@ -127,7 +127,7 @@
             /* modelViewer 是全局对象，它与具体的图纸或者模型一一对应。如果切换了图纸/模型，则需要将其重置，然后在后续操作中再创建。*/
             modelViewer = {
                 toolbar: undefined,  // 工具条
-                annotationmanager: undefined,  // annotation的绘制管理器
+                annotationManager: undefined,  // annotation的绘制管理器
                 annotationToolbar: undefined,
                 annotationControl: undefined   // 重写annotation的保存、取消
             };
@@ -202,8 +202,8 @@
             location.reload();
         }
 
-        // js 调用 C# 方法
-        async function callCharpMethod() {
+        // WebView2 js 调用 C# 方法
+        async function callCSharpMethod() {
             var webView2Obj = window.chrome.webview.hostObjects.webView2Obj;
             var result = await webView2Obj.TestCalcAdd(fileId, 6, 8);
             alert(result);
