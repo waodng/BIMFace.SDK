@@ -8,6 +8,8 @@ BIMFace.SDK 项目已加入 [dotNET China](https://gitee.com/dotnetchina)  组�
 #### 介绍
 【 **BIMFace.SDK** 】是由BIMFACE社区参与者、贡献者、产品深度用户  **张传宁**  提供的开源免费SDK。支持.NET Framework、.NETCore3.1、.NET5、.NET6、.NET7 开发，支持 Windows、Linux、MacOS跨平台系统部署运行。
 
+大家在使用过程中，如遇到任何问题请联系作者，QQ：905442693 微信：savionzhang。
+
 ![输入图片说明](Src/BIMFace.SDK.CSharp/Imgs/01.png)
 
 #### 功能简介
